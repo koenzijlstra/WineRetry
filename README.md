@@ -25,3 +25,6 @@ All products added by any user will be available for users when searching. Users
 * Vivino. Found this application when a friend searched if my original idea of a wine buying app wasn't already made. Almost identical design of results as i originally planned. Really great and clean design, useful functions. Is used to find good wines, review the wines and tell friends about certain wines.
 
 
+https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/PP_eerste_opzet.jpg
+
+
