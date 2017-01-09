@@ -18,7 +18,10 @@ Users will be registered on firebase, and upload products from their account. Th
 
 All products added by any user will be available for users when searching. Users can start a chat with another user when they would like to buy/discuss a product.
 
+## Technical problems
+
+## Similar applications
+* Marktplaats (mentioned earlier)
+* Vivino. Found this application when a friend searched if my original idea of a wine buying app wasn't already made. Almost identical design of results as i originally planned. Really great and clean design, useful functions. Is used to find good wines, review the wines and tell friends about certain wines.
 
 
-technical problems or limitations that could arise during development and what possibilities you have to overcome these
-a review of similar applications or visualizations in terms of features and technical aspects (what do they offer? how have they implemented it?)
