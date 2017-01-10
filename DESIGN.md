@@ -1,5 +1,9 @@
 # Design document
 
+## titel voor plaatje
+
+![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/Knipsel.PNG)
+ 
 ## Classes
  faldfkjald see plaatjesdf
  
