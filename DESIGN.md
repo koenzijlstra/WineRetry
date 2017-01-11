@@ -15,6 +15,7 @@
 * Results: the results of the search key
 ![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/Searched.PNG)
 
+
 * Product: all info of wine, user can navigate to chat activity
 ![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/Product.PNG)
 
