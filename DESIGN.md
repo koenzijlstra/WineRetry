@@ -7,20 +7,14 @@
 ## Classes
 #### Activities (incl design)
 * Home: User can navigate to sell, allchats or buy activity or logout.
-![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/Home.PNG)
-
 * Sell: user can search for wines, displayed are random wines
-![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/Search.PNG)
-
 * Results: the results of the search key
-![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/Searched.PNG)
-
-
 * Product: all info of wine, user can navigate to chat activity
+
+![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/Home.PNG)
+![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/Search.PNG)
+![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/Searched.PNG)
 ![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/Product.PNG)
-
-
-
 
  
 ## UI
