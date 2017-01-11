@@ -32,22 +32,22 @@ Firebase works with JSON. When a user uploads a whine, it needs to be in his per
 
 # DB ON FIREBASE:
 ## Users
-### User1
-#### for sale
-##### Wine 1
-##### Wine 2
-##### Wine 3
-#### Chats
-##### Bob
-##### Jake
-### User2
-#### for sale
-##### Wine 4
-##### Wine 5
-##### Wine 6
-#### Chats
-##### Mark
-##### John
+#### User1
+##### for sale
+###### Wine 1
+###### Wine 2
+###### Wine 3
+##### Chats
+###### Bob
+###### Jake
+#### User2
+##### for sale
+###### Wine 4
+###### Wine 5
+###### Wine 6
+##### Chats
+###### Mark
+###### John
 
 
 
