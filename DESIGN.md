@@ -31,7 +31,7 @@ Users will provide the data. Later the api of a store can be added.
 Firebase works with JSON. When a user uploads a whine, it needs to be in his personal sells overview, as well as in the list of all wines that users can find. I will have to be careful to not safe too much data double. (Another thing to think of is duplicates of whines, same wine by different sellers)
 
 * users
-&nbsp;&nbsp;&nbsp;&nbsp;user1
+&nbsp;&nbsp;&nbsp;&nbsp;user1  \n
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wine1
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wine2
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wine3
