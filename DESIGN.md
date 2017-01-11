@@ -9,7 +9,7 @@
 * Home: User can navigate to sell, allchats or buy activity or logout.
 * Sell: user can search for wines, displayed are random wines
 
-![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/Home.PNG)
+![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/Home.PNG =100x20)
 ![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/Search.PNG)
 
 * Results: the results of the search key
