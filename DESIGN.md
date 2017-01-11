@@ -27,7 +27,7 @@ The platform Firebase will be used for the funcionality of the app.
 Users will provide the data. Later the api of a store can be added.
 
 ## Database tables and fields
-Firebase works with JSON. When a user uploads a whine, it needs to be in his personal sells overview, as well as in the list of all wines that users can find. I will have to be careful to not safe too much data double. (Another thing to think of is duplicates of whines, same wine by different sellers). Below the first idea of what the json file will look like:
+Firebase works with JSON. When a user uploads a whine, it needs to be in his personal sells overview, as well as in the list of all wines that users can find. I will have to be careful to not safe too much data double. (Another thing to think of is duplicates of whines, same wine by different sellers). Below the first idea of what the json file will look like (The smaller, the more indented):
 
 # Users
 ### User1
@@ -56,7 +56,7 @@ Firebase works with JSON. When a user uploads a whine, it needs to be in his per
 ### wine 6
 
 # User Interface
-The user interface will most likely have three colors: white, bordeaux red and grey.Below is a sketch of the ui of the activities, but this is an old sketch this will probably change a lot.
+The user interface will most likely have three colors: white, bordeaux red and grey.Below is a sketch of the ui of the activities. Some are old designs, some are the newer versions.
 
 ![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/Home.PNG)
 ![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/Search.PNG)
