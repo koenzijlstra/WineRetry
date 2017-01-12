@@ -5,43 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.koen.wineretry.LoginActivity">
+    tools:context="com.example.koen.wineretry.LoginActivity"
+    android:background="@color/colorPrimaryDark">
 
     <TextView
-        android:text="TextView"
+        android:text="TITEL APP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="23dp"
-        android:id="@+id/textView3" />
-
-    <Button
-        android:text="No TITEL account? Register!"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="64dp"
-        android:id="@+id/button5"
-        android:textAllCaps="false"
-        android:background="@null"
-        android:onClick="gotoregister"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:hint="@string/email"
-        android:paddingLeft="80dp"
-        android:layout_marginBottom="30dp"
-        android:id="@+id/emaillogin"
-        android:layout_alignBottom="@+id/passwordlogin"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/textView3"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -53,17 +31,60 @@
         android:layout_above="@+id/button4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:paddingLeft="80dp"/>
+        android:paddingLeft="80dp"
+        android:textColorHint="@color/lightgrey"
+        android:textColor="@color/white"/>
 
     <Button
-        android:text="Button"
+        android:text="@string/log_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button4"
-        android:layout_centerVertical="true"
+        android:onClick="login"
+        android:background="@color/white"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="login"/>
+        android:layout_marginBottom="169dp" />
+
+    <TextView
+        android:text="Log in with your email and password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_above="@+id/emaillogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email"
+        android:paddingLeft="80dp"
+        android:id="@+id/emaillogin"
+        android:textColorHint="@color/lightgrey"
+        android:textColor="@color/white"
+        android:layout_above="@+id/passwordlogin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="No TITEL account? Register!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button5"
+        android:textAllCaps="false"
+        android:background="@null"
+        android:onClick="gotoregister"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="63dp" />
 
 
 </RelativeLayout>
