@@ -46,7 +46,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@color/white"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimary"
+        />
 
     <EditText
         android:layout_width="match_parent"
@@ -75,7 +76,8 @@
         android:textColor="@color/white"
         android:layout_below="@+id/button3"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="15dp"/>
 
     <TextView
         android:text="@string/how"
@@ -86,7 +88,8 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_above="@+id/passwordsignup"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="17dp"/>
 
 
 </RelativeLayout>

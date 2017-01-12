@@ -57,7 +57,8 @@
         android:textStyle="bold"
         android:layout_above="@+id/emaillogin"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="14dp" />
+        android:layout_marginBottom="14dp"
+        android:textSize="17dp"/>
 
     <EditText
         android:layout_width="match_parent"
