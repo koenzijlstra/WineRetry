@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "6647015282",
+    "firebase_url": "https://wineretry.firebaseio.com",
+    "project_id": "wineretry",
+    "storage_bucket": "wineretry.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6647015282:android:4b9d99dfe882531c",
+        "android_client_info": {
+          "package_name": "com.example.koen.wineretry"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6647015282-kb7ttq316ru47lmk7gu5ildcukr9ip63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAZ824_4yRxnZd10z9OKOijBVEKHGK9gk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
