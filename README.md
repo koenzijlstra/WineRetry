@@ -32,8 +32,8 @@ Update: this picture of activities is not up to date anymore, will be changed as
 
 ## UI
 Below are two pictures to give an idea of how the user interface will look
-![alt tag]https://github.com/koenzijlstra/WineRetry/blob/master/docs/example1.PNG
-![alt tag]https://github.com/koenzijlstra/WineRetry/blob/master/docs/loginvrijdag.PNG
+![alt tag](https://github.com/koenzijlstra/WineRetry/blob/master/docs/example1.PNG)
+![alt tag](https://github.com/koenzijlstra/WineRetry/blob/master/docs/loginvrijdag.PNG)
 
 
 
