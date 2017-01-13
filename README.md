@@ -30,6 +30,11 @@ Problembs that could arise are how does the other user recieve a notification of
 Update: this picture of activities is not up to date anymore, will be changed as soon as possible
 ![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/PP_eerste_opzet.jpg)
 
+## UI
+Below are two pictures to give an idea of how the user interface will look
+![alt tag]https://github.com/koenzijlstra/WineRetry/blob/master/docs/example1.PNG
+![alt tag]https://github.com/koenzijlstra/WineRetry/blob/master/docs/loginvrijdag.PNG
+
 
 
 
