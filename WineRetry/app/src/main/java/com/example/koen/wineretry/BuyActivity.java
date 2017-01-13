@@ -67,8 +67,8 @@ public class BuyActivity extends AppCompatActivity {
         auth.signOut();
     }
 
-//    public void gotobuyb(View view){
-//        startActivity(new Intent(BuyActivity.this, BuyActivity.class));
-//    }
+    public void gotobuyb(View view){
+        startActivity(new Intent(BuyActivity.this, BuyActivity.class));
+    }
 }
 
