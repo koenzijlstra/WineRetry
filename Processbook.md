@@ -2,7 +2,8 @@
 Inleiding/uitleg proccesbook
 
 ## Day 1 (DATUM)
-* TODO
+* Todo
+* Todo
 ## Day 2 (DATUM)
 * TODO
 ## Day 3 (DATUM)
