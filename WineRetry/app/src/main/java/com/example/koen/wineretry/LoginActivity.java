@@ -36,9 +36,9 @@ public class LoginActivity extends AppCompatActivity {
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
-        // when user is logged in already, go to mainactivity
+        // when user is logged in already, go to
         if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            startActivity(new Intent(LoginActivity.this, BuyActivity.class));
             finish();
         }
 
@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
     }
 
-    public void login(View view){
+    public void login1(View view){
         // get both edittext fields
         EditText inputEmail = (EditText) findViewById(R.id.emaillogin);
         final EditText inputPassword = (EditText) findViewById(R.id.passwordlogin);
@@ -82,7 +82,9 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             // if sign in succeeds, go to main activity
                         } else {
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            // toast test
+                            Toast.makeText(LoginActivity.this, "alksjdflakjfla", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(LoginActivity.this, BuyActivity.class);
                             startActivity(intent);
                             finish();
                         }

@@ -73,7 +73,7 @@ public class SignupActivity extends AppCompatActivity {
                         // if sign in succeeds go to mainactivity
                         else {
                             Toast.makeText(SignupActivity.this, "Registered succesfully, welcome to Powder Guru" , Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(SignupActivity.this, MainActivity.class));
+                            startActivity(new Intent(SignupActivity.this, BuyActivity.class));
                             finish();
                         }
                     }
@@ -82,7 +82,7 @@ public class SignupActivity extends AppCompatActivity {
 
     // when button "already an account?" is clicked, go to LoginActivity
     public void gotologin(View view){
-        startActivity(new Intent(SignupActivity.this, MainActivity.class));
+        startActivity(new Intent(SignupActivity.this, LoginActivity.class));
         finish();
     }
 }
