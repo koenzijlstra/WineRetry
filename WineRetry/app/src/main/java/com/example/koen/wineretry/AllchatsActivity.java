@@ -5,9 +5,15 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class AllchatsActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authListener;
@@ -35,6 +41,12 @@ public class AllchatsActivity extends AppCompatActivity {
                 }
             }
         };
+
+        // listview voorbeeld
+        ListView lvchats = (ListView) findViewById(R.id.lvchats);
+        String[] chats = new String[] { "Bob", "Mark", "John"};
+        ListAdapter theadapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, chats);
+        lvchats.setAdapter(theadapter);
     }
 
 
