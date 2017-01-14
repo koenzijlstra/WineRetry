@@ -54,7 +54,7 @@ public class NewsellActivity extends AppCompatActivity {
         userref.child("userinfo").child("name").setValue("Koen Zijlstra");
         userref.child("userinfo").child("email").setValue(uemail);
 
-                
+
         DatabaseReference wines = userref.child("wines");
         WineObject testwine = new WineObject(title,region,year,story);
         // nu setvalue, later steeds wijnen toevoegen. ->
