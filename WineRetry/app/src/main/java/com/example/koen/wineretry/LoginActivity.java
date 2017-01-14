@@ -83,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                             // if sign in succeeds, go to main activity
                         } else {
                             // toast test
+                            Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(LoginActivity.this, BuyActivity.class);
                             startActivity(intent);
                             finish();
