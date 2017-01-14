@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
@@ -9,18 +10,6 @@
     tools:context="com.example.koen.wineretry.LoginActivity"
     android:background="@color/colorPrimaryDark">
 
-    <TextView
-        android:text="TITEL APP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
-        android:id="@+id/textView3"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:textColor="@color/white"/>
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,24 +18,11 @@
         android:layout_marginBottom="10dp"
         android:id="@+id/passwordlogin"
         android:layout_above="@+id/button4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:paddingLeft="80dp"
+        android:paddingLeft="20dp"
         android:textColorHint="@color/lightgrey"
-        android:textColor="@color/white"/>
-
-    <Button
-        android:text="@string/log_in"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button4"
-        android:onClick="login1"
-        android:background="@color/white"
-        android:textColor="@color/colorPrimary"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="169dp" />
+        android:textColor="@color/white"
+        android:layout_alignLeft="@+id/emaillogin"
+        android:layout_alignStart="@+id/emaillogin" />
 
     <TextView
         android:text="Log in with your email and password"
@@ -65,13 +41,13 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:hint="@string/email"
-        android:paddingLeft="80dp"
+        android:paddingLeft="20dp"
         android:id="@+id/emaillogin"
         android:textColorHint="@color/lightgrey"
         android:textColor="@color/white"
         android:layout_above="@+id/passwordlogin"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
 
     <Button
         android:text="No TITEL account? Register!"
@@ -82,10 +58,41 @@
         android:background="@null"
         android:onClick="gotoregister"
         android:textColor="@color/white"
+        android:layout_marginBottom="19dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="63dp" />
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:srcCompat="@drawable/bottle"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="@string/log_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4"
+        android:onClick="login1"
+        android:background="@color/white"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginBottom="36dp"
+        android:layout_above="@+id/button5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

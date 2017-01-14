@@ -6,6 +6,7 @@ package com.example.koen.wineretry;
 
 public class WineObject {
 
+    // public String een of ander uniek id (push id?)
     public String title;
     public String region;
     public String year;
