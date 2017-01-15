@@ -13,6 +13,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /*
 * Koen Zijlstra, 10741615
@@ -34,14 +36,22 @@ public class SignupActivity extends AppCompatActivity {
     public void register(View view){
 
         // get edittext fields and strings
+        EditText nameinput = (EditText) findViewById(R.id.name);
         EditText emailinput = (EditText) findViewById(R.id.emailsignup) ;
         EditText passwordinput = (EditText) findViewById(R.id.passwordsignup);
+        final String name = nameinput.getText().toString().trim();
         String email = emailinput.getText().toString().trim();
         String password = passwordinput.getText().toString().trim();
 
         // toast when email or password edittext is empty
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Enter your email address!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // NAME EMPTY -> TOAST
+        if (TextUtils.isEmpty(name)){
+            Toast.makeText(getApplicationContext(), "Enter your name!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -72,8 +82,21 @@ public class SignupActivity extends AppCompatActivity {
                         }
                         // if sign in succeeds go to mainactivity
                         else {
-                            Toast.makeText(SignupActivity.this, "Registered succesfully, welcome to Powder Guru" , Toast.LENGTH_LONG).show();
+
+                            DatabaseReference mrootRef = FirebaseDatabase.getInstance().getReference();
+                            FirebaseAuth auth = FirebaseAuth.getInstance();
+                            String uid = auth.getCurrentUser().getUid();
+                            // email had ook anders gekund
+                            String uemail = auth.getCurrentUser().getEmail();
+                            DatabaseReference allusersref = mrootRef.child("users");
+                            DatabaseReference userref = allusersref.child(uid);
+                            userref.child("userinfo").child("name").setValue(name);
+                            userref.child("userinfo").child("email").setValue(uemail);
+
+                            Toast.makeText(SignupActivity.this, "Registered succesfully, welcome to TITEL APP " + name + "!", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(SignupActivity.this, BuyActivity.class));
+                            // wanneer toast laten zien, nog even bedenken
+                            Toast.makeText(SignupActivity.this, "Registered succesfully, welcome to TITEL APP " + name + "!", Toast.LENGTH_LONG).show();
                             finish();
                         }
                     }

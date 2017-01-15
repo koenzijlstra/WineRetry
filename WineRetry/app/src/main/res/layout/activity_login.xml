@@ -24,18 +24,6 @@
         android:layout_alignLeft="@+id/emaillogin"
         android:layout_alignStart="@+id/emaillogin" />
 
-    <TextView
-        android:text="Log in with your email and password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_above="@+id/emaillogin"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="14dp"
-        android:textSize="17dp"/>
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,14 +61,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        app:srcCompat="@drawable/bottle"
-        android:id="@+id/imageView"
-        android:layout_below="@+id/textView3"
-        android:layout_centerHorizontal="true" />
-
     <Button
         android:text="@string/log_in"
         android:layout_width="match_parent"
@@ -93,6 +73,26 @@
         android:layout_above="@+id/button5"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Log in with your email and password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:layout_above="@+id/emaillogin"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:srcCompat="@drawable/bottle"
+        android:id="@+id/imageView"
+        android:layout_above="@+id/textView4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp" />
 
 
 </RelativeLayout>

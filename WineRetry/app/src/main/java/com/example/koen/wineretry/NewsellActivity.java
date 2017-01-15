@@ -39,8 +39,6 @@ public class NewsellActivity extends AppCompatActivity {
         // test voor database
         // moet eigenlijk vanaf begin
         DatabaseReference mrootRef = FirebaseDatabase.getInstance().getReference();
-
-
         // dit hele stuk alleen eerste keer -> bij register al in db zetten?
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String uid = auth.getCurrentUser().getUid();
