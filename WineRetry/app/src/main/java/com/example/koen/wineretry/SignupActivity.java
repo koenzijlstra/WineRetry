@@ -82,7 +82,6 @@ public class SignupActivity extends AppCompatActivity {
                         }
                         // if sign in succeeds go to mainactivity
                         else {
-
                             DatabaseReference mrootRef = FirebaseDatabase.getInstance().getReference();
                             FirebaseAuth auth = FirebaseAuth.getInstance();
                             String uid = auth.getCurrentUser().getUid();
