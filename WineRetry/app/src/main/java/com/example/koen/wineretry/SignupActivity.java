@@ -3,6 +3,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -30,6 +31,8 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
     }
 
     // register user, called when button "register" is clicked
@@ -80,6 +83,7 @@ public class SignupActivity extends AppCompatActivity {
                             Toast.makeText(SignupActivity.this, "Registering failed because: " + task.getException(),
                                     Toast.LENGTH_SHORT).show();
                         }
+
                         // if sign in succeeds go to mainactivity
                         else {
                             DatabaseReference mrootRef = FirebaseDatabase.getInstance().getReference();
@@ -92,7 +96,10 @@ public class SignupActivity extends AppCompatActivity {
                             userref.child("userinfo").child("name").setValue(name);
                             userref.child("userinfo").child("email").setValue(uemail);
 
-                            Toast.makeText(SignupActivity.this, "Registered succesfully, welcome to TITEL APP " + name + "!", Toast.LENGTH_LONG).show();
+                            // test -> is het handig om wines null te setten, zodat je als je zoekt naar wines over alle nulls heen kan zonder te zoeken?
+                            // userref.child("wines").setValue(null); werkt niet, en niet nodig?
+
+                            // Toast.makeText(SignupActivity.this, "Registered succesfully, welcome to TITEL APP " + name + "!", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(SignupActivity.this, BuyActivity.class));
                             // wanneer toast laten zien, nog even bedenken
                             Toast.makeText(SignupActivity.this, "Registered succesfully, welcome to TITEL APP " + name + "!", Toast.LENGTH_LONG).show();
