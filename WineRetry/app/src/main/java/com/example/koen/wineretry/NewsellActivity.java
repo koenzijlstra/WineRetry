@@ -41,32 +41,9 @@ public class NewsellActivity extends AppCompatActivity {
         String region = etregion.getText().toString();
         String story = etstory.getText().toString();
 
-        String alltext = title + year + region + story;
-
-        // later deze toast weer toevoegen, zo van je hebt deze fles toegevoegd: info info
-        // Toast.makeText(getApplicationContext(), alltext , Toast.LENGTH_LONG).show();
-
-//        // test voor database
-//        // moet eigenlijk vanaf begin
-//        DatabaseReference mrootRef = FirebaseDatabase.getInstance().getReference();
-//        // dit hele stuk alleen eerste keer -> bij register al in db zetten?
-//        FirebaseAuth auth = FirebaseAuth.getInstance();
-//        String uid = auth.getCurrentUser().getUid();
-//        String uemail = auth.getCurrentUser().getEmail();
-//        DatabaseReference allusersref = mrootRef.child("users");
-//
-//        // naam moet user gaan opgeven bij registering
-//        // dit stuk bij register
-//        DatabaseReference userref = allusersref.child(uid);
-//        // opgegeven naam!!
-//        userref.child("userinfo").child("name").setValue("Koen Zijlstra");
-//        userref.child("userinfo").child("email").setValue(uemail);
-
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String uid = auth.getCurrentUser().getUid();
         DatabaseReference userref = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
-
-
 
         // WINE AAN WINES TOEVOEGEN MET ALLE INFO
         // get timestamp
@@ -76,7 +53,7 @@ public class NewsellActivity extends AppCompatActivity {
 
         // create unique identifier for bottle by concatenating user id (unique) and timestamp
         String bottleid = uid + timestamp;
-        Toast.makeText(getApplicationContext(), bottleid , Toast.LENGTH_LONG).show();
+
         // voeg toe aan algemen kop wines
         DatabaseReference winesref = FirebaseDatabase.getInstance().getReference().child("wines");
         WineObject testwine = new WineObject(title,region,year,story);
@@ -86,8 +63,12 @@ public class NewsellActivity extends AppCompatActivity {
         DatabaseReference winesuser = userref.child("wines").push();
         winesuser.setValue(bottleid);
 
+        String added = "You added " + title + " successfully";
+        Toast.makeText(getApplicationContext(), added , Toast.LENGTH_LONG).show();
+
         // na toevoegen terug naar allsells
-        // intent
+        startActivity(new Intent(NewsellActivity.this, AllsellsActivity.class));
+        finish();
     }
 
     public void gotoallsellsn(View view){
