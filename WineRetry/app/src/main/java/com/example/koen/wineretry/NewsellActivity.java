@@ -71,6 +71,7 @@ public class NewsellActivity extends AppCompatActivity {
         finish();
     }
 
+
     public void gotoallsellsn(View view){
         startActivity(new Intent(NewsellActivity.this, AllsellsActivity.class));
         finish();

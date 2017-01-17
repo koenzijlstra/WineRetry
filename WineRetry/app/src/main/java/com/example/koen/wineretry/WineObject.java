@@ -22,6 +22,22 @@ public class WineObject {
         this.year = year;
         this.story = story;
     }
+
+    public String getRegion(){
+        return region;
+    }
+
+    public String getTitle(){
+        return title;
+    }
+
+    public String getYear(){
+        return year;
+    }
+
+    public String getStory(){
+        return story;
+    }
 }
 
 
