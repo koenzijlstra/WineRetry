@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,17 +27,15 @@ public class BuyActivity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
+    private ListView alllv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy);
 
-
-
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar);
-
 
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -54,7 +53,30 @@ public class BuyActivity extends AppCompatActivity {
                 }
             }
         };
+        alllv = (ListView) findViewById(R.id.lvbottles);
+        createonclicklistener();
+    }
 
+    public void createonclicklistener (){
+        alllv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                WineObject clickedwine = (WineObject) adapterView.getItemAtPosition(position);
+                String clickedtitle = clickedwine.getTitle();
+                String clickedyear = clickedwine.getYear();
+                String clickedregion = clickedwine.getRegion();
+                String clickedstory = clickedwine.getStory();
+
+                Toast.makeText(getApplicationContext(), clickedtitle , Toast.LENGTH_LONG).show();
+
+                Intent gotobuyfullinfo = new Intent(BuyActivity.this, Buyfullinfo.class);
+                gotobuyfullinfo.putExtra("title", clickedtitle);
+                gotobuyfullinfo.putExtra("year", clickedyear );
+                gotobuyfullinfo.putExtra("region", clickedregion);
+                gotobuyfullinfo.putExtra("story", clickedstory);
+                startActivity(gotobuyfullinfo);
+            }
+        });
     }
 
     // app crasht als ik keys probeer te hiden?
@@ -83,8 +105,8 @@ public class BuyActivity extends AppCompatActivity {
                 }
 
                 Listadapter listadapter = new Listadapter(getApplicationContext(), bottles);
-                ListView winelv = (ListView) findViewById(R.id.lvbottles);
-                winelv.setAdapter(listadapter);
+
+                alllv.setAdapter(listadapter);
             }
 
             @Override
