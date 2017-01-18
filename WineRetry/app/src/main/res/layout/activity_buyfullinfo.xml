@@ -14,37 +14,37 @@
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvtitlefull"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="17dp" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvtitlefull"
-        android:layout_alignLeft="@+id/tvtitlefull"
-        android:layout_alignStart="@+id/tvtitlefull"
-        android:layout_marginTop="27dp"
-        android:id="@+id/tvyearfull" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/tvyearfull"
-        android:layout_alignLeft="@+id/tvyearfull"
-        android:layout_alignStart="@+id/tvyearfull"
         android:layout_marginTop="23dp"
-        android:id="@+id/tvregionfull" />
+        android:id="@+id/tvregionfull"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:text="TextView"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="39dp"
         android:id="@+id/tvstoryfull"
         android:layout_below="@+id/tvregionfull"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvtitlefull"
+        android:layout_marginTop="17dp"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:id="@+id/tvyearfull"
+        android:layout_below="@+id/tvtitlefull"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

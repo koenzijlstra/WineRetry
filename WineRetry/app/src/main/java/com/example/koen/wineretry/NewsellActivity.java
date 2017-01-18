@@ -56,7 +56,7 @@ public class NewsellActivity extends AppCompatActivity {
 
         // voeg toe aan algemen kop wines
         DatabaseReference winesref = FirebaseDatabase.getInstance().getReference().child("wines");
-        WineObject testwine = new WineObject(title,region,year,story);
+        WineObject testwine = new WineObject(title,region,year,story,uid);
         winesref.child(bottleid).setValue(testwine);
 
         // voeg toe per user

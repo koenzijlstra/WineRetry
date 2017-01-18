@@ -11,16 +11,18 @@ public class WineObject {
     public String region;
     public String year;
     public String story;
-
+    public String sellerid;
     public WineObject() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public WineObject(String title, String region, String year, String story) {
+    public WineObject(String title, String region, String year, String story, String sellerid) {
         this.title = title;
         this.region = region;
         this.year = year;
         this.story = story;
+        this.sellerid = sellerid;
+
     }
 
     public String getRegion(){
@@ -37,6 +39,9 @@ public class WineObject {
 
     public String getStory(){
         return story;
+    }
+    public String getSellerid(){
+        return sellerid;
     }
 }
 
