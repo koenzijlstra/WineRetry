@@ -63,15 +63,13 @@ public class BuyActivity extends AppCompatActivity {
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
     }
 
-
-
     @Override
     public void onStart() {
         super.onStart();
         // create authstatelistener (anders gaat user naar login)
         auth.addAuthStateListener(authListener);
 
-        // nu nog alleen voor 1 specified wine, later voor alle wines
+
         DatabaseReference titlewinetestref = FirebaseDatabase.getInstance().getReference().child("wines");
         titlewinetestref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -81,29 +79,12 @@ public class BuyActivity extends AppCompatActivity {
 
                 for (DataSnapshot bottle : dataSnapshot.getChildren()){
                     WineObject wineObject = bottle.getValue(WineObject.class);
-
-                    String testyear = wineObject.getYear();
-                    Toast.makeText(getApplicationContext(), testyear , Toast.LENGTH_LONG).show();
-
                     bottles.add(wineObject);
-
-                    Toast.makeText(getApplicationContext(), testyear , Toast.LENGTH_LONG).show();
                 }
 
                 Listadapter listadapter = new Listadapter(getApplicationContext(), bottles);
                 ListView winelv = (ListView) findViewById(R.id.lvbottles);
                 winelv.setAdapter(listadapter);
-
-
-//                // nu een string {title = voorbeeldtitle, year = 2000 etc. Maar hoe krijg ik dit in object?
-//                WineObject wineObject = dataSnapshot.getValue(WineObject.class);
-//
-//                String testregion = wineObject.getRegion();
-//                String testyear = wineObject.getYear();
-//                String teststory = wineObject.getStory();
-//                String testtitle = wineObject.getTitle();
-//                Toast.makeText(getApplicationContext(), testyear , Toast.LENGTH_LONG).show();
-
             }
 
             @Override

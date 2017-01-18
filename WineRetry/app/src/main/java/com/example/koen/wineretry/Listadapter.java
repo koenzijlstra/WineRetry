@@ -51,6 +51,4 @@ public class Listadapter extends ArrayAdapter {
     }
 
 
-
-
 }
