@@ -1,7 +1,7 @@
 # Programmeerproject
 
 ## Problem defenition
-Marktplaats is not a product specicif site. Products such as old and rare wines require extra searching criteria such as region or year. Furthermore user experience is not optimal. After wanting to buy an item on markplaats, you have to email or text the seller. There is no in-application chat.(update -> there is :/ )
+Marktplaats is not a product-specific site. Products such as old and rare wines require extra searching criteria such as region or year. Furthermore userexperience is not optimal. After wanting to buy an item on markplaats, you have to email or text the seller. There is no in-application chat.(update -> there is :/ )
 
 ## Problem solving
 The application will let users upload a bottle of wine for sale. Buyers can find these bottles, and start a conversation with the seller in a private (in-app) chat. Users have an overview of their chats. 
