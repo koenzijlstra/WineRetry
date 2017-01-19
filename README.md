@@ -31,6 +31,7 @@ Update: this picture of activities is not up to date anymore, will be changed as
 
 ## UI
 Below are some pictures to give an idea of how the user interface will look. The activites Buyfullinfo and Sellfullinfo have a dialog theme.
+
 ![alt tag](https://github.com/koenzijlstra/WineRetry/blob/master/docs/For%20sale%2C%20dinsdagmiddag%2017.PNG)
 ![alt tag](https://github.com/koenzijlstra/WineRetry/blob/master/docs/loginvrijdag.PNG)
 
