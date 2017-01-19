@@ -16,12 +16,11 @@ Users will be registered on firebase, and upload products from their account. Th
 * Chat
 
 All products added by any user will be available for users when searching. Users can start a chat with another user when they would like to buy/discuss a product. 
-Maybe an api of a company that sells wine will be added if found.
 Extra function: distance between buyer and seller with the google maps api
 (Extra Extra function: let users search for region in search screen by clicking on part of map, not sure)
 
 ## Technical problems
-Problembs that could arise are how does the other user recieve a notification of a message? How can the chat even work with the single other user, and what happens when one of them tries to initialize a chat. How is the database on firebase structured?
+Problems that could arise from now on are most likely centered around the realtime chat. Initially the database structure could have produced some difficulties, but (by trial and error) the database is becoming more and more efficient.
 
 ## Similar applications
 * Marktplaats (mentioned earlier)
@@ -31,7 +30,7 @@ Update: this picture of activities is not up to date anymore, will be changed as
 ![alt tag](https://github.com/koenzijlstra/Programmeerproject/blob/master/docs/PP_eerste_opzet.jpg)
 
 ## UI
-Below are two pictures to give an idea of how the user interface will look
+Below are some pictures to give an idea of how the user interface will look. The activites Buyfullinfo and Sellfullinfo have a dialog theme.
 ![alt tag](https://github.com/koenzijlstra/WineRetry/blob/master/docs/For%20sale%2C%20dinsdagmiddag%2017.PNG)
 ![alt tag](https://github.com/koenzijlstra/WineRetry/blob/master/docs/loginvrijdag.PNG)
 
