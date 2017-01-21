@@ -9,11 +9,11 @@ The application will let users upload a bottle of wine for sale. Buyers can find
 ## Data sets
 Users will be registered on firebase, and upload products from their account. Therefore for each product the seller will be known, and users can start a chat with that seller in a firebase realtime database chat. 
 
-## Parts of application
+## Parts/functionality of application
 * Login/register
 * Add product 
 * Search for products
-* Chat
+* Chat with seller/buyer
 
 All products added by any user will be available for users when searching. Users can start a chat with another user when they would like to buy/discuss a product. 
 Extra function: distance between buyer and seller with the google maps api
@@ -21,6 +21,19 @@ Extra function: distance between buyer and seller with the google maps api
 
 ## Technical problems
 Problems that could arise from now on are most likely centered around the realtime chat. Initially the database structure could have produced some difficulties, but (by trial and error) the database is becoming more and more efficient.
+
+## Alpha release (finished)
+* Log in/register
+* Write wines to firebase database
+* Read all wines from database and display in listview
+* Read the wines from db that user sells
+* Full info of wine that was clicked on in lv is displayed in an activity with dialog theme. In buy-fullinfo the user will be able to navigate to a chat with the seller of that bottle. 
+* In sell fullinfo the user can delete the bottle that he sells. (Right now the bottle only is deleted under root/wines, but the bottleid remains under root/users/uid/wines)
+
+## Alpha relase (To-do's from 01-22-17 and on)
+* User should be able to search for specific keys in database
+* Delete function has to be completed (mentioned earlier)
+* Most importantly: the realtime chat function
 
 ## Similar applications
 * Marktplaats (mentioned earlier)
