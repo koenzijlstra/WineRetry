@@ -33,7 +33,8 @@ Problems that could arise from now on are most likely centered around the realti
 ## Alpha relase (To-do's from 01-22-17 and on)
 * User should be able to search for specific keys in database
 * Delete function has to be completed (mentioned earlier)
-* Most importantly: the realtime chat function
+* The realtime chat function (important!!)
+* Scrollview or datepicker when adding a new wine instead of an edittext (detail)
 
 ## Similar applications
 * Marktplaats (mentioned earlier)
