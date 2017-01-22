@@ -76,7 +76,8 @@
         android:layout_marginTop="27dp"
         android:layout_alignRight="@+id/textView"
         android:layout_alignEnd="@+id/textView"
-        android:textStyle="italic"/>
+        android:textStyle="italic"
+        android:maxLength="45"/>
 
     <TextView
         android:text="Title"
@@ -114,7 +115,8 @@
         android:layout_below="@+id/textView9"
         android:layout_alignRight="@+id/textView"
         android:layout_alignEnd="@+id/textView"
-        android:textStyle="italic"/>
+        android:textStyle="italic"
+        android:maxLength="40"/>
 
     <TextView
         android:text="Region"
@@ -150,7 +152,8 @@
         android:layout_alignStart="@+id/textView10"
         android:textStyle="italic"
         android:layout_alignParentBottom="true"
-        android:gravity="top"/>
+        android:gravity="top"
+        android:maxLength="220"/>
 
     <NumberPicker
         android:layout_width="wrap_content"
