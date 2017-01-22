@@ -116,7 +116,7 @@
         android:layout_alignRight="@+id/textView"
         android:layout_alignEnd="@+id/textView"
         android:textStyle="italic"
-        android:maxLength="40"/>
+        android:maxLength="35"/>
 
     <TextView
         android:text="Region"

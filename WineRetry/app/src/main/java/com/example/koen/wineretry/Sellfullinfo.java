@@ -5,11 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Sellfullinfo extends AppCompatActivity {
@@ -48,7 +53,8 @@ public class Sellfullinfo extends AppCompatActivity {
     public void delete (View view){
         Intent intent = getIntent();
         HashMap<String, String> hash = (HashMap<String,String>)intent.getSerializableExtra("hashmap");
-        String bottleid = hash.get("bottleid");
+        final String bottleid = hash.get("bottleid");
+        String title = hash.get("title");
         // delete bij wines
         DatabaseReference todelete = FirebaseDatabase.getInstance().getReference().child("wines").child(bottleid);
         todelete.removeValue();
@@ -57,9 +63,31 @@ public class Sellfullinfo extends AppCompatActivity {
         // had ook via sellerid gekund?
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String uid = auth.getCurrentUser().getUid();
+
+        DatabaseReference userwinesref = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("wines");
+        userwinesref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot bottle : dataSnapshot.getChildren()){
+                    String checkedbottle = bottle.getValue(String.class);
+                    if (checkedbottle.equals(bottleid)) {
+                        bottle.getRef().removeValue();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
         // werkt niet: DatabaseReference deleteid = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("wines").removeValue(bottleid);
 
         // toast?
+        // string later naar strings verplaatsen
+        String deletedstring = "You deleted '" + title + "'";
+        Toast.makeText(Sellfullinfo.this, deletedstring, Toast.LENGTH_LONG).show();
 
         // intent terug naar allsells
         startActivity(new Intent(Sellfullinfo.this, AllsellsActivity.class));
