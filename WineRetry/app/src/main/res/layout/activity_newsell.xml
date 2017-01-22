@@ -9,94 +9,7 @@
     tools:context="com.example.koen.wineretry.NewsellActivity">
 
     <TextView
-        android:text="Region"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView8"
-        android:layout_alignRight="@+id/ettitle"
-        android:layout_alignEnd="@+id/ettitle"
-        android:id="@+id/textView9"
-        android:layout_alignLeft="@+id/etregion"
-        android:layout_alignStart="@+id/etregion" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Info about your bottle(s)"
-        android:ems="10"
-        android:id="@+id/etstory"
-        android:layout_below="@+id/textView10"
-        android:layout_alignLeft="@+id/textView10"
-        android:layout_alignStart="@+id/textView10" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="e.g. Bordeaux"
-        android:ems="10"
-        android:id="@+id/etregion"
-        android:layout_above="@+id/textView10"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="Story"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:id="@+id/textView10"
-        android:layout_below="@+id/etyear"
-        android:layout_alignLeft="@+id/etyear"
-        android:layout_alignStart="@+id/etyear" />
-
-    <EditText
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/etyear"
-        android:hint="2000"
-        android:layout_below="@+id/textView8"
-        android:layout_alignLeft="@+id/textView8"
-        android:layout_alignStart="@+id/textView8" />
-
-    <TextView
-        android:text="Year"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView8"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/ettitle"
-        android:layout_alignStart="@+id/ettitle" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/ettitle"
-        android:hint="Title"
-        android:layout_above="@+id/textView9"
-        android:layout_alignLeft="@+id/textView7"
-        android:layout_alignStart="@+id/textView7"
-        android:layout_marginBottom="17dp" />
-
-    <TextView
-        android:text="Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="28dp"
-        android:layout_marginStart="28dp"
-        android:id="@+id/textView7"
-        android:layout_above="@+id/ettitle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="50dp" />
-
-    <TextView
-        android:text="DIT IS EEN UITLEG OVER HOE JE EEN NIEUWE FLES MOET TOEVOEGEN"
+        android:text="Add a new bottle you want to sell by filling in this info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout"
@@ -149,5 +62,103 @@
             android:textColor="@color/white"
             android:textSize="24sp"/>
     </LinearLayout>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/ettitle"
+        android:hint="Title"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/textView7"
+        android:layout_alignStart="@+id/textView7"
+        android:layout_marginTop="27dp"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:text="Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="26dp"
+        android:layout_marginStart="26dp"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp"
+        android:textStyle="bold"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:text="Year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView8"
+        android:layout_marginTop="31dp"
+        android:layout_below="@+id/ettitle"
+        android:layout_alignRight="@+id/textView7"
+        android:layout_alignEnd="@+id/textView7"
+        android:textSize="15sp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="e.g. Bordeaux"
+        android:ems="10"
+        android:id="@+id/etregion"
+        android:layout_below="@+id/textView9"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:text="Region"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView9"
+        android:layout_alignBaseline="@+id/textView8"
+        android:layout_alignBottom="@+id/textView8"
+        android:layout_alignLeft="@+id/etregion"
+        android:layout_alignStart="@+id/etregion"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Story"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView10"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/etregion"
+        android:layout_alignStart="@+id/etregion"
+        android:paddingTop="30dp"
+        android:textSize="15sp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Info about your bottle(s)"
+        android:ems="10"
+        android:id="@+id/etstory"
+        android:layout_below="@+id/textView10"
+        android:layout_alignLeft="@+id/textView10"
+        android:layout_alignStart="@+id/textView10"
+        android:textStyle="italic"
+        android:layout_alignParentBottom="true"
+        android:gravity="top"/>
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPicker"
+        android:layout_below="@+id/textView8"
+        android:layout_alignLeft="@+id/ettitle"
+        android:layout_alignStart="@+id/ettitle"
+        android:layout_marginTop="10dp"/>
 
 </RelativeLayout>

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,20 +25,23 @@ public class NewsellActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar);
-    }
 
+        NumberPicker nmpicker =  (NumberPicker)findViewById(R.id.numberPicker);
+        nmpicker.setMaxValue(2017);
+        nmpicker.setMinValue(1900);
+    }
 
     // FUNCTIES BOVEN MENNU!!
 
-
     public void add (View view){
         EditText ettitle = (EditText) findViewById(R.id.ettitle);
-        EditText etyear = (EditText) findViewById(R.id.etyear);
         EditText etregion = (EditText) findViewById(R.id.etregion);
         EditText etstory = (EditText) findViewById(R.id.etstory);
 
         String title = ettitle.getText().toString();
-        String year = etyear.getText().toString();
+        // String year = etyear.getText().toString();
+        NumberPicker nmpicker =  (NumberPicker)findViewById(R.id.numberPicker);
+        String year = Integer.toString(nmpicker.getValue());
         String region = etregion.getText().toString();
         String story = etstory.getText().toString();
 
@@ -56,7 +60,7 @@ public class NewsellActivity extends AppCompatActivity {
 
         // voeg toe aan algemen kop wines
         DatabaseReference winesref = FirebaseDatabase.getInstance().getReference().child("wines");
-        WineObject testwine = new WineObject(title,region,year,story,uid);
+        WineObject testwine = new WineObject(title,region,year,story,uid,bottleid);
         winesref.child(bottleid).setValue(testwine);
 
         // voeg toe per user

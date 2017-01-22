@@ -22,12 +22,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BuyActivity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
-    private ListView alllv;
+    private ListView allwineslv;
+    String sellername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +55,13 @@ public class BuyActivity extends AppCompatActivity {
                 }
             }
         };
-        alllv = (ListView) findViewById(R.id.lvbottles);
+
+        allwineslv = (ListView) findViewById(R.id.lvbottles);
         createonclicklistener();
     }
 
     public void createonclicklistener (){
-        alllv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        allwineslv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 WineObject clickedwine = (WineObject) adapterView.getItemAtPosition(position);
@@ -66,17 +69,44 @@ public class BuyActivity extends AppCompatActivity {
                 String clickedyear = clickedwine.getYear();
                 String clickedregion = clickedwine.getRegion();
                 String clickedstory = clickedwine.getStory();
+                final HashMap<String, String> hash = new HashMap<String, String>();
+                hash.put("title", clickedtitle);
+                hash.put("year", clickedyear);
+                hash.put("region", clickedregion);
+                hash.put("story", clickedstory);
 
-                Toast.makeText(getApplicationContext(), clickedtitle , Toast.LENGTH_LONG).show();
+                // get name of seller
+                String sellerid = clickedwine.getSellerid();
+                // id meegeven voor chatfunctie (gaat wss via uid)
+                hash.put("sellerid", sellerid);
 
-                Intent gotobuyfullinfo = new Intent(BuyActivity.this, Buyfullinfo.class);
-                gotobuyfullinfo.putExtra("title", clickedtitle);
-                gotobuyfullinfo.putExtra("year", clickedyear );
-                gotobuyfullinfo.putExtra("region", clickedregion);
-                gotobuyfullinfo.putExtra("story", clickedstory);
-                startActivity(gotobuyfullinfo);
+                // name ophalen zodat je ziet met wie je kan chatten
+                final DatabaseReference nameref = FirebaseDatabase.getInstance().getReference().child("users").child(sellerid).child("userinfo").child("name");
+
+                nameref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        sellername = dataSnapshot.getValue().toString();
+                        getSellerName(sellername,hash);
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
+                // om eerste keer niet null te krijgen
+
+
             }
         });
+    }
+
+    // zodat hij niet 1 achter loopt en null geeft
+    public void getSellerName(String sellername, HashMap hash){
+        Intent gotobuyfullinfo = new Intent(BuyActivity.this, Buyfullinfo.class);
+        hash.put("sellername", sellername);
+        gotobuyfullinfo.putExtra("fullhashmap", hash);
+        startActivity(gotobuyfullinfo);
     }
 
     // app crasht als ik keys probeer te hiden?
@@ -92,8 +122,8 @@ public class BuyActivity extends AppCompatActivity {
         auth.addAuthStateListener(authListener);
 
 
-        DatabaseReference titlewinetestref = FirebaseDatabase.getInstance().getReference().child("wines");
-        titlewinetestref.addValueEventListener(new ValueEventListener() {
+        DatabaseReference allwinesref = FirebaseDatabase.getInstance().getReference().child("wines");
+        allwinesref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -105,17 +135,14 @@ public class BuyActivity extends AppCompatActivity {
                 }
 
                 Listadapter listadapter = new Listadapter(getApplicationContext(), bottles);
-
-                alllv.setAdapter(listadapter);
+                allwineslv.setAdapter(listadapter);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
     }
-
 
 
     // remove authstatelistener
