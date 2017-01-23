@@ -106,6 +106,13 @@ public class BuyActivity extends AppCompatActivity {
     }
 
     public void filter (View view){
+
+        // toast die weergeeft wat geselecteerd is
+
+        // get selected tag (red/ white etc)
+        Spinner spinnertag =(Spinner) findViewById(R.id.spinner);
+        final String tag = spinnertag.getSelectedItem().toString();
+
         final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) findViewById(R.id.rangeSeekbar1);
         // niet naar string, vergelijken met int in object
         String min = rangeSeekbar.getSelectedMinValue().toString();
@@ -122,7 +129,16 @@ public class BuyActivity extends AppCompatActivity {
 
                 for (DataSnapshot bottle : dataSnapshot.getChildren()){
                     WineObject wineObject = bottle.getValue(WineObject.class);
-                    selectedbottles.add(wineObject);
+                    if (tag.equals("All")) {
+                        selectedbottles.add(wineObject);
+                    }
+                    else{
+                        // vergelijk geselecteerde tag met tag van de flessen
+                        String bottletag = wineObject.getTag();
+                        if (bottletag.equals(tag)){
+                            selectedbottles.add(wineObject);
+                        }
+                    }
                 }
 
                 Listadapter listadapter = new Listadapter(getApplicationContext(), selectedbottles);

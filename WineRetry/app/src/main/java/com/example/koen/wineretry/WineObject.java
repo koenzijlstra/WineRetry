@@ -13,18 +13,20 @@ public class WineObject {
     public String story;
     public String sellerid;
     public String bottleid;
+    public String tag;
 
     public WineObject() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public WineObject(String title, String region, String year, String story, String sellerid, String bottleid) {
+    public WineObject(String title, String region, String year, String story, String sellerid, String bottleid, String tag) {
         this.title = title;
         this.region = region;
         this.year = year;
         this.story = story;
         this.sellerid = sellerid;
         this.bottleid = bottleid;
+        this.tag = tag;
 
     }
 
@@ -50,6 +52,10 @@ public class WineObject {
     // gedaan om te kunnen deleten
     public String getBottleid(){
         return bottleid;
+    }
+
+    public String getTag (){
+        return tag;
     }
 }
 

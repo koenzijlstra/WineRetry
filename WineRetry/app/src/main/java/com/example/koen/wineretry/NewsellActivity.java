@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +32,15 @@ public class NewsellActivity extends AppCompatActivity {
         NumberPicker nmpicker =  (NumberPicker)findViewById(R.id.numberPicker);
         nmpicker.setMaxValue(2017);
         nmpicker.setMinValue(1900);
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner2);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.winetags2, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
     }
 
     // FUNCTIES BOVEN MENNU!!
@@ -45,6 +56,9 @@ public class NewsellActivity extends AppCompatActivity {
         String year = Integer.toString(nmpicker.getValue());
         String region = etregion.getText().toString();
         String story = etstory.getText().toString();
+
+        Spinner spinnertag =(Spinner) findViewById(R.id.spinner2);
+        String tag = spinnertag.getSelectedItem().toString();
 
 
         if(TextUtils.isEmpty(title)) {
@@ -77,7 +91,7 @@ public class NewsellActivity extends AppCompatActivity {
 
         // voeg toe aan algemen kop wines
         DatabaseReference winesref = FirebaseDatabase.getInstance().getReference().child("wines");
-        WineObject testwine = new WineObject(title,region,year,story,uid,bottleid);
+        WineObject testwine = new WineObject(title,region,year,story,uid,bottleid,tag);
         winesref.child(bottleid).setValue(testwine);
 
         // voeg toe per user

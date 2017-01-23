@@ -109,18 +109,6 @@
         android:layout_marginRight="50dp"
         android:layout_marginEnd="100dp"/>
 
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner"
-        android:layout_above="@+id/filterbutton"
-        android:layout_toLeftOf="@+id/textViewend"
-        android:layout_alignLeft="@+id/rangeSeekbar1"
-        android:layout_alignStart="@+id/rangeSeekbar1"
-        android:layout_marginRight="120dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="20dp"/>
-
     <TextView
         android:text="2017"
         android:layout_width="wrap_content"
@@ -138,5 +126,14 @@
         android:layout_below="@+id/spinner"
         android:layout_alignLeft="@+id/spinner"
         android:layout_alignStart="@+id/spinner" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_marginBottom="19dp"
+        android:layout_above="@+id/textViewend"
+        android:layout_alignLeft="@+id/rangeSeekbar1"
+        android:layout_alignStart="@+id/rangeSeekbar1" />
 
 </RelativeLayout>
