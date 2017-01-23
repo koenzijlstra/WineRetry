@@ -73,12 +73,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/ic_menu_search"
-        android:id="@+id/imageButton"
+        android:id="@+id/filterbutton"
         android:background="@color/lightgrey"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/textView11"
         android:layout_toEndOf="@+id/textView11"
-        android:layout_marginBottom="34dp" />
+        android:layout_marginBottom="34dp"
+        android:onClick="filter"/>
 
     <ListView
         android:layout_width="match_parent"
@@ -91,8 +92,8 @@
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_above="@+id/imageButton"
-        android:paddingBottom="20dp"/>
+        android:layout_above="@+id/filterbutton"
+        android:paddingBottom="40dp"/>
 
     <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
         android:id="@+id/rangeSeekbar1"
@@ -108,9 +109,9 @@
         app:right_thumb_color="@color/colorPrimary"
         app:right_thumb_color_pressed="@color/colorPrimaryDark"
         android:layout_below="@id/lvbottles"
-        android:layout_toLeftOf="@+id/imageButton"
+        android:layout_toLeftOf="@+id/filterbutton"
         android:layout_marginRight="10dp"
-        android:layout_toStartOf="@+id/imageButton" />
+        android:layout_toStartOf="@+id/filterbutton" />
 
     <TextView
         android:text="TextViewend"
@@ -118,8 +119,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/textViewend"
         android:layout_below="@+id/lvbottles"
-        android:layout_toLeftOf="@+id/imageButton"
-        android:layout_toStartOf="@+id/imageButton" />
+        android:layout_toLeftOf="@+id/filterbutton"
+        android:layout_toStartOf="@+id/filterbutton" />
 
     <TextView
         android:text="tvend"

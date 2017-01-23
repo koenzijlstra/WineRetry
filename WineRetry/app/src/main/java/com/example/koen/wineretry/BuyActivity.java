@@ -23,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -51,24 +52,6 @@ public class BuyActivity extends AppCompatActivity {
 //        }
 
 
-        // get seekbar from view
-        final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) findViewById(R.id.rangeSeekbar1);
-        rangeSeekbar.setMinValue(1900);
-        rangeSeekbar.setMaxValue(2017);
-
-// get min and max text view
-        final TextView tvMin = (TextView) findViewById(R.id.textViewstart);
-        final TextView tvMax = (TextView) findViewById(R.id.textViewend);
-
-// set listener
-        rangeSeekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
-            @Override
-            public void valueChanged(Number minValue, Number maxValue) {
-                tvMin.setText(String.valueOf(minValue));
-                tvMax.setText(String.valueOf(maxValue));
-            }
-        });
-
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
 
@@ -89,20 +72,60 @@ public class BuyActivity extends AppCompatActivity {
         allwineslv = (ListView) findViewById(R.id.lvbottles);
         createonclicklistener();
 
-//        setnmpickers();
+        setrangebar();
     }
 
-//    public void setnmpickers (){
-//        NumberPicker nmpickerstart =  (NumberPicker)findViewById(R.id.numberPickerstart);
-//        nmpickerstart.setMaxValue(2016);
-//        nmpickerstart.setMinValue(1900);
-//        nmpickerstart.setValue(1980);
-//
-//        NumberPicker nmpickerend =  (NumberPicker)findViewById(R.id.numberPickerend);
-//        nmpickerend.setMaxValue(2017);
-//        nmpickerend.setMinValue(1901);
-//        nmpickerend.setValue(2000);
-//    }
+    public void setrangebar (){
+        final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) findViewById(R.id.rangeSeekbar1);
+        rangeSeekbar.setMinValue(1900);
+        rangeSeekbar.setMaxValue(2017);
+
+        // get min and max text view
+        final TextView tvMin = (TextView) findViewById(R.id.textViewstart);
+        final TextView tvMax = (TextView) findViewById(R.id.textViewend);
+
+        // set listener
+        rangeSeekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
+            @Override
+            public void valueChanged(Number minValue, Number maxValue) {
+                tvMin.setText(String.valueOf(minValue));
+                tvMax.setText(String.valueOf(maxValue));
+            }
+        });
+    }
+
+    public void filter (View view){
+        final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) findViewById(R.id.rangeSeekbar1);
+        // niet naar string, vergelijken met int in object
+        String min = rangeSeekbar.getSelectedMinValue().toString();
+        String max = rangeSeekbar.getSelectedMaxValue().toString();
+
+        DatabaseReference winesref = FirebaseDatabase.getInstance().getReference().child("wines");
+        final Query selected = winesref.orderByChild("year").startAt(min).endAt(max);
+
+        selected.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                final ArrayList<WineObject> selectedbottles = new ArrayList<>();
+
+                for (DataSnapshot bottle : dataSnapshot.getChildren()){
+                    WineObject wineObject = bottle.getValue(WineObject.class);
+                    selectedbottles.add(wineObject);
+                }
+
+                Listadapter listadapter = new Listadapter(getApplicationContext(), selectedbottles);
+                allwineslv.setAdapter(listadapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
 
     public void createonclicklistener (){
         allwineslv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
