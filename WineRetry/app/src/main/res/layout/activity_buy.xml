@@ -59,15 +59,22 @@
 
     </LinearLayout>
 
-    <TextView
-        android:text="Wines for sale"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView11"
-        android:textSize="30dp"
-        android:layout_below="@+id/linearLayout"
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp" />
+        android:id="@+id/lvbottles"
+        android:layout_marginRight="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:paddingBottom="40dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginTop="30dp"
+        android:layout_above="@+id/spinner"
+        android:layout_marginBottom="10dp"/>
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -75,25 +82,13 @@
         app:srcCompat="@android:drawable/ic_menu_search"
         android:id="@+id/filterbutton"
         android:background="@color/lightgrey"
+        android:layout_marginBottom="33dp"
+        android:onClick="filter"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/textView11"
-        android:layout_toEndOf="@+id/textView11"
-        android:layout_marginBottom="34dp"
-        android:onClick="filter"/>
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/textView11"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp"
-        android:id="@+id/lvbottles"
-        android:layout_marginRight="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_above="@+id/filterbutton"
-        android:paddingBottom="40dp"/>
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="17dp"
+        android:layout_marginEnd="17dp" />
 
     <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
         android:id="@+id/rangeSeekbar1"
@@ -101,34 +96,47 @@
         android:layout_height="wrap_content"
         app:bar_color="@color/lightgrey"
         app:bar_highlight_color="@color/colorPrimaryDark"
-        android:layout_marginTop="30dp"
-        android:layout_alignLeft="@+id/textViewstart"
-        android:layout_alignStart="@+id/textViewstart"
         app:left_thumb_color="@color/colorPrimary"
         app:left_thumb_color_pressed="@color/colorPrimaryDark"
         app:right_thumb_color="@color/colorPrimary"
         app:right_thumb_color_pressed="@color/colorPrimaryDark"
-        android:layout_below="@id/lvbottles"
-        android:layout_toLeftOf="@+id/filterbutton"
-        android:layout_marginRight="10dp"
-        android:layout_toStartOf="@+id/filterbutton" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginEnd="100dp"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_above="@+id/filterbutton"
+        android:layout_toLeftOf="@+id/textViewend"
+        android:layout_alignLeft="@+id/rangeSeekbar1"
+        android:layout_alignStart="@+id/rangeSeekbar1"
+        android:layout_marginRight="120dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="20dp"/>
 
     <TextView
-        android:text="TextViewend"
+        android:text="2017"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textViewend"
-        android:layout_below="@+id/lvbottles"
-        android:layout_toLeftOf="@+id/filterbutton"
-        android:layout_toStartOf="@+id/filterbutton" />
+        android:layout_alignTop="@+id/filterbutton"
+        android:layout_alignRight="@+id/rangeSeekbar1"
+        android:layout_alignEnd="@+id/rangeSeekbar1" />
 
     <TextView
         android:text="tvend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textViewstart"
-        android:layout_below="@+id/lvbottles"
-        android:layout_alignLeft="@+id/lvbottles"
-        android:layout_alignStart="@+id/lvbottles" />
+        android:layout_below="@+id/spinner"
+        android:layout_alignLeft="@+id/spinner"
+        android:layout_alignStart="@+id/spinner" />
 
 </RelativeLayout>
