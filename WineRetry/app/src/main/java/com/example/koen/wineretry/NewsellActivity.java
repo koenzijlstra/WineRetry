@@ -5,6 +5,7 @@ import android.provider.ContactsContract;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -44,6 +45,22 @@ public class NewsellActivity extends AppCompatActivity {
         String year = Integer.toString(nmpicker.getValue());
         String region = etregion.getText().toString();
         String story = etstory.getText().toString();
+
+
+        if(TextUtils.isEmpty(title)) {
+            ettitle.setError("Please fill in a title");
+            return;
+        }
+
+        if (TextUtils.isEmpty(region)){
+            etregion.setError("Please fill in a region");
+            return;
+        }
+
+        if (TextUtils.isEmpty(story)){
+            etstory.setError("Please write a story about this wine");
+            return;
+        }
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String uid = auth.getCurrentUser().getUid();

@@ -27,7 +27,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:textColor="@color/white"
-            android:onClick="gotobuyc"/>
+            android:onClick="gotobuyc" />
 
         <Button
             android:text="Sell"
@@ -45,9 +45,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/button10"
             android:layout_weight="1"
-            android:background="@null"
+            android:background="@color/inbetween"
             android:textColor="@color/white"
-            android:onClick="gotoallchatsc"/>
+            android:onClick="gotoallchatsc"
+            android:textStyle="bold"/>
 
         <ImageButton
             android:layout_width="wrap_content"

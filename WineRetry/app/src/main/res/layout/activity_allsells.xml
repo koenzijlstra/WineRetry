@@ -55,9 +55,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/button11"
             android:layout_weight="1"
-            android:background="@null"
+            android:background="@color/inbetween"
             android:textColor="@color/white"
-            android:onClick="gotoallsellsa"/>
+            android:onClick="gotoallsellsa"
+            android:textStyle="bold"/>
 
         <Button
             android:text="Chats"

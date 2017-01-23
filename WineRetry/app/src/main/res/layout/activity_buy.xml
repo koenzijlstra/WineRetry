@@ -23,9 +23,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/button12"
             android:layout_weight="1"
-            android:background="@null"
+            android:background="@color/inbetween"
             android:textColor="@color/white"
-            android:onClick="gotobuyb"/>
+            android:onClick="gotobuyb"
+            android:textStyle="bold"/>
 
         <Button
             android:text="Sell"
@@ -68,15 +69,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp" />
 
-    <TextView
-        android:text="Search for name, region or year vlakdjflad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView12"
-        android:layout_above="@+id/editText"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
-
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,19 +80,6 @@
         android:layout_toEndOf="@+id/textView11"
         android:layout_marginBottom="34dp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_marginRight="31dp"
-        android:layout_marginEnd="31dp"
-        android:id="@+id/editText"
-        android:hint="'hint'"
-        android:layout_alignBottom="@+id/imageButton"
-        android:layout_toLeftOf="@+id/imageButton"
-        android:layout_toStartOf="@+id/imageButton" />
-
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -108,10 +87,47 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
         android:id="@+id/lvbottles"
-        android:layout_above="@+id/textView12"
         android:layout_marginRight="50dp"
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"/>
+        android:layout_marginLeft="50dp"
+        android:layout_above="@+id/imageButton"
+        android:paddingBottom="20dp"/>
+
+    <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+        android:id="@+id/rangeSeekbar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_color="@color/lightgrey"
+        app:bar_highlight_color="@color/colorPrimaryDark"
+        android:layout_marginTop="30dp"
+        android:layout_alignLeft="@+id/textViewstart"
+        android:layout_alignStart="@+id/textViewstart"
+        app:left_thumb_color="@color/colorPrimary"
+        app:left_thumb_color_pressed="@color/colorPrimaryDark"
+        app:right_thumb_color="@color/colorPrimary"
+        app:right_thumb_color_pressed="@color/colorPrimaryDark"
+        android:layout_below="@id/lvbottles"
+        android:layout_toLeftOf="@+id/imageButton"
+        android:layout_marginRight="10dp"
+        android:layout_toStartOf="@+id/imageButton" />
+
+    <TextView
+        android:text="TextViewend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewend"
+        android:layout_below="@+id/lvbottles"
+        android:layout_toLeftOf="@+id/imageButton"
+        android:layout_toStartOf="@+id/imageButton" />
+
+    <TextView
+        android:text="tvend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewstart"
+        android:layout_below="@+id/lvbottles"
+        android:layout_alignLeft="@+id/lvbottles"
+        android:layout_alignStart="@+id/lvbottles" />
 
 </RelativeLayout>

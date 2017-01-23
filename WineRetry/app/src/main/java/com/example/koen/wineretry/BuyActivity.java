@@ -11,8 +11,12 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.NumberPicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
+import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +43,32 @@ public class BuyActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar);
 
+        // hide keyboard -> doet niks?
+//        View view = this.getCurrentFocus();
+//        if (view != null) {
+//            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+//            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+//        }
+
+
+        // get seekbar from view
+        final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) findViewById(R.id.rangeSeekbar1);
+        rangeSeekbar.setMinValue(1900);
+        rangeSeekbar.setMaxValue(2017);
+
+// get min and max text view
+        final TextView tvMin = (TextView) findViewById(R.id.textViewstart);
+        final TextView tvMax = (TextView) findViewById(R.id.textViewend);
+
+// set listener
+        rangeSeekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
+            @Override
+            public void valueChanged(Number minValue, Number maxValue) {
+                tvMin.setText(String.valueOf(minValue));
+                tvMax.setText(String.valueOf(maxValue));
+            }
+        });
+
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
 
@@ -58,7 +88,21 @@ public class BuyActivity extends AppCompatActivity {
 
         allwineslv = (ListView) findViewById(R.id.lvbottles);
         createonclicklistener();
+
+//        setnmpickers();
     }
+
+//    public void setnmpickers (){
+//        NumberPicker nmpickerstart =  (NumberPicker)findViewById(R.id.numberPickerstart);
+//        nmpickerstart.setMaxValue(2016);
+//        nmpickerstart.setMinValue(1900);
+//        nmpickerstart.setValue(1980);
+//
+//        NumberPicker nmpickerend =  (NumberPicker)findViewById(R.id.numberPickerend);
+//        nmpickerend.setMaxValue(2017);
+//        nmpickerend.setMinValue(1901);
+//        nmpickerend.setValue(2000);
+//    }
 
     public void createonclicklistener (){
         allwineslv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -114,6 +158,8 @@ public class BuyActivity extends AppCompatActivity {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
     }
+
+
 
     @Override
     public void onStart() {
