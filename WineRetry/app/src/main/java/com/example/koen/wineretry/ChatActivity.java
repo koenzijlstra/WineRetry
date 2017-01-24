@@ -89,7 +89,8 @@ public class ChatActivity extends AppCompatActivity {
                 messageUser.setText(model.getMessageUser());
 
                 // Format the date before showing it
-                // messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
+                android.text.format.DateFormat df = new android.text.format.DateFormat();
+                messageTime.setText(df.format("dd/MM/yyyy hh:mm:ss", model.getMessageTime()).toString());
             }
         };
 
