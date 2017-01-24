@@ -38,15 +38,6 @@
         android:layout_below="@+id/tvregionfull"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:text="Chat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/sellertv"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
-        android:id="@+id/button13" />
-
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
@@ -67,4 +58,14 @@
         android:layout_below="@+id/tvtitlefull"
         android:layout_centerHorizontal="true"
         android:textSize="15sp"/>
+
+    <Button
+        android:text="Chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:id="@+id/button13"
+        android:layout_below="@+id/sellertv"
+        android:layout_centerHorizontal="true"
+        android:onClick="startchat"/>
 </RelativeLayout>

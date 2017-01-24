@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,5 +49,9 @@ public class Buyfullinfo extends AppCompatActivity {
         storytv.setText(story);
         String soldby = "Sold by: " + sellername;
         sellertv.setText(soldby);
+    }
+
+    public void startchat (View view){
+        startActivity(new Intent(Buyfullinfo.this, ChatActivity.class));
     }
 }

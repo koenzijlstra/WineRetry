@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "782234184854",
+    "firebase_url": "https://chattest-30c41.firebaseio.com",
+    "project_id": "chattest-30c41",
+    "storage_bucket": "chattest-30c41.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782234184854:android:bce33f84b385e35e",
+        "android_client_info": {
+          "package_name": "com.marceme.marcefirebasechat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782234184854-ooonofimfbvf4vqeo4fq9h89ag3so3ql.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyTjvx9vc3YOy8pTuInlkzxilGkj56khA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
