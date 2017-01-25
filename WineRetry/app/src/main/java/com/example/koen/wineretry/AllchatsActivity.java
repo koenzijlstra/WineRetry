@@ -6,9 +6,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,10 +22,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class AllchatsActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
+    public ListView lvchats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +37,9 @@ public class AllchatsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar);
 
-        // dit stuk later uit oncreate halen?
+        lvchats = (ListView) findViewById(R.id.lvchats);
+
+
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
 
@@ -51,8 +57,14 @@ public class AllchatsActivity extends AppCompatActivity {
             }
         };
 
+        setlv();
+        createonitemclicklistener ();
+
+    }
+
+    public void setlv (){
         // listview voorbeeld
-        final ListView lvchats = (ListView) findViewById(R.id.lvchats);
+
 
         auth.addAuthStateListener(authListener);
 
@@ -79,9 +91,66 @@ public class AllchatsActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void createonitemclicklistener (){
+        lvchats.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+         @Override
+         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+             OtheruserObject otheruserObject = (OtheruserObject) adapterView.getItemAtPosition(position);
+
+             String sellerid = otheruserObject.getUserIDother();
+
+             Intent gotochat = new Intent(AllchatsActivity.this, ChatActivity.class);
+             gotochat.putExtra("sellerid", sellerid);
+             startActivity(gotochat);
+         }
+    });
+
 
     }
 
+
+//        lvchats.setOnItemClickListen(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//                WineObject clickedwine = (WineObject) adapterView.getItemAtPosition(position);
+//                String clickedtitle = clickedwine.getTitle();
+//                String clickedyear = clickedwine.getYear();
+//                String clickedregion = clickedwine.getRegion();
+//                String clickedstory = clickedwine.getStory();
+//                final HashMap<String, String> hash = new HashMap<String, String>();
+//                hash.put("title", clickedtitle);
+//                hash.put("year", clickedyear);
+//                hash.put("region", clickedregion);
+//                hash.put("story", clickedstory);
+//
+//                // get name of seller
+//                String sellerid = clickedwine.getSellerid();
+//                // id meegeven voor chatfunctie (gaat wss via uid)
+//                hash.put("sellerid", sellerid);
+//
+//                // name ophalen zodat je ziet met wie je kan chatten
+//                final DatabaseReference nameref = FirebaseDatabase.getInstance().getReference().child("users").child(sellerid).child("userinfo").child("name");
+//
+//                nameref.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        sellername = dataSnapshot.getValue().toString();
+//                        getSellerName(sellername,hash);
+//                    }
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//                    }
+//                });
+//
+//                // om eerste keer niet null te krijgen
+//
+//
+//            }
+//        });
+//    }
+//
 
     public void gotoallsellsc(View view){
         startActivity(new Intent(AllchatsActivity.this, AllsellsActivity.class));
