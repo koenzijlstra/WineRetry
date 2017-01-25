@@ -12,6 +12,11 @@ import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,10 +52,34 @@ public class AllchatsActivity extends AppCompatActivity {
         };
 
         // listview voorbeeld
-        ListView lvchats = (ListView) findViewById(R.id.lvchats);
-        String[] chats = new String[] { "Bob", "Mark", "John"};
-        ListAdapter theadapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, chats);
-        lvchats.setAdapter(theadapter);
+        final ListView lvchats = (ListView) findViewById(R.id.lvchats);
+
+        auth.addAuthStateListener(authListener);
+
+        String uid = auth.getCurrentUser().getUid();
+
+        DatabaseReference userschatsref = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("chats");
+        userschatsref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final ArrayList<OtheruserObject> chatters = new ArrayList<>();
+
+                for (DataSnapshot otheruser : dataSnapshot.getChildren()){
+                    OtheruserObject otheruserObject = otheruser.getValue(OtheruserObject.class);
+                    chatters.add(otheruserObject);
+
+                    ListadapterChats listadapterChats = new ListadapterChats(getApplicationContext(), chatters);
+                    lvchats.setAdapter(listadapterChats);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
 
