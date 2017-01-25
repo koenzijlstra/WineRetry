@@ -20,9 +20,7 @@ public class Buyfullinfo extends AppCompatActivity {
         settextviews();
 
         // ophalen van sellerid voor chat, later in losse functie die in oncreate wordt gecalled
-        Intent intent = getIntent();
-        HashMap<String, String> hash = (HashMap<String,String>)intent.getSerializableExtra("fullhashmap");
-        String sellerid = hash.get("sellerid");
+
     }
 
     public void settextviews (){
@@ -52,6 +50,13 @@ public class Buyfullinfo extends AppCompatActivity {
     }
 
     public void startchat (View view){
-        startActivity(new Intent(Buyfullinfo.this, ChatActivity.class));
+
+        Intent intent = getIntent();
+        HashMap<String, String> hash = (HashMap<String,String>)intent.getSerializableExtra("fullhashmap");
+        String sellerid = hash.get("sellerid");
+        Intent gotochat = new Intent(Buyfullinfo.this, ChatActivity.class);
+        Toast.makeText(getApplicationContext(), sellerid , Toast.LENGTH_LONG).show();
+        gotochat.putExtra("sellerid", sellerid);
+        startActivity(gotochat);
     }
 }

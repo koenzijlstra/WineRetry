@@ -1,5 +1,6 @@
 package com.example.koen.wineretry;
 
+import android.content.Intent;
 import android.icu.text.DateFormat;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -19,13 +20,22 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ChatActivity extends AppCompatActivity {
     String ownname;
+    String otherusername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        final String uid = auth.getCurrentUser().getUid();
+        final String sellerid = getIntent().getStringExtra("sellerid");
 
+        //
+        writeto_users_chats(uid,sellerid);
+        // create unique identifier for chat by concatenating user id (unique) and timestamp. is gewoon puur om uniek id te krijgen, inhoudelijk maakt het niet uit.
+        final String chatID_own =  uid + sellerid;
+        final String chatID_seller = sellerid + uid;
 
         FloatingActionButton fab =
                 (FloatingActionButton)findViewById(R.id.fab);
@@ -47,36 +57,74 @@ public class ChatActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         ownname = dataSnapshot.getValue().toString();
-                        writemessage(ownname,messagestring);
+                        // nu dubbel
+                        writemessage(ownname,messagestring, chatID_own );
+                        writemessage(ownname,messagestring, chatID_seller );
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                     }
                 });
 
-
                 // Clear the input
                 input.setText("");
             }
         });
 
-        displayChatMessages();
+        displayChatMessages(chatID_own);
     }
 
-    public void writemessage (String name, String input){
+    public void writemessage (String name, String input, String chatid){
         FirebaseDatabase.getInstance()
-                .getReference().child("chat")
+                .getReference().child("chats").child(chatid)
                 .push()
                 .setValue(new ChatMessage(input, name)
                 );
     }
 
+    // final??
+    public void writeto_users_chats (final String uid, final String otheruserid){
+        final DatabaseReference otherusers_name_ref = FirebaseDatabase.getInstance().getReference().child("users").child(otheruserid).child("userinfo").child("name");
 
-    private void displayChatMessages (){
+        otherusers_name_ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                otherusername = dataSnapshot.getValue().toString();
+                // schrijf other user bij current user
+                DatabaseReference cur_userchatsref = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("chats").child(otheruserid);
+                cur_userchatsref.setValue(new OtheruserObject(otherusername, otheruserid));
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+
+        // later weghalen, ownname wordt al ergens anders opgehaald
+        final DatabaseReference nameref = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("userinfo").child("name");
+        nameref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ownname = dataSnapshot.getValue().toString();
+                // schrijf bij ander user de chat met current user
+                DatabaseReference other_userchatsref = FirebaseDatabase.getInstance().getReference().child("users").child(otheruserid).child("chats").child(uid);
+                other_userchatsref.setValue(new OtheruserObject(ownname, uid));
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+
+
+    }
+
+
+    private void displayChatMessages (String chatid){
         ListView listOfMessages = (ListView)findViewById(R.id.chatslv);
 
         FirebaseListAdapter adapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class,
-                R.layout.message, FirebaseDatabase.getInstance().getReference().child("chat")) {
+                R.layout.message, FirebaseDatabase.getInstance().getReference().child("chats").child(chatid)) {
             @Override
             protected void populateView(View v, ChatMessage model, int position) {
                 // Get references to the views of message.xml
