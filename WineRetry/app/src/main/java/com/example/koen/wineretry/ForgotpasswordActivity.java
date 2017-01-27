@@ -1,5 +1,6 @@
 package com.example.koen.wineretry;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,7 +38,11 @@ public class ForgotpasswordActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(ForgotpasswordActivity.this, "We have sent you instruction to reset your password!", Toast.LENGTH_LONG).show();
-                } else {
+
+                        startActivity(new Intent(ForgotpasswordActivity.this, LoginActivity.class));
+                        finish();
+                    }
+                else {
                     Toast.makeText(ForgotpasswordActivity.this, "Failed to reset your password!", Toast.LENGTH_LONG).show();
                 }
 

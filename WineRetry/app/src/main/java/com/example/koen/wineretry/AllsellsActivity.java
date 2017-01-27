@@ -57,10 +57,6 @@ public class AllsellsActivity extends BaseActivity {
         };
 
 
-//        final Listadapter listadapter = new Listadapter(getApplicationContext(), userbottles);
-//        userwineslv = (ListView) findViewById(R.id.userbottles);
-//        userwineslv.setAdapter(listadapter);
-
         createonitemclicklistener();
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -76,7 +72,7 @@ public class AllsellsActivity extends BaseActivity {
                     String idbottle = bottleid.getValue().toString();
                     user_bottleids.add(idbottle);
                 }
-
+                compare();
             }
 
             @Override
@@ -84,12 +80,13 @@ public class AllsellsActivity extends BaseActivity {
             }
         });
 
+    }
+
+    public void compare (){
         DatabaseReference allwinesref = FirebaseDatabase.getInstance().getReference().child("wines");
         allwinesref.addValueEventListener(new ValueEventListener() {
             ArrayList<WineObject> userbottles = new ArrayList<>();
 
-            // ListView userwineslv = (ListView) findViewById(R.id.userbottles);
-            //userwineslv.setAdapter(listadapter);
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 //
@@ -99,40 +96,18 @@ public class AllsellsActivity extends BaseActivity {
                     if (user_bottleids.contains(idbottle)){
                         WineObject wineObject = bottle.getValue(WineObject.class);
                         userbottles.add(wineObject);
-                        // listadapter.notifyDataSetChanged();
                     }
-
                 }
 
                 final Listadapter listadapter = new Listadapter(getApplicationContext(), userbottles);
                 userwineslv.setAdapter(listadapter);
-
-
-
-//                try {
-//                    Thread.sleep(2000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                hideProgressDialog();
-
-
-//                Listadapter listadapter = new Listadapter(getApplicationContext(), userbottles);
-//                userwineslv = (ListView) findViewById(R.id.userbottles);
-//                userwineslv.setAdapter(listadapter);
-
-                // test
-                // listadapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
     }
-
-
 
     public void gotonewsell(View view){
         startActivity(new Intent(AllsellsActivity.this, NewsellActivity.class));
