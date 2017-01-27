@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class AllchatsActivity extends AppCompatActivity {
+public class AllchatsActivity extends BaseActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
     public ListView lvchats;
@@ -111,48 +111,8 @@ public class AllchatsActivity extends AppCompatActivity {
     }
 
 
-//        lvchats.setOnItemClickListen(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                WineObject clickedwine = (WineObject) adapterView.getItemAtPosition(position);
-//                String clickedtitle = clickedwine.getTitle();
-//                String clickedyear = clickedwine.getYear();
-//                String clickedregion = clickedwine.getRegion();
-//                String clickedstory = clickedwine.getStory();
-//                final HashMap<String, String> hash = new HashMap<String, String>();
-//                hash.put("title", clickedtitle);
-//                hash.put("year", clickedyear);
-//                hash.put("region", clickedregion);
-//                hash.put("story", clickedstory);
-//
-//                // get name of seller
-//                String sellerid = clickedwine.getSellerid();
-//                // id meegeven voor chatfunctie (gaat wss via uid)
-//                hash.put("sellerid", sellerid);
-//
-//                // name ophalen zodat je ziet met wie je kan chatten
-//                final DatabaseReference nameref = FirebaseDatabase.getInstance().getReference().child("users").child(sellerid).child("userinfo").child("name");
-//
-//                nameref.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        sellername = dataSnapshot.getValue().toString();
-//                        getSellerName(sellername,hash);
-//                    }
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//                    }
-//                });
-//
-//                // om eerste keer niet null te krijgen
-//
-//
-//            }
-//        });
-//    }
-//
-
     public void gotoallsellsc(View view){
+        // showProgressDialog();
         startActivity(new Intent(AllchatsActivity.this, AllsellsActivity.class));
         finish();
     }

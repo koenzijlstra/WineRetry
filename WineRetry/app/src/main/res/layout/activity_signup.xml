@@ -86,7 +86,8 @@
         android:textSize="17dp"
         android:layout_marginBottom="19dp"
         android:layout_above="@+id/name"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -100,6 +101,7 @@
         android:paddingLeft="80dp"
         android:layout_above="@+id/emailsignup"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:maxLength="30"/>
 
 </RelativeLayout>

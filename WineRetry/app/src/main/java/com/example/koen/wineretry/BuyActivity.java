@@ -31,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class BuyActivity extends AppCompatActivity {
+public class BuyActivity extends BaseActivity {
 
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
@@ -42,6 +42,8 @@ public class BuyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy);
+
+        hideProgressDialog();
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar);
@@ -70,6 +72,8 @@ public class BuyActivity extends AppCompatActivity {
                 }
             }
         };
+
+
 
         allwineslv = (ListView) findViewById(R.id.lvbottles);
         createonclicklistener();
@@ -140,6 +144,7 @@ public class BuyActivity extends AppCompatActivity {
                         }
                     }
                 }
+
 
                 Listadapter listadapter = new Listadapter(getApplicationContext(), selectedbottles);
                 allwineslv.setAdapter(listadapter);
@@ -251,6 +256,7 @@ public class BuyActivity extends AppCompatActivity {
     }
 
     public void gotoallsellsb(View view){
+//        showProgressDialog();
         startActivity(new Intent(BuyActivity.this, AllsellsActivity.class));
         finish();
     }

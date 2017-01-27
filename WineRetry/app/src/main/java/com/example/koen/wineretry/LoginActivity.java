@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 * sign up activity when user is not registered yet.
  */
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     // declare firebaseauth instance so multiple functions can use it
     FirebaseAuth auth;
@@ -86,8 +86,12 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             // if sign in succeeds, go to main activity
                         } else {
-                            // toast test
+
+                            // misschien qua timing eerder
+                            showProgressDialog();
+
                             Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast.LENGTH_LONG).show();
+
                             Intent intent = new Intent(LoginActivity.this, BuyActivity.class);
                             startActivity(intent);
                             finish();
@@ -99,6 +103,11 @@ public class LoginActivity extends AppCompatActivity {
     // when button "not registered yet? "is clicked, go to sign up activity
     public void gotoregister(View view){
         startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+        finish();
+    }
+
+    public void gotoforgotpassword(View view){
+        startActivity(new Intent(LoginActivity.this, ForgotpasswordActivity.class));
         finish();
     }
 }

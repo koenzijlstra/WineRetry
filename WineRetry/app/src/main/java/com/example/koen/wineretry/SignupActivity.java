@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 * activity. User can also click button to navigate to login activity when already registered.
 *
  */
-public class SignupActivity extends AppCompatActivity {
+public class SignupActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +99,8 @@ public class SignupActivity extends AppCompatActivity {
                             // test -> is het handig om wines null te setten, zodat je als je zoekt naar wines over alle nulls heen kan zonder te zoeken?
                             // userref.child("wines").setValue(null); werkt niet, en niet nodig?
 
+
+                            showProgressDialog();
                             // Toast.makeText(SignupActivity.this, "Registered succesfully, welcome to TITEL APP " + name + "!", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(SignupActivity.this, BuyActivity.class));
                             // wanneer toast laten zien, nog even bedenken

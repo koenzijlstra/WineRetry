@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ChatActivity extends AppCompatActivity {
     String ownname;
     String otherusername;
+    public FirebaseListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,8 @@ public class ChatActivity extends AppCompatActivity {
         // create unique identifier for chat by concatenating user id (unique) and timestamp. is gewoon puur om uniek id te krijgen, inhoudelijk maakt het niet uit.
         final String chatID_own =  uid + sellerid;
         final String chatID_seller = sellerid + uid;
+
+        FirebaseDatabase.getInstance().getReference().child("chats").child(chatID_seller).child("counter").setValue(0);
 
         FloatingActionButton fab =
                 (FloatingActionButton)findViewById(R.id.fab);
@@ -60,14 +63,36 @@ public class ChatActivity extends AppCompatActivity {
                         // nu dubbel
                         writemessage(ownname,messagestring, chatID_own );
                         writemessage(ownname,messagestring, chatID_seller );
+
+                        FirebaseDatabase.getInstance().getReference().child("chats").child(chatID_seller).child("counter").setValue(+1);
+
+
+
+
+//                        // scroll naar beneden
+//                        final ListView listOfMessages = (ListView)findViewById(R.id.chatslv);
+//                        listOfMessages.post(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                // Select the last row so it will scroll into view...
+//                                listOfMessages.setSelection(adapter.getCount() - 1);
+//                            }
+//                        });
+
+
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                     }
                 });
 
+
+
+
                 // Clear the input
                 input.setText("");
+
+
             }
         });
 
@@ -76,10 +101,12 @@ public class ChatActivity extends AppCompatActivity {
 
     public void writemessage (String name, String input, String chatid){
         FirebaseDatabase.getInstance()
-                .getReference().child("chats").child(chatid)
+                .getReference().child("chats").child(chatid).child("messages")
                 .push()
                 .setValue(new ChatMessage(input, name)
                 );
+
+
     }
 
     // final??
@@ -115,16 +142,15 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
 
     private void displayChatMessages (String chatid){
-        ListView listOfMessages = (ListView)findViewById(R.id.chatslv);
+        final ListView listOfMessages = (ListView)findViewById(R.id.chatslv);
 
-        FirebaseListAdapter adapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class,
-                R.layout.message, FirebaseDatabase.getInstance().getReference().child("chats").child(chatid)) {
+
+        final FirebaseListAdapter adapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class,
+                R.layout.message, FirebaseDatabase.getInstance().getReference().child("chats").child(chatid).child("messages")) {
             @Override
             protected void populateView(View v, ChatMessage model, int position) {
                 // Get references to the views of message.xml
@@ -143,5 +169,14 @@ public class ChatActivity extends AppCompatActivity {
         };
 
         listOfMessages.setAdapter(adapter);
+
+        // later losse functie, nu dubbel in code. is voor scrollen
+        listOfMessages.post(new Runnable() {
+            @Override
+            public void run() {
+                // Select the last row so it will scroll into view...
+                listOfMessages.setSelection(adapter.getCount() - 1);
+            }
+        });
     }
 }

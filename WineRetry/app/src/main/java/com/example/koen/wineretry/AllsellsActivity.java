@@ -22,11 +22,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AllsellsActivity extends AppCompatActivity {
+public class AllsellsActivity extends BaseActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
     ArrayList<String> user_bottleids = new ArrayList<>();
-    private ListView userwineslv;
+    ListView userwineslv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,8 @@ public class AllsellsActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar);
+
+        userwineslv = (ListView) findViewById(R.id.userbottles);
 
         // dit stuk later uit oncreate halen?
         //get firebase auth instance
@@ -54,6 +56,11 @@ public class AllsellsActivity extends AppCompatActivity {
             }
         };
 
+
+//        final Listadapter listadapter = new Listadapter(getApplicationContext(), userbottles);
+//        userwineslv = (ListView) findViewById(R.id.userbottles);
+//        userwineslv.setAdapter(listadapter);
+
         createonitemclicklistener();
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -64,13 +71,12 @@ public class AllsellsActivity extends AppCompatActivity {
         userswinesref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // ArrayList<String> user_bottleids = new ArrayList<>();
 
                 for (DataSnapshot bottleid : dataSnapshot.getChildren()){
                     String idbottle = bottleid.getValue().toString();
                     user_bottleids.add(idbottle);
                 }
-                // Log.d("test2", user_bottleids.toString());
+
             }
 
             @Override
@@ -80,23 +86,43 @@ public class AllsellsActivity extends AppCompatActivity {
 
         DatabaseReference allwinesref = FirebaseDatabase.getInstance().getReference().child("wines");
         allwinesref.addValueEventListener(new ValueEventListener() {
+            ArrayList<WineObject> userbottles = new ArrayList<>();
+
+            // ListView userwineslv = (ListView) findViewById(R.id.userbottles);
+            //userwineslv.setAdapter(listadapter);
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                final ArrayList<WineObject> userbottles = new ArrayList<>();
-
+//
                 for (DataSnapshot bottle : dataSnapshot.getChildren()){
 
                     String idbottle = bottle.getKey();
                     if (user_bottleids.contains(idbottle)){
                         WineObject wineObject = bottle.getValue(WineObject.class);
                         userbottles.add(wineObject);
+                        // listadapter.notifyDataSetChanged();
                     }
+
                 }
 
-                Listadapter listadapter = new Listadapter(getApplicationContext(), userbottles);
-                userwineslv = (ListView) findViewById(R.id.userbottles);
+                final Listadapter listadapter = new Listadapter(getApplicationContext(), userbottles);
                 userwineslv.setAdapter(listadapter);
+
+
+
+//                try {
+//                    Thread.sleep(2000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                hideProgressDialog();
+
+
+//                Listadapter listadapter = new Listadapter(getApplicationContext(), userbottles);
+//                userwineslv = (ListView) findViewById(R.id.userbottles);
+//                userwineslv.setAdapter(listadapter);
+
+                // test
+                // listadapter.notifyDataSetChanged();
             }
 
             @Override
@@ -136,62 +162,10 @@ public class AllsellsActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         auth.addAuthStateListener(authListener);
-
-
-
-//        FirebaseAuth auth = FirebaseAuth.getInstance();
-//        String uid = auth.getCurrentUser().getUid();
-//
-//        // get all unique identifiers of winebottle that currentuser sells
-//        DatabaseReference userswinesref = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("wines");
-//        userswinesref.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // ArrayList<String> user_bottleids = new ArrayList<>();
-//
-//                for (DataSnapshot bottleid : dataSnapshot.getChildren()){
-//                    String idbottle = bottleid.getValue().toString();
-//                    user_bottleids.add(idbottle);
-//                }
-//                // Log.d("test2", user_bottleids.toString());
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//            }
-//        });
-//
-//        DatabaseReference allwinesref = FirebaseDatabase.getInstance().getReference().child("wines");
-//        allwinesref.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//
-//                final ArrayList<WineObject> userbottles = new ArrayList<>();
-//
-//                for (DataSnapshot bottle : dataSnapshot.getChildren()){
-//
-//                    String idbottle = bottle.getKey();
-//                    if (user_bottleids.contains(idbottle)){
-//                        WineObject wineObject = bottle.getValue(WineObject.class);
-//                        userbottles.add(wineObject);
-//                    }
-//                }
-//
-//                Listadapter listadapter = new Listadapter(getApplicationContext(), userbottles);
-//                userwineslv = (ListView) findViewById(R.id.userbottles);
-//                userwineslv.setAdapter(listadapter);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-
     }
 
     public void createonitemclicklistener (){
-        userwineslv = (ListView) findViewById(R.id.userbottles);
+        // userwineslv = (ListView) findViewById(R.id.userbottles);
         userwineslv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {

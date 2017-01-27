@@ -37,20 +37,6 @@
         android:layout_alignLeft="@+id/textView4"
         android:layout_alignStart="@+id/textView4" />
 
-    <Button
-        android:text="No TITEL account? Register!"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button5"
-        android:textAllCaps="false"
-        android:background="@null"
-        android:onClick="gotoregister"
-        android:textColor="@color/white"
-        android:layout_marginBottom="19dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,19 +46,6 @@
         android:textColor="@color/white"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="@string/log_in"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button4"
-        android:onClick="login1"
-        android:background="@color/white"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginBottom="36dp"
-        android:layout_above="@+id/button5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="Log in with your email and password"
@@ -93,6 +66,46 @@
         android:layout_above="@+id/textView4"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="60dp" />
+
+    <Button
+        android:text="@string/log_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4"
+        android:onClick="login1"
+        android:background="@color/white"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginBottom="13dp"
+        android:layout_above="@+id/button5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Forgot password?"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/forgot"
+        android:textAllCaps="false"
+        android:background="@null"
+        android:onClick="gotoforgotpassword"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="No TITEL account? Register!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button5"
+        android:textAllCaps="false"
+        android:background="@null"
+        android:onClick="gotoregister"
+        android:textColor="@color/white"
+        android:layout_marginBottom="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
