@@ -68,7 +68,7 @@ public class AllchatsActivity extends BaseActivity {
 
         auth.addAuthStateListener(authListener);
 
-        String uid = auth.getCurrentUser().getUid();
+        final String uid = auth.getCurrentUser().getUid();
 
         DatabaseReference userschatsref = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("chats");
         userschatsref.addValueEventListener(new ValueEventListener() {
@@ -77,7 +77,7 @@ public class AllchatsActivity extends BaseActivity {
                 final ArrayList<OtheruserObject> chatters = new ArrayList<>();
 
                 for (DataSnapshot otheruser : dataSnapshot.getChildren()){
-                    OtheruserObject otheruserObject = otheruser.getValue(OtheruserObject.class);
+                    OtheruserObject otheruserObject = otheruser.child("other").getValue(OtheruserObject.class);
                     chatters.add(otheruserObject);
 
                     ListadapterChats listadapterChats = new ListadapterChats(getApplicationContext(), chatters);
@@ -98,9 +98,14 @@ public class AllchatsActivity extends BaseActivity {
          @Override
          public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
              OtheruserObject otheruserObject = (OtheruserObject) adapterView.getItemAtPosition(position);
-
              String sellerid = otheruserObject.getUserIDother();
 
+             // hier vast berichten op gelezen zetten
+             FirebaseAuth auth = FirebaseAuth.getInstance();
+             String uid = auth.getCurrentUser().getUid();
+             FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("chats").child(sellerid).child("read").setValue(true);
+
+             // ga naar chat
              Intent gotochat = new Intent(AllchatsActivity.this, ChatActivity.class);
              gotochat.putExtra("sellerid", sellerid);
              startActivity(gotochat);
