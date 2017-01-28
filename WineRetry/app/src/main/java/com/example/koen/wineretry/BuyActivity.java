@@ -39,6 +39,16 @@ public class BuyActivity extends BaseActivity {
     String sellername;
     CrystalRangeSeekbar rangeSeekbar;
 
+    String clickedtitle;
+    String clickedyear;
+    String clickedregion;
+    String clickedstory;
+
+    WineObject clickedwine;
+    String sellerid;
+
+    HashMap<String, String> hash;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,25 +173,13 @@ public class BuyActivity extends BaseActivity {
 
     }
 
+
     public void createonclicklistener (){
         allwineslv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                WineObject clickedwine = (WineObject) adapterView.getItemAtPosition(position);
-                String clickedtitle = clickedwine.getTitle();
-                String clickedyear = clickedwine.getYear();
-                String clickedregion = clickedwine.getRegion();
-                String clickedstory = clickedwine.getStory();
-                final HashMap<String, String> hash = new HashMap<String, String>();
-                hash.put("title", clickedtitle);
-                hash.put("year", clickedyear);
-                hash.put("region", clickedregion);
-                hash.put("story", clickedstory);
-
-                // get name of seller
-                String sellerid = clickedwine.getSellerid();
-                // id meegeven voor chatfunctie (gaat wss via uid)
-                hash.put("sellerid", sellerid);
+                clickedwine = (WineObject) adapterView.getItemAtPosition(position);
+                createhashmap();
 
                 // name ophalen zodat je ziet met wie je kan chatten
                 final DatabaseReference nameref = FirebaseDatabase.getInstance().getReference()
@@ -199,6 +197,22 @@ public class BuyActivity extends BaseActivity {
                 });
             }
         });
+    }
+
+    public void createhashmap (){
+
+        clickedtitle = clickedwine.getTitle();
+        clickedyear = clickedwine.getYear();
+        clickedregion = clickedwine.getRegion();
+        clickedstory = clickedwine.getStory();
+        hash = new HashMap<String, String>();
+        hash.put("title", clickedtitle);
+        hash.put("year", clickedyear);
+        hash.put("region", clickedregion);
+        hash.put("story", clickedstory);
+        sellerid = clickedwine.getSellerid();
+        // id meegeven voor chatfunctie (gaat wss via uid)
+        hash.put("sellerid", sellerid);
     }
 
     // zodat hij niet 1 achter loopt en null geeft
