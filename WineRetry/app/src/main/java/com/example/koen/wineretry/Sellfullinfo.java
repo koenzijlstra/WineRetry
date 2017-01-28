@@ -18,6 +18,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Sellfullinfo extends AppCompatActivity {
+    String title;
+    String uid;
+    String bottleid;
+    String year ;
+    String region;
+    String story;
+    TextView titletv ;
+    TextView yeartv ;
+    TextView regiontv;
+    TextView storytv ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,18 +38,8 @@ public class Sellfullinfo extends AppCompatActivity {
     }
 
     public void settextviews (){
-        Intent intent = getIntent();
-        HashMap<String, String> hash = (HashMap<String,String>)intent
-                .getSerializableExtra("hashmap");
-        TextView titletv = (TextView) findViewById(R.id.selltitletv);
-        TextView yeartv = (TextView) findViewById(R.id.sellyeartv);
-        TextView regiontv = (TextView) findViewById(R.id.sellregiontv);
-        TextView storytv = (TextView) findViewById(R.id.sellstorytv);
 
-        String title = hash.get("title");
-        String year = hash.get("year");
-        String region = hash.get("region");
-        String story = hash.get("story");
+        getstrings_and_tvs();
 
         titletv.setText(title);
         yeartv.setText(year);
@@ -48,22 +48,43 @@ public class Sellfullinfo extends AppCompatActivity {
         storytv.setText(story);
     }
 
+    public void getstrings_and_tvs (){
+
+        titletv = (TextView) findViewById(R.id.selltitletv);
+        yeartv = (TextView) findViewById(R.id.sellyeartv);
+        regiontv = (TextView) findViewById(R.id.sellregiontv);
+        storytv = (TextView) findViewById(R.id.sellstorytv);
+
+        Intent intent = getIntent();
+        HashMap<String, String> hash = (HashMap<String,String>)intent
+                .getSerializableExtra("hashmap");
+        title = hash.get("title");
+        year = hash.get("year");
+        region = hash.get("region");
+        story = hash.get("story");
+
+    }
+
     public void delete (View view){
         Intent intent = getIntent();
         HashMap<String, String> hash = (HashMap<String,String>)intent
                 .getSerializableExtra("hashmap");
-        final String bottleid = hash.get("bottleid");
-        String title = hash.get("title");
+        bottleid = hash.get("bottleid");
+        title = hash.get("title");
         // delete bij wines
         DatabaseReference todelete = FirebaseDatabase.getInstance().getReference().child("wines")
                 .child(bottleid);
         todelete.removeValue();
 
-        // delete bottle id bij user
         // had ook via sellerid gekund?
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        String uid = auth.getCurrentUser().getUid();
+        uid = auth.getCurrentUser().getUid();
 
+        deleteunderuser();
+        afterdeleting();
+    }
+
+    public void deleteunderuser (){
         DatabaseReference userwinesref = FirebaseDatabase.getInstance().getReference()
                 .child("users").child(uid).child("wines");
         userwinesref.addValueEventListener(new ValueEventListener() {
@@ -81,8 +102,9 @@ public class Sellfullinfo extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
 
-        // toast?
+    public void afterdeleting (){
         // string later naar strings verplaatsen
         String deletedstring = "You deleted '" + title + "'";
         Toast.makeText(Sellfullinfo.this, deletedstring, Toast.LENGTH_LONG).show();
