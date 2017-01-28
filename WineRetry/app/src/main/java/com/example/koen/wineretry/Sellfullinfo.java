@@ -29,19 +29,17 @@ public class Sellfullinfo extends AppCompatActivity {
 
     public void settextviews (){
         Intent intent = getIntent();
-        HashMap<String, String> hash = (HashMap<String,String>)intent.getSerializableExtra("hashmap");
+        HashMap<String, String> hash = (HashMap<String,String>)intent
+                .getSerializableExtra("hashmap");
         TextView titletv = (TextView) findViewById(R.id.selltitletv);
         TextView yeartv = (TextView) findViewById(R.id.sellyeartv);
         TextView regiontv = (TextView) findViewById(R.id.sellregiontv);
         TextView storytv = (TextView) findViewById(R.id.sellstorytv);
 
-
-//        Bundle extras = getIntent().getExtras();
         String title = hash.get("title");
         String year = hash.get("year");
         String region = hash.get("region");
         String story = hash.get("story");
-        // Toast.makeText(getApplicationContext(), sellername , Toast.LENGTH_LONG).show();
 
         titletv.setText(title);
         yeartv.setText(year);
@@ -52,11 +50,13 @@ public class Sellfullinfo extends AppCompatActivity {
 
     public void delete (View view){
         Intent intent = getIntent();
-        HashMap<String, String> hash = (HashMap<String,String>)intent.getSerializableExtra("hashmap");
+        HashMap<String, String> hash = (HashMap<String,String>)intent
+                .getSerializableExtra("hashmap");
         final String bottleid = hash.get("bottleid");
         String title = hash.get("title");
         // delete bij wines
-        DatabaseReference todelete = FirebaseDatabase.getInstance().getReference().child("wines").child(bottleid);
+        DatabaseReference todelete = FirebaseDatabase.getInstance().getReference().child("wines")
+                .child(bottleid);
         todelete.removeValue();
 
         // delete bottle id bij user
@@ -64,7 +64,8 @@ public class Sellfullinfo extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String uid = auth.getCurrentUser().getUid();
 
-        DatabaseReference userwinesref = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("wines");
+        DatabaseReference userwinesref = FirebaseDatabase.getInstance().getReference()
+                .child("users").child(uid).child("wines");
         userwinesref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -76,13 +77,10 @@ public class Sellfullinfo extends AppCompatActivity {
                     }
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
-        // werkt niet: DatabaseReference deleteid = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("wines").removeValue(bottleid);
 
         // toast?
         // string later naar strings verplaatsen

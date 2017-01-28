@@ -29,7 +29,8 @@ public class Listadapter extends ArrayAdapter {
 
         // use listitem.xml as layout for each item
         if (convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.listitem, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.listitem, parent,
+                    false);
         }
 
         TextView tvtitle = (TextView) convertView.findViewById(R.id.titleitem);

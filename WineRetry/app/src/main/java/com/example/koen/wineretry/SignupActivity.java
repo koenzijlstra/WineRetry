@@ -48,7 +48,8 @@ public class SignupActivity extends BaseActivity {
 
         // toast when email or password edittext is empty
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(getApplicationContext(), "Enter your email address!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Enter your email address!", Toast.LENGTH_SHORT)
+                    .show();
             return;
         }
 
@@ -65,7 +66,8 @@ public class SignupActivity extends BaseActivity {
 
         // toast when password is too short
         if (password.length() < 6) {
-            Toast.makeText(getApplicationContext(), "Password too short, enter at least 6 characters!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Password too short, enter at least 6 " +
+                    "characters!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -80,13 +82,15 @@ public class SignupActivity extends BaseActivity {
 
                         // if sign in fails, display a message to the user why it went wrong
                         if (!task.isSuccessful()) {
-                            Toast.makeText(SignupActivity.this, "Registering failed because: " + task.getException(),
+                            Toast.makeText(SignupActivity.this, "Registering failed because: " +
+                                    task.getException(),
                                     Toast.LENGTH_SHORT).show();
                         }
 
                         // if sign in succeeds go to mainactivity
                         else {
-                            DatabaseReference mrootRef = FirebaseDatabase.getInstance().getReference();
+                            DatabaseReference mrootRef = FirebaseDatabase.getInstance()
+                                    .getReference();
                             FirebaseAuth auth = FirebaseAuth.getInstance();
                             String uid = auth.getCurrentUser().getUid();
                             // email had ook anders gekund
@@ -96,15 +100,18 @@ public class SignupActivity extends BaseActivity {
                             userref.child("userinfo").child("name").setValue(name);
                             userref.child("userinfo").child("email").setValue(uemail);
 
-                            // test -> is het handig om wines null te setten, zodat je als je zoekt naar wines over alle nulls heen kan zonder te zoeken?
+                            // test -> is het handig om wines null te setten, zodat je als je zoekt
+                            // naar wines over alle nulls heen kan zonder te zoeken?
                             // userref.child("wines").setValue(null); werkt niet, en niet nodig?
 
 
                             showProgressDialog();
-                            // Toast.makeText(SignupActivity.this, "Registered succesfully, welcome to TITEL APP " + name + "!", Toast.LENGTH_LONG).show();
+                            // Toast.makeText(SignupActivity.this, "Registered succesfully, welcome
+                            // to TITEL APP " + name + "!", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(SignupActivity.this, BuyActivity.class));
                             // wanneer toast laten zien, nog even bedenken
-                            Toast.makeText(SignupActivity.this, "Registered succesfully, welcome to TITEL APP " + name + "!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignupActivity.this, "Registered succesfully, welcome " +
+                                    "to TITEL APP " + name + "!", Toast.LENGTH_LONG).show();
                             finish();
                         }
                     }

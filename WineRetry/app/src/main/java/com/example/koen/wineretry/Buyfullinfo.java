@@ -21,14 +21,12 @@ public class Buyfullinfo extends AppCompatActivity {
         setContentView(R.layout.activity_buyfullinfo);
 
         settextviews();
-
-        // ophalen van sellerid voor chat, later in losse functie die in oncreate wordt gecalled
-
     }
 
     public void settextviews (){
         Intent intent = getIntent();
-        HashMap<String, String> hash = (HashMap<String,String>)intent.getSerializableExtra("fullhashmap");
+        HashMap<String, String> hash = (HashMap<String,String>)intent
+                .getSerializableExtra("fullhashmap");
         TextView titletv = (TextView) findViewById(R.id.tvtitlefull);
         TextView yeartv = (TextView) findViewById(R.id.tvyearfull);
         TextView regiontv = (TextView) findViewById(R.id.tvregionfull);
@@ -53,10 +51,9 @@ public class Buyfullinfo extends AppCompatActivity {
     }
 
     public void startchat (View view){
-
-
         Intent intent = getIntent();
-        HashMap<String, String> hash = (HashMap<String,String>)intent.getSerializableExtra("fullhashmap");
+        HashMap<String, String> hash = (HashMap<String,String>)intent
+                .getSerializableExtra("fullhashmap");
         String sellerid = hash.get("sellerid");
         Intent gotochat = new Intent(Buyfullinfo.this, ChatActivity.class);
         Toast.makeText(getApplicationContext(), sellerid , Toast.LENGTH_LONG).show();
@@ -65,7 +62,8 @@ public class Buyfullinfo extends AppCompatActivity {
         // gelezen op true zetten (maakt niet uit dat er de eerste keer nog geen bericht is)
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String uid = auth.getCurrentUser().getUid();
-        FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("chats").child(sellerid).child("read").setValue(true);
+        FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("chats")
+                .child(sellerid).child("read").setValue(true);
 
         startActivity(gotochat);
     }

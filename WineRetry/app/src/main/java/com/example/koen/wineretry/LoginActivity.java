@@ -29,39 +29,49 @@ public class LoginActivity extends BaseActivity {
 
     // declare firebaseauth instance so multiple functions can use it
     FirebaseAuth auth;
+    EditText inputEmail;
+    EditText inputPassword;
+    String email;
+    String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar);
-
-        //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
-        // when user is logged in already, go to
-        if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(LoginActivity.this, BuyActivity.class));
-            finish();
-        }
+        setactionbar();
+        alreadyloggedin();
 
         // set the view now
         setContentView(R.layout.activity_login);
     }
 
+    public void alreadyloggedin (){
+        // when user is logged in already, go to
+        if (auth.getCurrentUser() != null) {
+            startActivity(new Intent(LoginActivity.this, BuyActivity.class));
+            finish();
+        }
+    }
+
+    public void setactionbar (){
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+    }
+
     public void login1(View view){
         // get both edittext fields
-        EditText inputEmail = (EditText) findViewById(R.id.emaillogin);
-        final EditText inputPassword = (EditText) findViewById(R.id.passwordlogin);
-
+        inputEmail = (EditText) findViewById(R.id.emaillogin);
+        inputPassword = (EditText) findViewById(R.id.passwordlogin);
         // get email and password strings
-        String email = inputEmail.getText().toString();
-        final String password = inputPassword.getText().toString();
+        email = inputEmail.getText().toString();
+        password = inputPassword.getText().toString();
 
         // toast when email or password is empty
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(getApplicationContext(), "Enter an email address!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Enter an email address!", Toast.LENGTH_SHORT)
+                    .show();
             return;
         }
 
@@ -79,18 +89,18 @@ public class LoginActivity extends BaseActivity {
                         if (!task.isSuccessful()) {
                             // when entered password is too small, prompt user for longer password
                             if (password.length() < 6) {
-                                inputPassword.setError("Password too short, should be least 6 characters!");
+                                inputPassword.setError("Password too short, should be least 6 " +
+                                        "characters!");
                                 // when auth failed but password is long enough, toast that email or password is wrong
                             } else {
-                                Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this, getString(R.string.auth_failed),
+                                        Toast.LENGTH_LONG).show();
                             }
                             // if sign in succeeds, go to main activity
                         } else {
-
-                            // misschien qua timing eerder
                             showProgressDialog();
-
-                            Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast
+                                    .LENGTH_LONG).show();
 
                             Intent intent = new Intent(LoginActivity.this, BuyActivity.class);
                             startActivity(intent);

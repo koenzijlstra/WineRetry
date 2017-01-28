@@ -19,7 +19,8 @@ public class WineObject {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public WineObject(String title, String region, String year, String story, String sellerid, String bottleid, String tag) {
+    public WineObject(String title, String region, String year, String story, String sellerid,
+                      String bottleid, String tag) {
         this.title = title;
         this.region = region;
         this.year = year;

@@ -39,16 +39,16 @@ public class ListadapterChats extends ArrayAdapter {
 
         // use listitem.xml as layout for each item
         if (convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.listitemchat, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.listitemchat, parent,
+                    false);
         }
 
         final TextView tvname = (TextView) convertView.findViewById(R.id.name);
         if (otheruserObject != null){
-
-            // test -------------------
             // mag dit allemaal in listadapter?
             String idother = otheruserObject.getUserIDother();
-            final DatabaseReference readref = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("chats").child(idother).child("read");
+            final DatabaseReference readref = FirebaseDatabase.getInstance().getReference()
+                    .child("users").child(uid).child("chats").child(idother).child("read");
 
             readref.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -69,12 +69,8 @@ public class ListadapterChats extends ArrayAdapter {
                 }
             });
 
-            // test ------------------------
-
             tvname.setText(otheruserObject.getUsernameother());
-
         }
-
         return convertView;
     }
 

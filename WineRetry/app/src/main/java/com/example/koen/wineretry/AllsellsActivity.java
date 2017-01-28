@@ -33,12 +33,70 @@ public class AllsellsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_allsells);
 
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar);
-
         userwineslv = (ListView) findViewById(R.id.userbottles);
 
-        // dit stuk later uit oncreate halen?
+        setactionbar();
+        getuserbottles();
+        createonitemclicklistener();
+        createauthstatelistener();
+    }
+
+    public void setactionbar (){
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+    }
+
+    public void getuserbottles (){
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        String uid = auth.getCurrentUser().getUid();
+
+        // get all unique identifiers of winebottle that currentuser sells
+        DatabaseReference userswinesref = FirebaseDatabase.getInstance().getReference().
+                child("users").child(uid).child("wines");
+        userswinesref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot bottleid : dataSnapshot.getChildren()){
+                    String idbottle = bottleid.getValue().toString();
+                    user_bottleids.add(idbottle);
+                }
+                compare();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
+    public void compare (){
+        DatabaseReference allwinesref = FirebaseDatabase.getInstance().getReference().child("wines");
+        allwinesref.addValueEventListener(new ValueEventListener() {
+            ArrayList<WineObject> userbottles = new ArrayList<>();
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot bottle : dataSnapshot.getChildren()){
+                    String idbottle = bottle.getKey();
+                    if (user_bottleids.contains(idbottle)){
+                        WineObject wineObject = bottle.getValue(WineObject.class);
+                        userbottles.add(wineObject);
+                    }
+                }
+
+                final Listadapter listadapter = new Listadapter(getApplicationContext(),
+                        userbottles);
+                userwineslv.setAdapter(listadapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
+    public void createauthstatelistener (){
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
 
@@ -55,58 +113,6 @@ public class AllsellsActivity extends BaseActivity {
                 }
             }
         };
-
-
-        createonitemclicklistener();
-
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        String uid = auth.getCurrentUser().getUid();
-
-        // get all unique identifiers of winebottle that currentuser sells
-        DatabaseReference userswinesref = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("wines");
-        userswinesref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot bottleid : dataSnapshot.getChildren()){
-                    String idbottle = bottleid.getValue().toString();
-                    user_bottleids.add(idbottle);
-                }
-                compare();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-
-    }
-
-    public void compare (){
-        DatabaseReference allwinesref = FirebaseDatabase.getInstance().getReference().child("wines");
-        allwinesref.addValueEventListener(new ValueEventListener() {
-            ArrayList<WineObject> userbottles = new ArrayList<>();
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-//
-                for (DataSnapshot bottle : dataSnapshot.getChildren()){
-
-                    String idbottle = bottle.getKey();
-                    if (user_bottleids.contains(idbottle)){
-                        WineObject wineObject = bottle.getValue(WineObject.class);
-                        userbottles.add(wineObject);
-                    }
-                }
-
-                final Listadapter listadapter = new Listadapter(getApplicationContext(), userbottles);
-                userwineslv.setAdapter(listadapter);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
     }
 
     public void gotonewsell(View view){

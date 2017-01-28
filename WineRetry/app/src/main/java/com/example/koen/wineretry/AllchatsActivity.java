@@ -34,12 +34,21 @@ public class AllchatsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_allchats);
 
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar);
-
         lvchats = (ListView) findViewById(R.id.lvchats);
 
+        setactionbar();
+        setauthstatelistener();
+        setlv();
+        createonitemclicklistener ();
 
+    }
+
+    public void setactionbar (){
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+    }
+
+    public void setauthstatelistener (){
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
 
@@ -56,38 +65,32 @@ public class AllchatsActivity extends BaseActivity {
                 }
             }
         };
-
-        setlv();
-        createonitemclicklistener ();
-
     }
 
     public void setlv (){
-        // listview voorbeeld
-
 
         auth.addAuthStateListener(authListener);
-
         final String uid = auth.getCurrentUser().getUid();
 
-        DatabaseReference userschatsref = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("chats");
+        DatabaseReference userschatsref = FirebaseDatabase.getInstance().getReference().
+                child("users").child(uid).child("chats");
         userschatsref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final ArrayList<OtheruserObject> chatters = new ArrayList<>();
 
                 for (DataSnapshot otheruser : dataSnapshot.getChildren()){
-                    OtheruserObject otheruserObject = otheruser.child("other").getValue(OtheruserObject.class);
+                    OtheruserObject otheruserObject = otheruser.child("other").
+                            getValue(OtheruserObject.class);
                     chatters.add(otheruserObject);
 
-                    ListadapterChats listadapterChats = new ListadapterChats(getApplicationContext(), chatters);
+                    ListadapterChats listadapterChats = new ListadapterChats(getApplicationContext()
+                            , chatters);
                     lvchats.setAdapter(listadapterChats);
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
 
@@ -95,24 +98,24 @@ public class AllchatsActivity extends BaseActivity {
 
     public void createonitemclicklistener (){
         lvchats.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-         @Override
-         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-             OtheruserObject otheruserObject = (OtheruserObject) adapterView.getItemAtPosition(position);
-             String sellerid = otheruserObject.getUserIDother();
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                OtheruserObject otheruserObject = (OtheruserObject) adapterView.
+                        getItemAtPosition(position);
+                String sellerid = otheruserObject.getUserIDother();
 
-             // hier vast berichten op gelezen zetten
-             FirebaseAuth auth = FirebaseAuth.getInstance();
-             String uid = auth.getCurrentUser().getUid();
-             FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("chats").child(sellerid).child("read").setValue(true);
+                // hier vast berichten op gelezen zetten
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                String uid = auth.getCurrentUser().getUid();
+                FirebaseDatabase.getInstance().getReference().child("users").child(uid)
+                        .child("chats").child(sellerid).child("read").setValue(true);
 
-             // ga naar chat
-             Intent gotochat = new Intent(AllchatsActivity.this, ChatActivity.class);
-             gotochat.putExtra("sellerid", sellerid);
-             startActivity(gotochat);
-         }
-    });
-
-
+                // ga naar chat
+                Intent gotochat = new Intent(AllchatsActivity.this, ChatActivity.class);
+                gotochat.putExtra("sellerid", sellerid);
+                startActivity(gotochat);
+            }
+        });
     }
 
 

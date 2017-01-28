@@ -37,16 +37,22 @@ public class BuyActivity extends BaseActivity {
     private FirebaseAuth auth;
     private ListView allwineslv;
     String sellername;
+    CrystalRangeSeekbar rangeSeekbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy);
 
-        hideProgressDialog();
+        allwineslv = (ListView) findViewById(R.id.lvbottles);
+        rangeSeekbar = (CrystalRangeSeekbar) findViewById(R.id.rangeSeekbar1);
 
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar);
+        hideProgressDialog();
+        setactionbar();
+        setrangebar();
+        setspinner();
+        createauthstatelistener();
+        createonclicklistener();
 
         // hide keyboard -> doet niks?
 //        View view = this.getCurrentFocus();
@@ -55,7 +61,25 @@ public class BuyActivity extends BaseActivity {
 //            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 //        }
 
+    }
 
+    public void setspinner (){
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.winetags, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+    }
+
+    public void setactionbar (){
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+    }
+
+    public void createauthstatelistener (){
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
 
@@ -73,25 +97,8 @@ public class BuyActivity extends BaseActivity {
             }
         };
 
-
-
-        allwineslv = (ListView) findViewById(R.id.lvbottles);
-        createonclicklistener();
-
-        setrangebar();
-
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.winetags, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
     }
-
     public void setrangebar (){
-        final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) findViewById(R.id.rangeSeekbar1);
         rangeSeekbar.setMinValue(1900);
         rangeSeekbar.setMaxValue(2017);
 
@@ -110,14 +117,12 @@ public class BuyActivity extends BaseActivity {
     }
 
     public void filter (View view){
-
         // toast die weergeeft wat geselecteerd is
 
         // get selected tag (red/ white etc)
         Spinner spinnertag =(Spinner) findViewById(R.id.spinner);
         final String tag = spinnertag.getSelectedItem().toString();
 
-        final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) findViewById(R.id.rangeSeekbar1);
         // niet naar string, vergelijken met int in object
         String min = rangeSeekbar.getSelectedMinValue().toString();
         String max = rangeSeekbar.getSelectedMaxValue().toString();
@@ -144,7 +149,6 @@ public class BuyActivity extends BaseActivity {
                         }
                     }
                 }
-
 
                 Listadapter listadapter = new Listadapter(getApplicationContext(), selectedbottles);
                 allwineslv.setAdapter(listadapter);
@@ -180,7 +184,8 @@ public class BuyActivity extends BaseActivity {
                 hash.put("sellerid", sellerid);
 
                 // name ophalen zodat je ziet met wie je kan chatten
-                final DatabaseReference nameref = FirebaseDatabase.getInstance().getReference().child("users").child(sellerid).child("userinfo").child("name");
+                final DatabaseReference nameref = FirebaseDatabase.getInstance().getReference()
+                        .child("users").child(sellerid).child("userinfo").child("name");
 
                 nameref.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -192,10 +197,6 @@ public class BuyActivity extends BaseActivity {
                     public void onCancelled(DatabaseError databaseError) {
                     }
                 });
-
-                // om eerste keer niet null te krijgen
-
-
             }
         });
     }

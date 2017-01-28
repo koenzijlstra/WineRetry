@@ -5,7 +5,7 @@ import android.support.annotation.VisibleForTesting;
 import android.support.v7.app.AppCompatActivity;
 
 /**
- * Created by Jim on 12-1-2017.
+ *
  */
 
 public class BaseActivity extends AppCompatActivity {
