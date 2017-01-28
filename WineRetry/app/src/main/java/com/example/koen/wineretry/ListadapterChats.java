@@ -25,6 +25,8 @@ public class ListadapterChats extends ArrayAdapter {
     String uid;
     String idother;
     TextView tvname;
+    String read;
+    OtheruserObject otheruserObject;
 
     public ListadapterChats(Context context, List allchats ) {
         super(context, 0, allchats);
@@ -32,12 +34,8 @@ public class ListadapterChats extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-
-        // mag dit in listadapter?
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        uid = auth.getCurrentUser().getUid();
         // get wine object at postiion
-        final OtheruserObject otheruserObject = (OtheruserObject) getItem(position);
+        otheruserObject = (OtheruserObject) getItem(position);
 
         // use listitem.xml as layout for each item
         if (convertView == null){
@@ -45,7 +43,6 @@ public class ListadapterChats extends ArrayAdapter {
                     false);
         }
 
-        tvname = (TextView) convertView.findViewById(R.id.name);
         if (otheruserObject != null){
             idother = otheruserObject.getUserIDother();
             isread();
@@ -55,6 +52,7 @@ public class ListadapterChats extends ArrayAdapter {
     }
 
     public void isread (){
+        getuid();
         final DatabaseReference readref = FirebaseDatabase.getInstance().getReference()
                 .child("users").child(uid).child("chats").child(idother).child("read");
 
@@ -62,20 +60,30 @@ public class ListadapterChats extends ArrayAdapter {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                String read = dataSnapshot.getValue().toString();
-                if (read.equals("true")){
-                    tvname.setTextColor(Color.parseColor("#acacac"));
-                }
-                else{
-                    tvname.setTextColor(Color.parseColor("#000000"));
-                    tvname.setAllCaps(true);
-                    // tvname.setBackgroundColor(getContext(), R.color"eeffff"));
-                }
+                read = dataSnapshot.getValue().toString();
+                setcolors();
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+
+    public void setcolors (){
+        if (read.equals("true")){
+            tvname.setTextColor(Color.parseColor("#acacac"));
+        }
+        else{
+            tvname.setTextColor(Color.parseColor("#000000"));
+            tvname.setAllCaps(true);
+            // tvname.setBackgroundColor(getContext(), R.color"eeffff"));
+        }
+    }
+
+    public void getuid (){
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        uid = auth.getCurrentUser().getUid();
     }
 
 
