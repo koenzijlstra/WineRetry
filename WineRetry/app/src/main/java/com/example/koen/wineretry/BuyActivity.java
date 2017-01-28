@@ -38,16 +38,21 @@ public class BuyActivity extends BaseActivity {
     private ListView allwineslv;
     String sellername;
     CrystalRangeSeekbar rangeSeekbar;
-
     String clickedtitle;
     String clickedyear;
     String clickedregion;
     String clickedstory;
-
     WineObject clickedwine;
     String sellerid;
-
     HashMap<String, String> hash;
+
+    Spinner spinnertag;
+    String tag;
+    String min;
+    String max;
+
+    DatabaseReference winesref;
+    Query selected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,19 +131,11 @@ public class BuyActivity extends BaseActivity {
         });
     }
 
+
+
     public void filter (View view){
-        // toast die weergeeft wat geselecteerd is
 
-        // get selected tag (red/ white etc)
-        Spinner spinnertag =(Spinner) findViewById(R.id.spinner);
-        final String tag = spinnertag.getSelectedItem().toString();
-
-        // niet naar string, vergelijken met int in object
-        String min = rangeSeekbar.getSelectedMinValue().toString();
-        String max = rangeSeekbar.getSelectedMaxValue().toString();
-
-        DatabaseReference winesref = FirebaseDatabase.getInstance().getReference().child("wines");
-        final Query selected = winesref.orderByChild("year").startAt(min).endAt(max);
+        getfilters();
 
         selected.addValueEventListener(new ValueEventListener() {
             @Override
@@ -173,6 +170,20 @@ public class BuyActivity extends BaseActivity {
 
     }
 
+    public void getfilters (){
+        // toast die weergeeft wat geselecteerd is
+
+        // get selected tag (red/ white etc)
+        spinnertag =(Spinner) findViewById(R.id.spinner);
+        tag = spinnertag.getSelectedItem().toString();
+
+        // niet naar string, vergelijken met int in object
+        min = rangeSeekbar.getSelectedMinValue().toString();
+        max = rangeSeekbar.getSelectedMaxValue().toString();
+
+        winesref = FirebaseDatabase.getInstance().getReference().child("wines");
+        selected = winesref.orderByChild("year").startAt(min).endAt(max);
+    }
 
     public void createonclicklistener (){
         allwineslv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
