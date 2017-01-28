@@ -70,13 +70,12 @@ public class LoginActivity extends BaseActivity {
 
         // toast when email or password is empty
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(getApplicationContext(), "Enter an email address!", Toast.LENGTH_SHORT)
-                    .show();
+            inputEmail.setError("Enter an email address!");
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(getApplicationContext(), "Enter a password!", Toast.LENGTH_SHORT).show();
+            inputPassword.setError("Enter a password!");
             return;
         }
 
