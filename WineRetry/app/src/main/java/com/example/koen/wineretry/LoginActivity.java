@@ -60,25 +60,10 @@ public class LoginActivity extends BaseActivity {
         getSupportActionBar().setCustomView(R.layout.actionbar);
     }
 
+
+
     public void login1(View view){
-        // get both edittext fields
-        inputEmail = (EditText) findViewById(R.id.emaillogin);
-        inputPassword = (EditText) findViewById(R.id.passwordlogin);
-        // get email and password strings
-        email = inputEmail.getText().toString();
-        password = inputPassword.getText().toString();
-
-        // toast when email or password is empty
-        if (TextUtils.isEmpty(email)) {
-            inputEmail.setError("Enter an email address!");
-            return;
-        }
-
-        if (TextUtils.isEmpty(password)) {
-            inputPassword.setError("Enter a password!");
-            return;
-        }
-
+        getinput();
         // authenticate user, function signinwithemailandpassword is given by firebase
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
@@ -97,16 +82,40 @@ public class LoginActivity extends BaseActivity {
                             }
                             // if sign in succeeds, go to main activity
                         } else {
-                            showProgressDialog();
-                            Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast
-                                    .LENGTH_LONG).show();
-
-                            Intent intent = new Intent(LoginActivity.this, BuyActivity.class);
-                            startActivity(intent);
-                            finish();
+                            onsuccess();
                         }
                     }
                 });
+    }
+
+    public  void onsuccess (){
+        showProgressDialog();
+        Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast
+                .LENGTH_LONG).show();
+
+        Intent intent = new Intent(LoginActivity.this, BuyActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void getinput(){
+        // get both edittext fields
+        inputEmail = (EditText) findViewById(R.id.emaillogin);
+        inputPassword = (EditText) findViewById(R.id.passwordlogin);
+        // get email and password strings
+        email = inputEmail.getText().toString();
+        password = inputPassword.getText().toString();
+
+        // toast when email or password is empty
+        if (TextUtils.isEmpty(email)) {
+            inputEmail.setError("Enter an email address!");
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            inputPassword.setError("Enter a password!");
+            return;
+        }
     }
 
     // when button "not registered yet? "is clicked, go to sign up activity

@@ -68,7 +68,7 @@ public class SignupActivity extends BaseActivity {
                     }
         });
     }
-    
+
     public void signupsuccess (){
         DatabaseReference mrootRef = FirebaseDatabase.getInstance()
                 .getReference();
