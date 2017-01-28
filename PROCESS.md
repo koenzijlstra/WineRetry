@@ -34,3 +34,13 @@ Inleiding/uitleg proccesbook
 * Created an onitemclicklistener for the listview on BuyActivity
 
 ## Day 11 (Thursday 19)
+* Name of seller in buyfullinfo was null first time. Fixed by creating a separate function to get sellername and calling it in ondatachange
+* Created delete function. user can now delete its whine at root/wines, not yet under root/users/uid/wines
+
+## day 15 (Monday 22)
+* Completed the delete function
+* Numberpicker to select the year of a new bottle
+* Realised that searching on firebase is not possible (without programs as elasticsearch etc). Only option for searching is with exact queries, which is undesirable
+
+## day 16 (Tuesday 23)
+* Errors ipv toast at login and signup
