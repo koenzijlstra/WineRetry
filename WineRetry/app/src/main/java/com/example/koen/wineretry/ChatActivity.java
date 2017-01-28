@@ -27,6 +27,7 @@ public class ChatActivity extends AppCompatActivity {
     String sellerid;
     String uid;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +36,7 @@ public class ChatActivity extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         uid = auth.getCurrentUser().getUid();
         sellerid = getIntent().getStringExtra("sellerid");
-        writeto_users_chats(uid,sellerid);
+        writeto_users_chats();
 
         // create unique identifier for chat by concatenating user id (unique) and timestamp.
         // is gewoon puur om uniek id te krijgen, inhoudelijk maakt het niet uit.
@@ -103,25 +104,30 @@ public class ChatActivity extends AppCompatActivity {
 
 
 
-    public void writeto_users_chats (final String uid, final String otheruserid){
-        final DatabaseReference otherusers_name_ref = FirebaseDatabase.getInstance().getReference()
-                .child("users").child(otheruserid).child("userinfo").child("name");
+    public void writeto_users_chats (){
+        write_other_to_cur();
+        write_cur_to_other();
+    }
 
+    public void write_other_to_cur (){
+        final DatabaseReference otherusers_name_ref = FirebaseDatabase.getInstance().getReference()
+                .child("users").child(sellerid).child("userinfo").child("name");
         otherusers_name_ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 otherusername = dataSnapshot.getValue().toString();
                 // schrijf other user bij current user
                 DatabaseReference cur_userchatsref = FirebaseDatabase.getInstance().getReference()
-                        .child("users").child(uid).child("chats").child(otheruserid).child("other");
-                cur_userchatsref.setValue(new OtheruserObject(otherusername, otheruserid));
+                        .child("users").child(uid).child("chats").child(sellerid).child("other");
+                cur_userchatsref.setValue(new OtheruserObject(otherusername, sellerid));
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
 
-        // later weghalen, ownname wordt al ergens anders opgehaald
+    public void write_cur_to_other (){
         final DatabaseReference nameref = FirebaseDatabase.getInstance().getReference()
                 .child("users").child(uid).child("userinfo").child("name");
         nameref.addValueEventListener(new ValueEventListener() {
@@ -130,7 +136,7 @@ public class ChatActivity extends AppCompatActivity {
                 ownname = dataSnapshot.getValue().toString();
                 // schrijf bij ander user de chat met current user
                 DatabaseReference other_userchatsref = FirebaseDatabase.getInstance().getReference()
-                        .child("users").child(otheruserid).child("chats").child(uid).child("other");
+                        .child("users").child(sellerid).child("chats").child(uid).child("other");
                 other_userchatsref.setValue(new OtheruserObject(ownname, uid));
             }
             @Override
