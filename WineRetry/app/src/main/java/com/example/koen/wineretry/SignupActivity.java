@@ -44,29 +44,31 @@ public class SignupActivity extends BaseActivity {
     // register user, called when button "register" is clicked
     public void register(View view){
         getinput();
-        checkinput();
 
-        // get firebase auth instance
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        // create user
-        auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+        if (correctinput()){
+            // get firebase auth instance
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            // create user
+            auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        // if sign in fails, display a message to the user why it went wrong
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(SignupActivity.this, "Registering failed because: " +
-                                            task.getException(),
-                                    Toast.LENGTH_SHORT).show();
+                            // if sign in fails, display a message to the user why it went wrong
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(SignupActivity.this, "Registering failed because: " +
+                                                task.getException(),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
+                            // if sign in succeeds go to mainactivity
+                            else {
+                                signupsuccess();
+                            }
                         }
-
-                        // if sign in succeeds go to mainactivity
-                        else {
-                            signupsuccess();
-                        }
-                    }
-        });
+                    });
+        }
+//
     }
 
     public void signupsuccess (){
@@ -100,31 +102,33 @@ public class SignupActivity extends BaseActivity {
         email = emailinput.getText().toString().trim();
         password = passwordinput.getText().toString().trim();
 
-
     }
 
-    public void checkinput (){
-        // toast when email or password edittext is empty
-        if (TextUtils.isEmpty(email)) {
-            emailinput.setError("Enter your email address!");
-            return;
-        }
-
+    public Boolean correctinput (){
         // NAME EMPTY -> TOAST
         if (TextUtils.isEmpty(name)){
             nameinput.setError("Enter your name!");
-            return;
+            return Boolean.FALSE;
+        }
+
+        // toast when email or password edittext is empty
+        if (TextUtils.isEmpty(email)) {
+            emailinput.setError("Enter your email address!");
+            return Boolean.FALSE;
         }
 
         if (TextUtils.isEmpty(password)) {
             passwordinput.setError("Enter a password!");
-            return;
+            return Boolean.FALSE;
         }
 
         // toast when password is too short
         if (password.length() < 6) {
             passwordinput.setError("Password too short, enter at least 6 characters");
-            return;
+            return Boolean.FALSE;
+        }
+        else{
+            return true;
         }
     }
 

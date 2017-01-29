@@ -3,12 +3,15 @@ package com.example.koen.wineretry;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -136,6 +139,12 @@ public class AllsellsActivity extends BaseActivity {
     public void gotobuya(View view){
         startActivity(new Intent(AllsellsActivity.this, BuyActivity.class));
         finish();
+    }
+
+    public void showinfo (View view){
+        Intent infoactivity = new Intent(AllsellsActivity.this, InfoActivity.class);
+        infoactivity.putExtra("info", "Shown here are all the bottles you sell. When you click on one of them, all information about your bottle is shown. From there you can delete your bottle. You can add a new bottle you want to sell by clicking the 'new' button");
+        startActivity(infoactivity);
     }
 
     // create authstatelistener

@@ -84,10 +84,13 @@ public class AllchatsActivity extends BaseActivity {
                             getValue(OtheruserObject.class);
                     chatters.add(otheruserObject);
 
-                    ListadapterChats listadapterChats = new ListadapterChats(getApplicationContext()
-                            , chatters);
-                    lvchats.setAdapter(listadapterChats);
+//                    ListadapterChats listadapterChats = new ListadapterChats(getApplicationContext()
+//                            , chatters);
+                    // lvchats.setAdapter(listadapterChats);
                 }
+                ListadapterChats listadapterChats = new ListadapterChats(getApplicationContext()
+                        , chatters);
+                lvchats.setAdapter(listadapterChats);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -118,6 +121,11 @@ public class AllchatsActivity extends BaseActivity {
         });
     }
 
+    public void showinfo (View view){
+        Intent infoactivity = new Intent(AllchatsActivity.this, InfoActivity.class);
+        infoactivity.putExtra("info", "Shown here are all your chats with other users. If you have not read all the messages from another user yet, the name will be shown darker.");
+        startActivity(infoactivity);
+    }
 
     public void gotoallsellsc(View view){
         // showProgressDialog();

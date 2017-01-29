@@ -76,4 +76,18 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="30dp"/>
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/infoo"
+        android:id="@+id/imageButton5"
+        android:background="@color/white"
+        android:layout_marginTop="15dp"
+        android:onClick="showinfo"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="11dp"
+        android:layout_marginEnd="11dp" />
+
 </RelativeLayout>

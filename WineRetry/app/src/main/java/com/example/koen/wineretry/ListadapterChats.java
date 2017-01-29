@@ -26,7 +26,8 @@ public class ListadapterChats extends ArrayAdapter {
     String idother;
     TextView tvname;
     String read;
-    OtheruserObject otheruserObject;
+    DatabaseReference readref;
+
 
     public ListadapterChats(Context context, List allchats ) {
         super(context, 0, allchats);
@@ -34,8 +35,9 @@ public class ListadapterChats extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
+
         // get wine object at postiion
-        otheruserObject = (OtheruserObject) getItem(position);
+        OtheruserObject otheruserObject = (OtheruserObject) getItem(position);
 
         // use listitem.xml as layout for each item
         if (convertView == null){
@@ -43,17 +45,22 @@ public class ListadapterChats extends ArrayAdapter {
                     false);
         }
 
+        tvname = (TextView) convertView.findViewById(R.id.name);
+
         if (otheruserObject != null){
             idother = otheruserObject.getUserIDother();
             isread();
-            tvname.setText(otheruserObject.getUsernameother());
+            tvname.setText(otheruserObject.getUsernameother()); // hier gaat het nog goed
+            // deze gebeurt alleen de laatste keer ;(
+
         }
+
         return convertView;
     }
 
     public void isread (){
         getuid();
-        final DatabaseReference readref = FirebaseDatabase.getInstance().getReference()
+        readref = FirebaseDatabase.getInstance().getReference()
                 .child("users").child(uid).child("chats").child(idother).child("read");
 
         readref.addValueEventListener(new ValueEventListener() {
@@ -61,7 +68,16 @@ public class ListadapterChats extends ArrayAdapter {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 read = dataSnapshot.getValue().toString();
-                setcolors();
+                // setcolors();
+                if (read.equals("true")){
+                    tvname.setTextColor(Color.parseColor("#acacac"));
+                    tvname.setAllCaps(false);
+                }
+                else{
+                    tvname.setTextColor(Color.parseColor("#000000"));
+                    tvname.setAllCaps(true);
+                    // tvname.setBackgroundColor(getContext(), R.color"eeffff"));
+                }
 
             }
             @Override
@@ -73,6 +89,7 @@ public class ListadapterChats extends ArrayAdapter {
     public void setcolors (){
         if (read.equals("true")){
             tvname.setTextColor(Color.parseColor("#acacac"));
+            tvname.setAllCaps(false);
         }
         else{
             tvname.setTextColor(Color.parseColor("#000000"));

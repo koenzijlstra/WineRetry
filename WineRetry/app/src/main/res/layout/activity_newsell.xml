@@ -119,27 +119,16 @@
         android:maxLength="35"/>
 
     <TextView
-        android:text="Region"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView9"
-        android:layout_alignBaseline="@+id/textView8"
-        android:layout_alignBottom="@+id/textView8"
-        android:layout_alignLeft="@+id/etregion"
-        android:layout_alignStart="@+id/etregion"
-        android:textStyle="bold"/>
-
-    <TextView
         android:text="Story"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView10"
-        android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/etregion"
         android:layout_alignStart="@+id/etregion"
-        android:paddingTop="30dp"
+        android:paddingTop="10dp"
         android:textSize="15sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:layout_below="@+id/etregion" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -164,14 +153,26 @@
         android:layout_alignStart="@+id/ettitle"
         android:layout_marginTop="10dp"/>
 
+    <TextView
+        android:text="Region"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView9"
+        android:textStyle="bold"
+        android:layout_below="@+id/textView8"
+        android:layout_alignLeft="@+id/etregion"
+        android:layout_alignStart="@+id/etregion"
+        android:layout_marginTop="10dp"/>
+
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinner2"
         android:layout_below="@+id/ettitle"
-        android:layout_alignRight="@+id/ettitle"
-        android:layout_alignEnd="@+id/ettitle"
         android:layout_alignLeft="@+id/textView9"
-        android:layout_alignStart="@+id/textView9" />
+        android:layout_alignStart="@+id/textView9"
+        android:layout_marginTop="20dp"
+        android:layout_alignRight="@+id/ettitle"
+        android:layout_alignEnd="@+id/ettitle" />
 
 </RelativeLayout>

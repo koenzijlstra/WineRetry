@@ -167,12 +167,9 @@ public class BuyActivity extends BaseActivity {
             }
         });
 
-
     }
 
     public void getfilters (){
-        // toast die weergeeft wat geselecteerd is
-
         // get selected tag (red/ white etc)
         spinnertag =(Spinner) findViewById(R.id.spinner);
         tag = spinnertag.getSelectedItem().toString();
@@ -180,6 +177,9 @@ public class BuyActivity extends BaseActivity {
         // niet naar string, vergelijken met int in object
         min = rangeSeekbar.getSelectedMinValue().toString();
         max = rangeSeekbar.getSelectedMaxValue().toString();
+
+        String selectedstring = "You selected wines of the type '" + tag + "' from "+ min + " to "+ max;
+        Toast.makeText(getApplicationContext(), selectedstring, Toast.LENGTH_LONG).show();
 
         winesref = FirebaseDatabase.getInstance().getReference().child("wines");
         selected = winesref.orderByChild("year").startAt(min).endAt(max);
@@ -208,6 +208,13 @@ public class BuyActivity extends BaseActivity {
                 });
             }
         });
+    }
+
+
+    public void showinfo (View view){
+        Intent infoactivity = new Intent(BuyActivity.this, InfoActivity.class);
+        infoactivity.putExtra("info", "Shown here are all the bottles for sale. When you click on one of them, all information about the bottle is shown. From there you can chat with the seller of the bottle. You can filter the bottles for sale by choosing a type of wine and a period.");
+        startActivity(infoactivity);
     }
 
     public void createhashmap (){

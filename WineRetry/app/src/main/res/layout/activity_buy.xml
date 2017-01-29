@@ -18,9 +18,9 @@
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:paddingBottom="40dp"
+        android:paddingBottom="0dp"
         android:layout_below="@+id/linearLayout"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:layout_above="@+id/spinner"
         android:layout_marginBottom="10dp"/>
 
@@ -137,5 +137,17 @@
             android:onClick="signout"/>
 
     </LinearLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/infoo"
+        android:id="@+id/imageButton5"
+        android:background="@color/white"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignRight="@+id/filterbutton"
+        android:layout_alignEnd="@+id/filterbutton"
+        android:onClick="showinfo"/>
 
 </RelativeLayout>

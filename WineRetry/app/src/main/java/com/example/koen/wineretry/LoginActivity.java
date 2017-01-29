@@ -64,28 +64,34 @@ public class LoginActivity extends BaseActivity {
 
     public void login1(View view){
         getinput();
-        // authenticate user, function signinwithemailandpassword is given by firebase
-        auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        // if sign in fails, display a message to the user
-                        if (!task.isSuccessful()) {
-                            // when entered password is too small, prompt user for longer password
-                            if (password.length() < 6) {
-                                inputPassword.setError("Password too short, should be least 6 " +
-                                        "characters!");
-                                // when auth failed but password is long enough, toast that email or password is wrong
+        if (correctinput()){
+            auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            // if sign in fails, display a message to the user
+                            if (!task.isSuccessful()) {
+                                onfail();
+                                // if sign in succeeds, go to main activity
                             } else {
-                                Toast.makeText(LoginActivity.this, getString(R.string.auth_failed),
-                                        Toast.LENGTH_LONG).show();
+                                onsuccess();
                             }
-                            // if sign in succeeds, go to main activity
-                        } else {
-                            onsuccess();
                         }
-                    }
-                });
+                    });
+        }
+
+    }
+
+    public void onfail (){
+        // when entered password is too small, prompt user for longer password
+        if (password.length() < 6) {
+            inputPassword.setError("Password too short, should be least 6 " +
+                    "characters!");
+            // when auth failed but password is long enough, toast that email or password is wrong
+        } else {
+            Toast.makeText(LoginActivity.this, getString(R.string.auth_failed),
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
     public  void onsuccess (){
@@ -105,16 +111,22 @@ public class LoginActivity extends BaseActivity {
         // get email and password strings
         email = inputEmail.getText().toString();
         password = inputPassword.getText().toString();
+    }
 
+    public Boolean correctinput (){
+        // checken wilde ik in getinput, ging fout doordat return niet werkte.
         // toast when email or password is empty
         if (TextUtils.isEmpty(email)) {
             inputEmail.setError("Enter an email address!");
-            return;
+            return false;
         }
 
         if (TextUtils.isEmpty(password)) {
             inputPassword.setError("Enter a password!");
-            return;
+            return false;
+        }
+        else{
+            return true;
         }
     }
 

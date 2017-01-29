@@ -103,7 +103,6 @@ public class ChatActivity extends AppCompatActivity {
 //                        });
 
 
-
     public void writeto_users_chats (){
         write_other_to_cur();
         write_cur_to_other();
