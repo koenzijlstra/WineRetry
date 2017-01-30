@@ -57,6 +57,7 @@ public class ListadapterChats extends ArrayAdapter {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             String read = dataSnapshot.getValue().toString();
+                                    // hier convertview/listitems resetten ofzo?
 
                                     if (read.equals("true")){
                                         tvname.setTextColor(Color.parseColor("#acacac"));
@@ -70,10 +71,11 @@ public class ListadapterChats extends ArrayAdapter {
                         public void onCancelled(DatabaseError databaseError) {
                             }
                         });
-                                    tvname.setText(otheruserObject.getUsernameother());
+            tvname.setText(otheruserObject.getUsernameother());
         }
 
         return convertView;
+
         }
     }
 
