@@ -28,6 +28,8 @@ public class AllchatsActivity extends BaseActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
     public ListView lvchats;
+    ListadapterChats listadapterChats;
+    ArrayList<OtheruserObject> chatters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,12 @@ public class AllchatsActivity extends BaseActivity {
         setlv();
         createonitemclicklistener ();
 
+        chatters = new ArrayList<>();
+
+        listadapterChats =  new ListadapterChats(getApplicationContext()
+                , chatters);
     }
+
 
     public void setactionbar (){
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -77,7 +84,6 @@ public class AllchatsActivity extends BaseActivity {
         userschatsref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                final ArrayList<OtheruserObject> chatters = new ArrayList<>();
 
                 for (DataSnapshot otheruser : dataSnapshot.getChildren()){
                     OtheruserObject otheruserObject = otheruser.child("other").
@@ -86,11 +92,11 @@ public class AllchatsActivity extends BaseActivity {
 
 //                    ListadapterChats listadapterChats = new ListadapterChats(getApplicationContext()
 //                            , chatters);
-                    // lvchats.setAdapter(listadapterChats);
+
+                    lvchats.setAdapter(listadapterChats);
                 }
-                ListadapterChats listadapterChats = new ListadapterChats(getApplicationContext()
-                        , chatters);
-                lvchats.setAdapter(listadapterChats);
+            // lvchats.setAdapter(listadapterChats);
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

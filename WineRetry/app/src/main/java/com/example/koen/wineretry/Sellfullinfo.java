@@ -1,6 +1,8 @@
 package com.example.koen.wineretry;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -40,9 +42,9 @@ public class Sellfullinfo extends AppCompatActivity {
     public void settextviews (){
 
         getstrings_and_tvs();
-
         titletv.setText(title);
-        yeartv.setText(year);
+        String yearstring = "Year: "+ year;
+        yeartv.setText(yearstring);
         String regionstring = "Region: "+ region;
         regiontv.setText(regionstring);
         storytv.setText(story);
@@ -62,10 +64,37 @@ public class Sellfullinfo extends AppCompatActivity {
         year = hash.get("year");
         region = hash.get("region");
         story = hash.get("story");
-
     }
 
     public void delete (View view){
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Are you sure you want to delete this wine?");
+                alertDialogBuilder.setPositiveButton("yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                ondeleteconfirmed();
+                            }
+                        });
+
+        alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+
+
+
+//
+    }
+
+    public void ondeleteconfirmed (){
         Intent intent = getIntent();
         HashMap<String, String> hash = (HashMap<String,String>)intent
                 .getSerializableExtra("hashmap");

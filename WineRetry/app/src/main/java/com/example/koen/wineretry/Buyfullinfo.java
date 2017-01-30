@@ -42,7 +42,8 @@ public class Buyfullinfo extends AppCompatActivity {
         // Toast.makeText(getApplicationContext(), sellername , Toast.LENGTH_LONG).show();
 
         titletv.setText(title);
-        yeartv.setText(year);
+        String yearstring = "Year: " + year;
+        yeartv.setText(yearstring);
         String regionstring = "Region: "+ region;
         regiontv.setText(regionstring);
         storytv.setText(story);
