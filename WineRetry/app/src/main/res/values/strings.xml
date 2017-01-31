@@ -11,6 +11,11 @@
     <string name = "your_bottle">This is one of your bottles. You can delete it from \'sell\'.</string>
     <string name="infochats">Shown here are all your chats with other users. If you have not read all the messages from another user yet, the name will be shown darker</string>
     <string name="surelogout">Are you sure you want to log out?</string>
+    <string name="infosells">Shown here are all the bottles you sell. When you click on one of them, all information about your bottle is shown. From there you can delete your bottle. You can add a new bottle you want to sell by clicking the \'new\' button</string>
+    <string name="from">"' from "</string>
+    <string name="to">" to "</string>
+    <string name="youselected">"You selected wines of the type '"</string>
+    <string name="buyinfo">"Shown here are all the bottles for sale. When you click on one of them, all information about the bottle is shown. From there you can chat with the seller of the bottle. You can filter the bottles for sale by choosing a type of wine and a period."</string>
     <string-array name="winetags">
         <item>Red</item>
         <item>White</item>

@@ -18,6 +18,19 @@ public class BuyfullinfoActivity extends AppCompatActivity {
 
     String uid;
 
+
+    TextView titletv;
+    TextView yeartv;
+    TextView regiontv;
+    TextView storytv;
+    TextView sellertv;
+    String sellerid;
+    String title;
+    String year;
+    String region;
+    String sellername;
+    String story;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,30 +39,17 @@ public class BuyfullinfoActivity extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         uid = auth.getCurrentUser().getUid();
 
-        settextviews();
+        setTextviews();
     }
 
-    public void settextviews (){
-        Intent intent = getIntent();
-        HashMap<String, String> hash = (HashMap<String,String>)intent
-                .getSerializableExtra("fullhashmap");
-        TextView titletv = (TextView) findViewById(R.id.tvtitlefull);
-        TextView yeartv = (TextView) findViewById(R.id.tvyearfull);
-        TextView regiontv = (TextView) findViewById(R.id.tvregionfull);
-        TextView storytv = (TextView) findViewById(R.id.tvstoryfull);
-        TextView sellertv = (TextView) findViewById(R.id.sellertv);
-
-//        Bundle extras = getIntent().getExtras();
-        String sellerid = hash.get("sellerid");
-        String title = hash.get("title");
-        String year = hash.get("year");
-        String region = hash.get("region");
-        String sellername = hash.get("sellername");
-        String story = hash.get("story");
-        // Toast.makeText(getApplicationContext(), sellername , Toast.LENGTH_LONG).show();
+    // Get all the strings that were given to the hashmap, define all textviews needed. If the
+    // current user is the seller of the bottle, there will be no chat function, and there will be
+    // a different string displayed about the seller
+    public void setTextviews (){
+        getTvsandstrings();
 
         Button chatbutton = (Button)findViewById(R.id.button13);
-
+        // If user is seller, hide the chatbutton
         if (sellerid.equals(uid)){
             sellertv.setText(R.string.your_bottle);
             chatbutton.setVisibility(View.GONE);
@@ -68,6 +68,28 @@ public class BuyfullinfoActivity extends AppCompatActivity {
         storytv.setText(story);
     }
 
+    // Get the strings from the hashmap, find the textviews
+    public void getTvsandstrings (){
+        Intent intent = getIntent();
+        HashMap<String, String> hash = (HashMap<String,String>)intent
+                .getSerializableExtra("fullhashmap");
+        titletv = (TextView) findViewById(R.id.tvtitlefull);
+        yeartv = (TextView) findViewById(R.id.tvyearfull);
+        regiontv = (TextView) findViewById(R.id.tvregionfull);
+        storytv = (TextView) findViewById(R.id.tvstoryfull);
+        sellertv = (TextView) findViewById(R.id.sellertv);
+
+        sellerid = hash.get("sellerid");
+        title = hash.get("title");
+        year = hash.get("year");
+        region = hash.get("region");
+        sellername = hash.get("sellername");
+        story = hash.get("story");
+    }
+
+    // When the chat button is clicked, go to chatactivity and give the id of seller to intent. Also
+    // set the variable read true. This means that the cur user has read the other users message
+    // (even though there will be no message from the other user if cur user initiates the chat).
     public void startchat (View view){
         Intent intent = getIntent();
         HashMap<String, String> hash = (HashMap<String,String>)intent
@@ -76,11 +98,8 @@ public class BuyfullinfoActivity extends AppCompatActivity {
         Intent gotochat = new Intent(BuyfullinfoActivity.this, ChatActivity.class);
         Toast.makeText(getApplicationContext(), sellerid , Toast.LENGTH_LONG).show();
         gotochat.putExtra("sellerid", sellerid);
-
-        // gelezen op true zetten (maakt niet uit dat er de eerste keer nog geen bericht is)
         FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("chats")
                 .child(sellerid).child("read").setValue(true);
-
         startActivity(gotochat);
     }
 }

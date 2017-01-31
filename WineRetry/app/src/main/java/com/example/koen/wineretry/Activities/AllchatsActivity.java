@@ -14,6 +14,7 @@ import android.widget.ListView;
 import com.example.koen.wineretry.Other.BaseActivity;
 import com.example.koen.wineretry.Listadapters.ListadapterChats;
 import com.example.koen.wineretry.Objects.OtheruserObject;
+import com.example.koen.wineretry.Other.Signout;
 import com.example.koen.wineretry.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,10 +23,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 
-public class AllchatsActivity extends BaseActivity {
+public class AllchatsActivity extends BaseActivity implements View.OnClickListener{
 
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
@@ -40,13 +42,12 @@ public class AllchatsActivity extends BaseActivity {
         setContentView(R.layout.activity_allchats);
 
         lvchats = (ListView) findViewById(R.id.lvchats);
-        auth.addAuthStateListener(authListener);
-        uid = auth.getCurrentUser().getUid();
 
-        setactionbar();
-        setauthstatelistener();
-        setlv();
-        createonitemclicklistener ();
+        setActionbar();
+        setAuthstatelistener();
+        setLv();
+        createOnitemclicklistener ();
+        setclicklisteners();
 
         // Create the custom listadapter for the listview that displays all names of chats. Adapter
         // is created with an empty arraylist chatters
@@ -56,13 +57,15 @@ public class AllchatsActivity extends BaseActivity {
     }
 
     // Set the custom supportactionbar
-    public void setactionbar (){
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar);
+    public void setActionbar (){
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            getSupportActionBar().setCustomView(R.layout.actionbar);
+        }
     }
 
     // Set authstatelistener that starts login activity when user is not logged in
-    public void setauthstatelistener (){
+    public void setAuthstatelistener (){
         auth = FirebaseAuth.getInstance();
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -78,7 +81,10 @@ public class AllchatsActivity extends BaseActivity {
     }
 
     // Fill the listview lvchats with all the names the user has a chat with
-    public void setlv (){
+    public void setLv (){
+        auth.addAuthStateListener(authListener);
+        uid = auth.getCurrentUser().getUid();
+
         // Get DB reference to all the chats of current user
         DatabaseReference userschatsref = FirebaseDatabase.getInstance().getReference().
                 child("users").child(uid).child("chats");
@@ -101,7 +107,7 @@ public class AllchatsActivity extends BaseActivity {
     }
 
     // Set an onitemclicklistener on the listview, navigates to chat with the user that was clicked
-    public void createonitemclicklistener (){
+    public void createOnitemclicklistener (){
         lvchats.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -124,62 +130,12 @@ public class AllchatsActivity extends BaseActivity {
     }
 
     // Show the dialog themed info activity, give activity specific info to intent
-    public void showinfo (View view){
+    public void showInfo (){
         Intent infoactivity = new Intent(AllchatsActivity.this, InfoActivity.class);
         infoactivity.putExtra("info", getResources().getString(R.string.infochats));
         startActivity(infoactivity);
     }
 
-    // Go to the Allsells Activity
-    public void gotoallsellsc(View view){
-        startActivity(new Intent(AllchatsActivity.this, AllsellsActivity.class));
-        finish();
-    }
-
-    // Go to Allchats Activity
-    public void gotoallchatsc(View view){
-        startActivity(new Intent(AllchatsActivity.this, AllchatsActivity.class));
-        finish();
-    }
-
-    // Show alertdialog, when confirmed user gets logged out
-    public void signout(View view) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage(getResources().getString(R.string.surelogout));
-        alertDialogBuilder.setPositiveButton("Yes",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        auth.signOut();
-                    }
-                });
-
-        alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-
-        final AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.setOnShowListener( new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface arg0) {
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                        .setTextColor(Color.parseColor("#aa0000"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                        .setTextColor(Color.parseColor("#aa0000"));
-            }
-        });
-        alertDialog.show();
-
-
-    }
-
-    // Go to Buy Activity
-    public void gotobuyc(View view){
-        startActivity(new Intent(AllchatsActivity.this, BuyActivity.class));
-        finish();
-    }
 
     // Create authstatelistener
     @Override
@@ -194,6 +150,39 @@ public class AllchatsActivity extends BaseActivity {
         super.onStop();
         if (authListener != null) {
             auth.removeAuthStateListener(authListener);
+        }
+    }
+
+    public void setclicklisteners(){
+        findViewById(R.id.sell).setOnClickListener(this);
+        findViewById(R.id.buy).setOnClickListener(this);
+        findViewById(R.id.chats).setOnClickListener(this);
+        findViewById(R.id.signout).setOnClickListener(this);
+        findViewById(R.id.info).setOnClickListener(this);
+
+    }
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.buy:
+                startActivity(new Intent(AllchatsActivity.this, BuyActivity.class));
+                finish();
+                break;
+            case R.id.sell:
+                startActivity(new Intent(AllchatsActivity.this, AllsellsActivity.class));
+                finish();
+                break;
+            case R.id.chats:
+                startActivity(new Intent(AllchatsActivity.this, AllchatsActivity.class));
+                finish();
+                break;
+            case R.id.signout:
+                Signout signoutclass =new Signout();
+                signoutclass.signout(this,auth);
+                break;
+            case R.id.info:
+                showInfo();
+                break;
         }
     }
 }

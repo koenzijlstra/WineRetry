@@ -31,7 +31,6 @@
         android:id="@+id/filterbutton"
         android:background="@drawable/buttonshape1"
         android:layout_marginBottom="33dp"
-        android:onClick="filter"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -86,6 +85,17 @@
         android:layout_toLeftOf="@+id/textViewend"
         android:layout_toStartOf="@+id/textViewend" />
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/infoo"
+        android:id="@+id/info"
+        android:background="@color/white"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignRight="@+id/filterbutton"
+        android:layout_alignEnd="@+id/filterbutton"/>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -100,54 +110,38 @@
             android:text="Buy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button12"
+            android:id="@+id/buy"
             android:layout_weight="1"
             android:background="@color/inbetween"
             android:textColor="@color/white"
-            android:onClick="gotobuyb"
             android:textStyle="bold"/>
 
         <Button
             android:text="Sell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button11"
+            android:id="@+id/sell"
             android:layout_weight="1"
             android:background="@null"
-            android:textColor="@color/white"
-            android:onClick="gotoallsellsb"/>
+            android:textColor="@color/white"/>
 
         <Button
             android:text="Chats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button10"
+            android:id="@+id/chats"
             android:layout_weight="1"
             android:background="@null"
-            android:textColor="@color/white"
-            android:onClick="gotoallchatsb"/>
+            android:textColor="@color/white"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/logout24"
-            android:id="@+id/imageButton4"
+            android:id="@+id/signout"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
-            android:onClick="signout"/>
+            android:background="@color/colorPrimaryDark" />
 
     </LinearLayout>
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/infoo"
-        android:id="@+id/imageButton5"
-        android:background="@color/white"
-        android:layout_marginTop="11dp"
-        android:layout_below="@+id/linearLayout"
-        android:layout_alignRight="@+id/filterbutton"
-        android:layout_alignEnd="@+id/filterbutton"
-        android:onClick="showinfo"/>
 
 </RelativeLayout>

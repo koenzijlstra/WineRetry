@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-
     tools:context="com.example.koen.wineretry.Activities.AllsellsActivity">
 
     <LinearLayout
@@ -23,41 +22,37 @@
             android:text="Buy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button12"
+            android:id="@+id/buy"
             android:layout_weight="1"
             android:background="@null"
-            android:textColor="@color/white"
-            android:onClick="gotobuya"/>
+            android:textColor="@color/white"/>
 
         <Button
             android:text="Sell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button11"
+            android:id="@+id/sell"
             android:layout_weight="1"
             android:background="@color/inbetween"
             android:textColor="@color/white"
-            android:onClick="gotoallsellsa"
             android:textStyle="bold"/>
 
         <Button
             android:text="Chats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button10"
+            android:id="@+id/chats"
             android:layout_weight="1"
             android:background="@null"
-            android:textColor="@color/white"
-            android:onClick="gotoallchatsa"/>
+            android:textColor="@color/white"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/logout24"
-            android:id="@+id/imageButton4"
+            android:id="@+id/signout"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
-            android:onClick="signout"/>
+            android:background="@color/colorPrimaryDark"/>
 
     </LinearLayout>
 
@@ -74,35 +69,32 @@
         android:layout_marginBottom="20dp"
         android:id="@+id/userbottles"
         android:layout_below="@+id/linearLayout"
-        android:layout_above="@+id/button9" />
-
-    <Button
-        android:text="New"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button9"
-        android:onClick="gotonewsell"
-
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        android:background="@drawable/buttonshape2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/userbottles"
-        android:layout_alignStart="@+id/userbottles" />
+        android:layout_above="@+id/newsell" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/infoo"
-        android:id="@+id/imageButton5"
+        android:id="@+id/info"
         android:background="@color/white"
-        android:onClick="showinfo"
         android:layout_marginTop="13dp"
         android:layout_below="@+id/linearLayout"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="11dp"
         android:layout_marginEnd="11dp" />
+
+    <Button
+        android:text="New"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newsell"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:background="@drawable/buttonshape2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/userbottles"
+        android:layout_alignStart="@+id/userbottles" />
 
 
 </RelativeLayout>

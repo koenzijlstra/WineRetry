@@ -39,8 +39,8 @@ public class ChatActivity extends AppCompatActivity {
         sellerid = getIntent().getStringExtra("sellerid");
         writeto_users_chats();
 
-        // create unique identifier for chat by concatenating user id (unique) and timestamp.
-        // is gewoon puur om uniek id te krijgen, inhoudelijk maakt het niet uit.
+        // Create two unique identifiers for a chat by concatenating user id of current user and uid
+        // of the other user. Each chat thus has a duplicate
         chatID_own =  uid + sellerid;
         chatID_seller = sellerid + uid;
 
@@ -48,6 +48,7 @@ public class ChatActivity extends AppCompatActivity {
         displayChatMessages(chatID_own);
     }
 
+    // HIER BEN IK
     public void setfab (){
         FloatingActionButton fab =
                 (FloatingActionButton)findViewById(R.id.fab);

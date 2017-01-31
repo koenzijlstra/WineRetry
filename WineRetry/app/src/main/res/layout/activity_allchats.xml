@@ -23,38 +23,35 @@
             android:text="Buy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button12"
+            android:id="@+id/buy"
             android:layout_weight="1"
             android:background="@null"
-            android:textColor="@color/white"
-            android:onClick="gotobuyc" />
+            android:textColor="@color/white"/>
 
         <Button
             android:text="Sell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button11"
+            android:id="@+id/sell"
             android:layout_weight="1"
             android:background="@null"
-            android:textColor="@color/white"
-            android:onClick="gotoallsellsc"/>
+            android:textColor="@color/white"/>
 
         <Button
             android:text="Chats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button10"
+            android:id="@+id/chats"
             android:layout_weight="1"
             android:background="@color/inbetween"
             android:textColor="@color/white"
-            android:onClick="gotoallchatsc"
             android:textStyle="bold"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/logout24"
-            android:id="@+id/imageButton4"
+            android:id="@+id/signout"
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
             android:onClick="signout"/>
@@ -80,10 +77,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/infoo"
-        android:id="@+id/imageButton5"
+        android:id="@+id/info"
         android:background="@color/white"
         android:layout_marginTop="15dp"
-        android:onClick="showinfo"
         android:layout_below="@+id/linearLayout"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

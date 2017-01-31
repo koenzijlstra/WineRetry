@@ -7,12 +7,15 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.koen.wineretry.Other.BaseActivity;
 import com.example.koen.wineretry.Listadapters.ListadapterBottles;
+import com.example.koen.wineretry.Other.Signout;
 import com.example.koen.wineretry.R;
 import com.example.koen.wineretry.Objects.WineObject;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AllsellsActivity extends BaseActivity {
+public class AllsellsActivity extends BaseActivity implements View.OnClickListener {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
     ArrayList<String> user_bottleids = new ArrayList<>();
@@ -39,18 +42,23 @@ public class AllsellsActivity extends BaseActivity {
 
         userwineslv = (ListView) findViewById(R.id.userbottles);
 
-        setactionbar();
-        getuserbottles();
-        createonitemclicklistener();
-        createauthstatelistener();
+        setclicklisteners();
+        setActionbar();
+        getUserbottles();
+        createOnitemclicklistener();
+        createAuthstatelistener();
     }
 
-    public void setactionbar (){
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar);
+    // Set the custom support action bar
+    public void setActionbar (){
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            getSupportActionBar().setCustomView(R.layout.actionbar);
+        }
     }
 
-    public void getuserbottles (){
+    // Get all the bottles that current user sells by comparing the id's of all bottles with the
+    public void getUserbottles (){
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String uid = auth.getCurrentUser().getUid();
 
@@ -60,22 +68,23 @@ public class AllsellsActivity extends BaseActivity {
         userswinesref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 for (DataSnapshot bottleid : dataSnapshot.getChildren()){
                     String idbottle = bottleid.getValue().toString();
                     user_bottleids.add(idbottle);
                 }
                 compare();
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
     }
 
+    // Get all the bottle id's of wines that are being sold. Compare id's of bottles of user with
+    // all id's, add the matching wines to userbottles (an arraylist of wine objects)
     public void compare (){
-        DatabaseReference allwinesref = FirebaseDatabase.getInstance().getReference().child("wines");
+        DatabaseReference allwinesref = FirebaseDatabase.getInstance().getReference()
+                .child("wines");
         allwinesref.addValueEventListener(new ValueEventListener() {
             ArrayList<WineObject> userbottles = new ArrayList<>();
 
@@ -83,27 +92,24 @@ public class AllsellsActivity extends BaseActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot bottle : dataSnapshot.getChildren()){
                     String idbottle = bottle.getKey();
+                    // This condition is where id's are compared
                     if (user_bottleids.contains(idbottle)){
                         WineObject wineObject = bottle.getValue(WineObject.class);
                         userbottles.add(wineObject);
                     }
                 }
-
-                final ListadapterBottles listadapterBottles = new ListadapterBottles(getApplicationContext(),
-                        userbottles);
+                final ListadapterBottles listadapterBottles = new
+                        ListadapterBottles(getApplicationContext(), userbottles);
                 userwineslv.setAdapter(listadapterBottles);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
     }
 
-    public void createauthstatelistener (){
-        //get firebase auth instance
+    public void createAuthstatelistener (){
         auth = FirebaseAuth.getInstance();
-
         // authstatelistener that starts login activity when user is not logged in
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -119,69 +125,23 @@ public class AllsellsActivity extends BaseActivity {
         };
     }
 
-    public void gotonewsell(View view){
-        startActivity(new Intent(AllsellsActivity.this, NewsellActivity.class));
-    }
-
-    public void gotoallsellsa(View view){
-        startActivity(new Intent(AllsellsActivity.this, AllsellsActivity.class));
-        finish();
-    }
-
-    public void gotoallchatsa(View view){
-        startActivity(new Intent(AllsellsActivity.this, AllchatsActivity.class));
-        finish();
-    }
-
-    public void signout(View view) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Are you sure you want to log out?");
-        alertDialogBuilder.setPositiveButton("Yes",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        auth.signOut();
-                    }
-                });
-
-        alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
-        final AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.setOnShowListener( new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface arg0) {
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#aa0000"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#aa0000"));
-            }
-        });
-        alertDialog.show();
-    }
-
-    public void gotobuya(View view){
-        startActivity(new Intent(AllsellsActivity.this, BuyActivity.class));
-        finish();
-    }
-
-    public void showinfo (View view){
+    // Give an info string to the activity that will display the information about this activity
+    public void showInfo (){
         Intent infoactivity = new Intent(AllsellsActivity.this, InfoActivity.class);
-        infoactivity.putExtra("info", "Shown here are all the bottles you sell. When you click on one of them, all information about your bottle is shown. From there you can delete your bottle. You can add a new bottle you want to sell by clicking the 'new' button");
+        infoactivity.putExtra("info", R.string.infosells);
         startActivity(infoactivity);
     }
 
-    // create authstatelistener
+    // Create authstatelistener
     @Override
     public void onStart() {
         super.onStart();
         auth.addAuthStateListener(authListener);
     }
 
-    public void createonitemclicklistener (){
-        // userwineslv = (ListView) findViewById(R.id.userbottles);
+    // Create an onitemclicklistener. Create a Wineobject of the wine that is clicked on. Give all
+    // info via a hashmap to next activity
+    public void createOnitemclicklistener (){
         userwineslv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -190,10 +150,10 @@ public class AllsellsActivity extends BaseActivity {
                 String clickedyear = clickedwine.getYear();
                 String clickedregion = clickedwine.getRegion();
                 String clickedstory = clickedwine.getStory();
-                // om te kunnen deleten bottleid meegeven
+                // Also add bottleid to be able to delete later
                 String clickedbottleid = clickedwine.getBottleid();
 
-                // stop alles in hashmap
+                // Create hashmap
                 final HashMap<String, String> hash = new HashMap<String, String>();
                 hash.put("title", clickedtitle);
                 hash.put("year", clickedyear);
@@ -201,6 +161,7 @@ public class AllsellsActivity extends BaseActivity {
                 hash.put("story", clickedstory);
                 hash.put("bottleid", clickedbottleid);
 
+                // Navigate to Sellfullinfo with all information about the bottle
                 Intent gotosellfullinfo = new Intent(AllsellsActivity.this, SellfullinfoActivity.class);
                 gotosellfullinfo.putExtra("hashmap", hash);
                 startActivity(gotosellfullinfo);
@@ -208,12 +169,52 @@ public class AllsellsActivity extends BaseActivity {
         });
     }
 
-    // remove authstatelistener
+    // Remove authstatelistener
     @Override
     public void onStop() {
         super.onStop();
         if (authListener != null) {
             auth.removeAuthStateListener(authListener);
+        }
+    }
+
+    // Set clicklisteners on all buttons
+    public void setclicklisteners(){
+        findViewById(R.id.sell).setOnClickListener(this);
+        findViewById(R.id.buy).setOnClickListener(this);
+        findViewById(R.id.chats).setOnClickListener(this);
+        findViewById(R.id.newsell).setOnClickListener(this);
+        findViewById(R.id.signout).setOnClickListener(this);
+        findViewById(R.id.info).setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        Log.wtf("test", Integer.toString(view.getId()));
+        switch (view.getId()){
+            case R.id.buy:
+                startActivity(new Intent(AllsellsActivity.this, BuyActivity.class));
+                finish();
+                break;
+            case R.id.sell:
+                startActivity(new Intent(AllsellsActivity.this, AllsellsActivity.class));
+                finish();
+                break;
+            case R.id.chats:
+                startActivity(new Intent(AllsellsActivity.this, AllchatsActivity.class));
+                finish();
+                break;
+            case R.id.newsell:
+                startActivity(new Intent(AllsellsActivity.this, NewsellActivity.class));
+                break;
+            case R.id.signout:
+                Signout signoutclass =new Signout();
+                signoutclass.signout(this,auth);
+                break;
+            case R.id.info:
+                showInfo();
+                break;
         }
     }
 }
