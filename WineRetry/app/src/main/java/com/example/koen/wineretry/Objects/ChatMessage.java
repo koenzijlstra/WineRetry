@@ -1,4 +1,4 @@
-package com.example.koen.wineretry;
+package com.example.koen.wineretry.Objects;
 
 import java.util.Date;
 

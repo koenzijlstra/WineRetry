@@ -1,9 +1,11 @@
-package com.example.koen.wineretry;
+package com.example.koen.wineretry.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.example.koen.wineretry.R;
 
 public class InfoActivity extends AppCompatActivity {
 

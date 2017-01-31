@@ -1,4 +1,4 @@
-package com.example.koen.wineretry;
+package com.example.koen.wineretry.Other;
 
 import android.app.ProgressDialog;
 import android.support.annotation.VisibleForTesting;

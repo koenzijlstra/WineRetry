@@ -1,7 +1,5 @@
-package com.example.koen.wineretry;
+package com.example.koen.wineretry.Activities;
 
-import android.content.Intent;
-import android.icu.text.DateFormat;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +8,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.koen.wineretry.Objects.ChatMessage;
+import com.example.koen.wineretry.Objects.OtheruserObject;
+import com.example.koen.wineretry.R;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;

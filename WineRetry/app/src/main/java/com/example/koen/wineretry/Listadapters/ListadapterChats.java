@@ -1,4 +1,4 @@
-package com.example.koen.wineretry;
+package com.example.koen.wineretry.Listadapters;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.koen.wineretry.Objects.OtheruserObject;
+import com.example.koen.wineretry.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

@@ -1,4 +1,4 @@
-package com.example.koen.wineretry;
+package com.example.koen.wineretry.Listadapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.koen.wineretry.Objects.WineObject;
+import com.example.koen.wineretry.R;
 
 import java.util.List;
 
@@ -15,9 +16,9 @@ import java.util.List;
  * Created by Koen on 17-1-2017.
  */
 
-public class Listadapter extends ArrayAdapter {
+public class ListadapterBottles extends ArrayAdapter {
 
-    public Listadapter(Context context, List allwines) {
+    public ListadapterBottles(Context context, List allwines) {
         super(context, 0, allwines);
     }
 

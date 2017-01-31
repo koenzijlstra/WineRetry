@@ -1,7 +1,6 @@
-package com.example.koen.wineretry;
+package com.example.koen.wineretry.Activities;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,12 +8,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.koen.wineretry.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
-public class Buyfullinfo extends AppCompatActivity {
+public class BuyfullinfoActivity extends AppCompatActivity {
 
     String uid;
 
@@ -51,7 +51,7 @@ public class Buyfullinfo extends AppCompatActivity {
         Button chatbutton = (Button)findViewById(R.id.button13);
 
         if (sellerid.equals(uid)){
-            sellertv.setText("This is one of your bottles. You can delete it from 'sell'.");
+            sellertv.setText(R.string.your_bottle);
             chatbutton.setVisibility(View.GONE);
         }
         else {
@@ -73,7 +73,7 @@ public class Buyfullinfo extends AppCompatActivity {
         HashMap<String, String> hash = (HashMap<String,String>)intent
                 .getSerializableExtra("fullhashmap");
         String sellerid = hash.get("sellerid");
-        Intent gotochat = new Intent(Buyfullinfo.this, ChatActivity.class);
+        Intent gotochat = new Intent(BuyfullinfoActivity.this, ChatActivity.class);
         Toast.makeText(getApplicationContext(), sellerid , Toast.LENGTH_LONG).show();
         gotochat.putExtra("sellerid", sellerid);
 

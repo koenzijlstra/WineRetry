@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">WineRetry</string>
+    <string name="email">Email</string>
+    <string name="register">register</string>
+    <string name="password">Password</string>
+    <string name="already_an_account_log_in">Already an account? Log in!</string>
+    <string name="auth_failed">Wrong email or password. Try again or register</string>
+    <string name="how">Fill in your name, email and a password to register to TITEL APP</string>
+    <string name="log_in">Log In</string>
+    <string name="name">Name</string>
+    <string name = "your_bottle">This is one of your bottles. You can delete it from \'sell\'.</string>
+    <string name="infochats">Shown here are all your chats with other users. If you have not read all the messages from another user yet, the name will be shown darker</string>
+    <string name="surelogout">Are you sure you want to log out?</string>
+    <string-array name="winetags">
+        <item>Red</item>
+        <item>White</item>
+        <item>Sparkling</item>
+        <item>Other</item>
+        <item>All</item>
+    </string-array>
+    <string-array name="winetags2">
+        <item>Red</item>
+        <item>White</item>
+        <item>Sparkling</item>
+        <item>Other</item>
+    </string-array>
+</resources>

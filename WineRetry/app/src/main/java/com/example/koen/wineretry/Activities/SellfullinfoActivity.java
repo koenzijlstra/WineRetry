@@ -1,4 +1,4 @@
-package com.example.koen.wineretry;
+package com.example.koen.wineretry.Activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.koen.wineretry.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,10 +18,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Sellfullinfo extends AppCompatActivity {
+public class SellfullinfoActivity extends AppCompatActivity {
     String title;
     String uid;
     String bottleid;
@@ -140,10 +140,10 @@ public class Sellfullinfo extends AppCompatActivity {
     public void afterdeleting (){
         // string later naar strings verplaatsen
         String deletedstring = "You deleted '" + title + "'";
-        Toast.makeText(Sellfullinfo.this, deletedstring, Toast.LENGTH_LONG).show();
+        Toast.makeText(SellfullinfoActivity.this, deletedstring, Toast.LENGTH_LONG).show();
 
         // intent terug naar allsells
-        startActivity(new Intent(Sellfullinfo.this, AllsellsActivity.class));
+        startActivity(new Intent(SellfullinfoActivity.this, AllsellsActivity.class));
         finish();
     }
 }

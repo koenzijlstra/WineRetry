@@ -1,4 +1,4 @@
-package com.example.koen.wineretry;
+package com.example.koen.wineretry.Objects;
 
 /**
  * Created by Koen on 14-1-2017.

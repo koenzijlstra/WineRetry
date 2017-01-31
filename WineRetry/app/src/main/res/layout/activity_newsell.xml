@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.koen.wineretry.NewsellActivity">
+    tools:context="com.example.koen.wineretry.Activities.NewsellActivity">
 
     <TextView
         android:text="Add a new bottle you want to sell by filling in this info"

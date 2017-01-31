@@ -1,4 +1,4 @@
-package com.example.koen.wineretry;
+package com.example.koen.wineretry.Activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,21 +7,22 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
+import com.example.koen.wineretry.Other.BaseActivity;
+import com.example.koen.wineretry.Listadapters.ListadapterBottles;
+import com.example.koen.wineretry.R;
+import com.example.koen.wineretry.Objects.WineObject;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -160,8 +161,8 @@ public class BuyActivity extends BaseActivity {
                     }
                 }
 
-                Listadapter listadapter = new Listadapter(getApplicationContext(), selectedbottles);
-                allwineslv.setAdapter(listadapter);
+                ListadapterBottles listadapterBottles = new ListadapterBottles(getApplicationContext(), selectedbottles);
+                allwineslv.setAdapter(listadapterBottles);
             }
 
             @Override
@@ -238,7 +239,7 @@ public class BuyActivity extends BaseActivity {
 
     // zodat hij niet 1 achter loopt en null geeft
     public void getSellerName(String sellername, HashMap hash){
-        Intent gotobuyfullinfo = new Intent(BuyActivity.this, Buyfullinfo.class);
+        Intent gotobuyfullinfo = new Intent(BuyActivity.this, BuyfullinfoActivity.class);
         hash.put("sellername", sellername);
         gotobuyfullinfo.putExtra("fullhashmap", hash);
         startActivity(gotobuyfullinfo);
@@ -271,8 +272,8 @@ public class BuyActivity extends BaseActivity {
                     bottles.add(wineObject);
                 }
 
-                Listadapter listadapter = new Listadapter(getApplicationContext(), bottles);
-                allwineslv.setAdapter(listadapter);
+                ListadapterBottles listadapterBottles = new ListadapterBottles(getApplicationContext(), bottles);
+                allwineslv.setAdapter(listadapterBottles);
             }
 
             @Override
