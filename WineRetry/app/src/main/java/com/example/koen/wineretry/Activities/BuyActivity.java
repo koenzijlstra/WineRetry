@@ -73,7 +73,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener{
         createAuthstatelistener();
         fillListview();
         createOnclicklistener();
-        setclicklisteners();
+        setClicklisteners();
 
         // hide keyboard -> doet niks?
 //        View view = this.getCurrentFocus();
@@ -214,7 +214,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener{
         });
     }
 
-    // When hte infobutton is clicked, navigate to infoActivity with activity specific string
+    // When the infobutton is clicked, navigate to infoActivity with activity specific string
     public void showInfo (){
         Intent infoactivity = new Intent(BuyActivity.this, InfoActivity.class);
         infoactivity.putExtra("info", getResources().getString(R.string.buyinfo));
@@ -227,7 +227,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener{
         clickedyear = clickedwine.getYear();
         clickedregion = clickedwine.getRegion();
         clickedstory = clickedwine.getStory();
-        hash = new HashMap<String, String>();
+        hash = new HashMap<>();
         hash.put("title", clickedtitle);
         hash.put("year", clickedyear);
         hash.put("region", clickedregion);
@@ -238,7 +238,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener{
 
     // This seperate function solves the problem of not receiving the seller name the first time. Is
     // called in the ondatachange of the onclicklistener of the listview
-    public void getSellerName(String sellername, HashMap hash){
+    public void getSellerName(String sellername, HashMap <String,String> hash){
         Intent gotobuyfullinfo = new Intent(BuyActivity.this, BuyfullinfoActivity.class);
         hash.put("sellername", sellername);
         gotobuyfullinfo.putExtra("fullhashmap", hash);
@@ -246,19 +246,21 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener{
     }
 
     // app crasht als ik keys probeer te hiden?
-    public void hidekeys(){
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-    }
+//    public void hidekeys(){
+//        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+//    }
 
+    // Retreive all bottles from firebase, create wineobject for each bottle, and set the custom
+    // listadapter with the arraystring of all wineobjects (called bottles).
     public void fillListview (){
         DatabaseReference allwinesref = FirebaseDatabase.getInstance().getReference().child("wines");
         allwinesref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
+                // Create an empty arraylist of type wineobjects
                 final ArrayList<WineObject> bottles = new ArrayList<>();
-
+                // Get every winebottle, create wineobjects and add them to the arraylist
                 for (DataSnapshot bottle : dataSnapshot.getChildren()){
                     WineObject wineObject = bottle.getValue(WineObject.class);
                     bottles.add(wineObject);
@@ -277,11 +279,11 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener{
     @Override
     public void onStart() {
         super.onStart();
-        // create authstatelistener (anders gaat user naar login)
+        // Create authstatelistener
         auth.addAuthStateListener(authListener);
     }
 
-    // remove authstatelistener
+    // Remove authstatelistener
     @Override
     public void onStop() {
         super.onStop();
@@ -290,7 +292,8 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener{
         }
     }
 
-    public void setclicklisteners(){
+    // Set onclicklisteners for all necessary buttons
+    public void setClicklisteners(){
         findViewById(R.id.sell).setOnClickListener(this);
         findViewById(R.id.buy).setOnClickListener(this);
         findViewById(R.id.chats).setOnClickListener(this);
@@ -299,6 +302,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener{
         findViewById(R.id.filterbutton).setOnClickListener(this);
 
     }
+    // Determine what needs to happen after a click, depending on which button was clicked
     @Override
     public void onClick(View view) {
         switch (view.getId()){

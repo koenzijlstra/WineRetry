@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WineRetry</string>
+    <string name="app_name">FineWine</string>
     <string name="email">Email</string>
     <string name="register">register</string>
     <string name="password">Password</string>
@@ -16,6 +16,9 @@
     <string name="to">" to "</string>
     <string name="youselected">"You selected wines of the type '"</string>
     <string name="buyinfo">"Shown here are all the bottles for sale. When you click on one of them, all information about the bottle is shown. From there you can chat with the seller of the bottle. You can filter the bottles for sale by choosing a type of wine and a period."</string>
+    <string name="please_enter">"Please enter your registered email"</string>
+    <string name="wesent">"We have sent you instruction to reset your password!"</string>
+    <string name="failedreset">"Failed to reset your password!"</string>
     <string-array name="winetags">
         <item>Red</item>
         <item>White</item>

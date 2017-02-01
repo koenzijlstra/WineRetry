@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.koen.wineretry.Objects.ChatMessage;
+import com.example.koen.wineretry.Objects.ChatMessageObject;
 import com.example.koen.wineretry.Objects.OtheruserObject;
 import com.example.koen.wineretry.R;
 import com.firebase.ui.database.FirebaseListAdapter;
@@ -35,7 +35,9 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        uid = auth.getCurrentUser().getUid();
+        if (auth.getCurrentUser() != null){
+            uid = auth.getCurrentUser().getUid();
+        }
         sellerid = getIntent().getStringExtra("sellerid");
         writeto_users_chats();
 
@@ -44,12 +46,14 @@ public class ChatActivity extends AppCompatActivity {
         chatID_own =  uid + sellerid;
         chatID_seller = sellerid + uid;
 
-        setfab();
+        setFab();
         displayChatMessages(chatID_own);
     }
 
-    // HIER BEN IK
-    public void setfab (){
+    // Set an onclicklistener on the floating action button. When the user clicks this send button
+    // the message will be written to both (duplicate) chats. Also the other user's read variable is
+    // set false; the other user has not read the message.
+    public void setFab (){
         FloatingActionButton fab =
                 (FloatingActionButton)findViewById(R.id.fab);
 
@@ -65,10 +69,12 @@ public class ChatActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         ownname = dataSnapshot.getValue().toString();
-                        // nu dubbel
+                        // Write the messagestring to both chats. In writemessage a chatmessageobj
+                        // is created and written to these chats.
                         writemessage(ownname,messagestring, chatID_own );
                         writemessage(ownname,messagestring, chatID_seller );
 
+                        // Set read var of other user on false
                         FirebaseDatabase.getInstance().getReference().child("users").child(sellerid)
                                 .child("chats").child(uid).child("read").setValue(false);
 
@@ -84,13 +90,13 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
+    // Push a new chatmessage object under given chatid
     public void writemessage (String name, String input, String chatid){
         FirebaseDatabase.getInstance()
                 .getReference().child("chats").child(chatid).child("messages")
                 .push()
-                .setValue(new ChatMessage(input, name)
+                .setValue(new ChatMessageObject(input, name)
                 );
-
     }
 
     //
@@ -105,11 +111,13 @@ public class ChatActivity extends AppCompatActivity {
 //                        });
 
 
+    // Write both users under each others 'chats'
     public void writeto_users_chats (){
         write_other_to_cur();
         write_cur_to_other();
     }
 
+    // Write the other user under the chats of the current user
     public void write_other_to_cur (){
         final DatabaseReference otherusers_name_ref = FirebaseDatabase.getInstance().getReference()
                 .child("users").child(sellerid).child("userinfo").child("name");
@@ -117,7 +125,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 otherusername = dataSnapshot.getValue().toString();
-                // schrijf other user bij current user
+                // Write a OtherUserobject of the other user under current users chats
                 DatabaseReference cur_userchatsref = FirebaseDatabase.getInstance().getReference()
                         .child("users").child(uid).child("chats").child(sellerid).child("other");
                 cur_userchatsref.setValue(new OtheruserObject(otherusername, sellerid));
@@ -128,6 +136,7 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
+    // Write the current user under the chats of the other user
     public void write_cur_to_other (){
         final DatabaseReference nameref = FirebaseDatabase.getInstance().getReference()
                 .child("users").child(uid).child("userinfo").child("name");
@@ -135,7 +144,8 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ownname = dataSnapshot.getValue().toString();
-                // schrijf bij ander user de chat met current user
+                // Write a OtherUserobject of the current user to the other user (for other user the
+                // current user is the 'other' user
                 DatabaseReference other_userchatsref = FirebaseDatabase.getInstance().getReference()
                         .child("users").child(sellerid).child("chats").child(uid).child("other");
                 other_userchatsref.setValue(new OtheruserObject(ownname, uid));
@@ -147,13 +157,15 @@ public class ChatActivity extends AppCompatActivity {
     }
 
 
+    // Display all chatmessage objects. Use firebaselist adapter in order to make the chat live.
     private void displayChatMessages (String chatid){
         final ListView listOfMessages = (ListView)findViewById(R.id.chatslv);
-        final FirebaseListAdapter adapter = new FirebaseListAdapter<ChatMessage>(this,
-                ChatMessage.class, R.layout.message, FirebaseDatabase.getInstance().getReference()
+        // Create firebaselistadapter
+        final FirebaseListAdapter adapter = new FirebaseListAdapter<ChatMessageObject>(this,
+                ChatMessageObject.class, R.layout.message, FirebaseDatabase.getInstance().getReference()
                 .child("chats").child(chatid).child("messages")) {
             @Override
-            protected void populateView(View v, ChatMessage model, int position) {
+            protected void populateView(View v, ChatMessageObject model, int position) {
                 // Get references to the views of message.xml
                 TextView messageText = (TextView)v.findViewById(R.id.message_text);
                 TextView messageUser = (TextView)v.findViewById(R.id.message_user);
@@ -171,8 +183,7 @@ public class ChatActivity extends AppCompatActivity {
 
         listOfMessages.setAdapter(adapter);
 
-        // later losse functie, nu dubbel in code. is voor scrollen (nu alleen bij openen naar
-        // laatste bericht, live scrollen moet nog
+        // Scrolls down to last messages when chatactivity is opened (does not work live yet)
         listOfMessages.post(new Runnable() {
             @Override
             public void run() {

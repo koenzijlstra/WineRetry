@@ -8,13 +8,13 @@ import java.util.Date;
 
 // model voor chatmessages
 
-public class ChatMessage {
+public class ChatMessageObject {
 
     private String messageText;
     private String messageUser;
     private long messageTime;
 
-    public ChatMessage(String messageText, String messageUser) {
+    public ChatMessageObject(String messageText, String messageUser) {
         this.messageText = messageText;
         this.messageUser = messageUser;
 
@@ -22,7 +22,7 @@ public class ChatMessage {
         messageTime = new Date().getTime();
     }
 
-    public ChatMessage(){
+    public ChatMessageObject(){
 
     }
 

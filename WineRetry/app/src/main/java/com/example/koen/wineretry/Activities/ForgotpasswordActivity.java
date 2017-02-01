@@ -22,28 +22,31 @@ public class ForgotpasswordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forgotpassword);
     }
 
+    // When reset button is clicked, an email is sent to the given email adress. A confirmation
+    // message is toasted and the loginactivity is started.
     public void reset (View view){
         EditText inputmail = (EditText) findViewById(R.id.emailreset);
         String email = inputmail.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)){
-            Toast.makeText(getApplicationContext(), "Please enter your registered email",
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.please_enter),
                     Toast.LENGTH_SHORT).show();
             return;
         }
 
+        // Send the passwordresetemail to the given email. When task is successful go to
+        // loginactivity and toast the success, otherwise toast that resseting failed
         FirebaseAuth auth = FirebaseAuth.getInstance();
         auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(ForgotpasswordActivity.this, "We have sent you instruction to " +
-                            "reset your password!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ForgotpasswordActivity.this, getResources().getString(R.string.wesent), Toast.LENGTH_LONG).show();
                         startActivity(new Intent(ForgotpasswordActivity.this, LoginActivity.class));
                         finish();
                     }
                 else {
-                    Toast.makeText(ForgotpasswordActivity.this, "Failed to reset your password!",
+                    Toast.makeText(ForgotpasswordActivity.this, getResources().getString(R.string.failedreset),
                             Toast.LENGTH_LONG).show();
                 }
 

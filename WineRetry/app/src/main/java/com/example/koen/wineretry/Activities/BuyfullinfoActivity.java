@@ -16,20 +16,18 @@ import java.util.HashMap;
 
 public class BuyfullinfoActivity extends AppCompatActivity {
 
-    String uid;
-
-
-    TextView titletv;
-    TextView yeartv;
-    TextView regiontv;
-    TextView storytv;
-    TextView sellertv;
-    String sellerid;
-    String title;
-    String year;
-    String region;
-    String sellername;
-    String story;
+    private String uid;
+    private TextView titletv;
+    private TextView yeartv;
+    private TextView regiontv;
+    private TextView storytv;
+    private TextView sellertv;
+    private String sellerid;
+    private String title;
+    private String year;
+    private String region;
+    private String sellername;
+    private String story;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +35,9 @@ public class BuyfullinfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_buyfullinfo);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        uid = auth.getCurrentUser().getUid();
+        if (auth.getCurrentUser() != null){
+            uid = auth.getCurrentUser().getUid();
+        }
 
         setTextviews();
     }
@@ -94,7 +94,6 @@ public class BuyfullinfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         HashMap<String, String> hash = (HashMap<String,String>)intent
                 .getSerializableExtra("fullhashmap");
-        String sellerid = hash.get("sellerid");
         Intent gotochat = new Intent(BuyfullinfoActivity.this, ChatActivity.class);
         Toast.makeText(getApplicationContext(), sellerid , Toast.LENGTH_LONG).show();
         gotochat.putExtra("sellerid", sellerid);

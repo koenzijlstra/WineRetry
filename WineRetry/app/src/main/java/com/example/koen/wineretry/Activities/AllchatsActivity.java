@@ -31,10 +31,10 @@ public class AllchatsActivity extends BaseActivity implements View.OnClickListen
 
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
-    public ListView lvchats;
-    ListadapterChats listadapterChats;
-    ArrayList<OtheruserObject> chatters;
-    String uid;
+    private ListView lvchats;
+    private ListadapterChats listadapterChats;
+    private ArrayList<OtheruserObject> chatters;
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

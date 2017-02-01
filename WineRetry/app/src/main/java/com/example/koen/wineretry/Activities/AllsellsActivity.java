@@ -32,8 +32,9 @@ import java.util.HashMap;
 public class AllsellsActivity extends BaseActivity implements View.OnClickListener {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
-    ArrayList<String> user_bottleids = new ArrayList<>();
-    ListView userwineslv;
+    private ArrayList<String> user_bottleids = new ArrayList<>();
+    private ListView userwineslv;
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +61,12 @@ public class AllsellsActivity extends BaseActivity implements View.OnClickListen
     // Get all the bottles that current user sells by comparing the id's of all bottles with the
     public void getUserbottles (){
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        String uid = auth.getCurrentUser().getUid();
+        if (auth.getCurrentUser() != null){
+            uid = auth.getCurrentUser().getUid();
+        }
 
-        // get all unique identifiers of winebottle that currentuser sells
+
+        // Get all unique identifiers of winebottle that currentuser sells
         DatabaseReference userswinesref = FirebaseDatabase.getInstance().getReference().
                 child("users").child(uid).child("wines");
         userswinesref.addValueEventListener(new ValueEventListener() {
@@ -154,7 +158,7 @@ public class AllsellsActivity extends BaseActivity implements View.OnClickListen
                 String clickedbottleid = clickedwine.getBottleid();
 
                 // Create hashmap
-                final HashMap<String, String> hash = new HashMap<String, String>();
+                final HashMap<String, String> hash = new HashMap<>();
                 hash.put("title", clickedtitle);
                 hash.put("year", clickedyear);
                 hash.put("region", clickedregion);
