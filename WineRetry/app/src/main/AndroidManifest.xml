@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.koen.wineretry">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="TITEL APP"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:label">
+        <activity android:name=".Activities.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activities.SignupActivity" />
+        <activity android:name=".Activities.AllchatsActivity" />
+        <activity android:name=".Activities.BuyActivity" />
+        <activity android:name=".Activities.AllsellsActivity" />
+        <activity android:name=".Activities.NewsellActivity" />
+        <activity
+            android:name=".Activities.BuyfullinfoActivity"
+            android:label="Bottle info"
+            android:theme="@style/Base.V11.Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".Activities.SellfullinfoActivity"
+            android:label="Bottle info"
+            android:theme="@style/Base.V11.Theme.AppCompat.Light.Dialog" />
+        <activity android:name=".Activities.ChatActivity" />
+        <activity android:name=".Activities.ForgotpasswordActivity" />
+        <activity
+            android:name=".Activities.InfoActivity"
+            android:theme="@style/Base.V11.Theme.AppCompat.Light.Dialog"
+            android:label="Info"/>
+    </application>
+
+</manifest>
