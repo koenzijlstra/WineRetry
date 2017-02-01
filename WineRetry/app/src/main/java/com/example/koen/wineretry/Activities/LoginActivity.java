@@ -26,7 +26,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends BaseActivity {
 
-    // declare firebaseauth instance so multiple functions can use it
     FirebaseAuth auth;
     EditText inputEmail;
     EditText inputPassword;
@@ -39,29 +38,34 @@ public class LoginActivity extends BaseActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        setactionbar();
+        setActionbar();
         alreadyloggedin();
 
-        // set the view now
+        // Set the view now, after the 'alreadyloggedin' function
         setContentView(R.layout.activity_login);
     }
 
+    // When the user is logged in already, navigate to buyactivity
     public void alreadyloggedin (){
-        // when user is logged in already, go to
         if (auth.getCurrentUser() != null) {
             startActivity(new Intent(LoginActivity.this, BuyActivity.class));
             finish();
         }
     }
 
-    public void setactionbar (){
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar);
+    // Set the custom action bar
+    public void setActionbar (){
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            getSupportActionBar().setCustomView(R.layout.actionbar);
+        }
     }
 
-
-
-    public void login1(View view){
+    // This function is the skeleton of logging in. First the input is retrieved. Than a function
+    // that returns a boolean (correctinput) is called, and when the input is correct, the
+    // signinwithemailandpassword function is called. When this task is succesful, toast that it was
+    // succesful and navigate to buyactivity. Otherwise toast what went wrong
+    public void login(View view){
         getinput();
         if (correctinput()){
             auth.signInWithEmailAndPassword(email, password)
@@ -78,14 +82,13 @@ public class LoginActivity extends BaseActivity {
                         }
                     });
         }
-
     }
 
+    // When signInWithEmailAndPassword fails, toast why it went wrong
     public void onfail (){
         // when entered password is too small, prompt user for longer password
         if (password.length() < 6) {
-            inputPassword.setError("Password too short, should be least 6 " +
-                    "characters!");
+            inputPassword.setError(getResources().getString(R.string.tooshort));
             // when auth failed but password is long enough, toast that email or password is wrong
         } else {
             Toast.makeText(LoginActivity.this, getString(R.string.auth_failed),
@@ -93,9 +96,10 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    // Toast that login was successful, start BuyActivity
     public  void onsuccess (){
         showProgressDialog();
-        Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast
+        Toast.makeText(LoginActivity.this, getResources().getString(R.string.successfully), Toast
                 .LENGTH_LONG).show();
 
         Intent intent = new Intent(LoginActivity.this, BuyActivity.class);
@@ -103,18 +107,18 @@ public class LoginActivity extends BaseActivity {
         finish();
     }
 
+    // Get the input from the edittexts
     public void getinput(){
-        // get both edittext fields
         inputEmail = (EditText) findViewById(R.id.emaillogin);
         inputPassword = (EditText) findViewById(R.id.passwordlogin);
-        // get email and password strings
+
         email = inputEmail.getText().toString();
         password = inputPassword.getText().toString();
     }
 
+    // Boolean that checks if strings are empty. Returns true if input is correct (not empty)
     public Boolean correctinput (){
-        // checken wilde ik in getinput, ging fout doordat return niet werkte.
-        // toast when email or password is empty
+
         if (TextUtils.isEmpty(email)) {
             inputEmail.setError("Enter an email address!");
             return false;
@@ -129,12 +133,15 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    // As a result of time concerns these are still separate functions instead of one onclick system
+    // with different cases as in the other activities
     // when button "not registered yet? "is clicked, go to sign up activity
     public void gotoregister(View view){
         startActivity(new Intent(LoginActivity.this, SignupActivity.class));
         finish();
     }
 
+    // When button "forgot your password?" is clicked, navigate to forgotpasswordactivity
     public void gotoforgotpassword(View view){
         startActivity(new Intent(LoginActivity.this, ForgotpasswordActivity.class));
         finish();

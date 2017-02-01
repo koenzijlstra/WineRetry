@@ -19,6 +19,8 @@
     <string name="please_enter">"Please enter your registered email"</string>
     <string name="wesent">"We have sent you instruction to reset your password!"</string>
     <string name="failedreset">"Failed to reset your password!"</string>
+    <string name="tooshort">"Password too short, should be least 6 characters!"</string>
+    <string name = "successfully">"Logged in successfully"</string>
     <string-array name="winetags">
         <item>Red</item>
         <item>White</item>
