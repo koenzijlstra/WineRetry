@@ -91,6 +91,7 @@ public class AllchatsActivity extends BaseActivity implements View.OnClickListen
         userschatsref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                chatters.clear();
                 for (DataSnapshot otheruser : dataSnapshot.getChildren()){
                     // Create a new object for each user that current user has a chat with
                     OtheruserObject otheruserObject = otheruser.child("other").
@@ -103,7 +104,6 @@ public class AllchatsActivity extends BaseActivity implements View.OnClickListen
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
     }
 
     // Set an onitemclicklistener on the listview, navigates to chat with the user that was clicked

@@ -183,7 +183,7 @@ public class ChatActivity extends AppCompatActivity {
 
         listOfMessages.setAdapter(adapter);
 
-        // Scrolls down to last messages when chatactivity is opened (does not work live yet)
+        // Scrolls down to last messages when chatactivity is opened
         listOfMessages.post(new Runnable() {
             @Override
             public void run() {

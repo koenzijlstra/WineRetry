@@ -92,10 +92,9 @@ public class BuyfullinfoActivity extends AppCompatActivity {
     // (even though there will be no message from the other user if cur user initiates the chat).
     public void startchat (View view){
         Intent intent = getIntent();
-        HashMap<String, String> hash = (HashMap<String,String>)intent
-                .getSerializableExtra("fullhashmap");
+//        HashMap<String, String> hash = (HashMap<String,String>)intent
+//                .getSerializableExtra("fullhashmap");
         Intent gotochat = new Intent(BuyfullinfoActivity.this, ChatActivity.class);
-        Toast.makeText(getApplicationContext(), sellerid , Toast.LENGTH_LONG).show();
         gotochat.putExtra("sellerid", sellerid);
         FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("chats")
                 .child(sellerid).child("read").setValue(true);

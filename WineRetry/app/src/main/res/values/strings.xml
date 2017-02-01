@@ -21,6 +21,8 @@
     <string name="failedreset">"Failed to reset your password!"</string>
     <string name="tooshort">"Password too short, should be least 6 characters!"</string>
     <string name = "successfully">"Logged in successfully"</string>
+    <string name = "youadded">"You added "</string>
+    <string name = "successfully2">" successfully"</string>
     <string-array name="winetags">
         <item>Red</item>
         <item>White</item>

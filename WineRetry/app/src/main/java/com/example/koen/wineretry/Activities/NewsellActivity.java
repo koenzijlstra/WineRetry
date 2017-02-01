@@ -20,15 +20,16 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class NewsellActivity extends AppCompatActivity {
 
-    EditText ettitle;
-    EditText etregion ;
-    EditText etstory ;
-    String title;
-    String year ;
-    String region ;
-    String story ;
-    String tag;
-    NumberPicker nmpicker;
+    private EditText ettitle;
+    private EditText etregion ;
+    private EditText etstory ;
+    private String title;
+    private String year ;
+    private String region ;
+    private String story ;
+    private String tag;
+    private NumberPicker nmpicker;
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,55 +41,59 @@ public class NewsellActivity extends AppCompatActivity {
         setnumberpicker();
     }
 
-    public void add (View view){
-        getinput();
+    // When user clicks the add button, first get all the input. Then create a unique bottle id,
+    // write the wine id under the wines of the user and write the wine to all the wines
+    public void addNew (View view){
+        getInput();
+        checkInput();
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        String uid = auth.getCurrentUser().getUid();
+        if (auth.getCurrentUser() != null){
+            uid = auth.getCurrentUser().getUid();
+        }
         DatabaseReference userref = FirebaseDatabase.getInstance().getReference().child("users")
                 .child(uid);
 
-        // WINE AAN WINES TOEVOEGEN MET ALLE INFO
-        // get timestamp
+        // Create unique identifier for bottle by concatenating user id (unique) and timestamp
         Long tsLong = System.currentTimeMillis()/1000;
         String timestamp = tsLong.toString();
-        // Toast.makeText(getApplicationContext(), timestamp , Toast.LENGTH_LONG).show();
-
-        // create unique identifier for bottle by concatenating user id (unique) and timestamp
         String bottleid = uid + timestamp;
 
-        // voeg toe aan algemen kop wines
+        // Add (complete) wine to root/wines
         DatabaseReference winesref = FirebaseDatabase.getInstance().getReference().child("wines");
         WineObject testwine = new WineObject(title,region,year,story,uid,bottleid,tag);
         winesref.child(bottleid).setValue(testwine);
 
-        // voeg toe per user
+        // Add id of bottle under root/users/uid/wines
         DatabaseReference winesuser = userref.child("wines").push();
         winesuser.setValue(bottleid);
 
-        String added = "You added " + title + " successfully";
+        // Toast to user which wine was added (todo: check if adding was actually successful)
+        String added = getResources().getString(R.string.youadded) + title + getResources().getString(R.string.successfully2);
         Toast.makeText(getApplicationContext(), added , Toast.LENGTH_LONG).show();
 
-        // na toevoegen terug naar allsells
+        // Navigate back to the AllsellsActivity
         startActivity(new Intent(NewsellActivity.this, AllsellsActivity.class));
         finish();
     }
 
-    public void getinput (){
+    // Get the input from the edittexts, the spinner and numberpicker
+    public void getInput (){
         ettitle = (EditText) findViewById(R.id.ettitle);
         etregion = (EditText) findViewById(R.id.etregion);
         etstory = (EditText) findViewById(R.id.etstory);
 
-        title = ettitle.getText().toString();
-
         nmpicker =  (NumberPicker)findViewById(R.id.numberPicker);
         year = Integer.toString(nmpicker.getValue());
+        title = ettitle.getText().toString();
         region = etregion.getText().toString();
         story = etstory.getText().toString();
 
         Spinner spinnertag =(Spinner) findViewById(R.id.spinner2);
         tag = spinnertag.getSelectedItem().toString();
-
+    }
+    
+    public void checkInput (){
         if(TextUtils.isEmpty(title)) {
             ettitle.setError("Please fill in a title");
             return;

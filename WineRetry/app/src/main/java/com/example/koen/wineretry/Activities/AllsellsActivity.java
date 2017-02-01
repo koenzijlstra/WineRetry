@@ -132,7 +132,7 @@ public class AllsellsActivity extends BaseActivity implements View.OnClickListen
     // Give an info string to the activity that will display the information about this activity
     public void showInfo (){
         Intent infoactivity = new Intent(AllsellsActivity.this, InfoActivity.class);
-        infoactivity.putExtra("info", R.string.infosells);
+        infoactivity.putExtra("info", getResources().getString(R.string.infosells));
         startActivity(infoactivity);
     }
 
