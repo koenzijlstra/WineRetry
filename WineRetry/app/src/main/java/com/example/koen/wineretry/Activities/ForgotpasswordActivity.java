@@ -2,6 +2,7 @@ package com.example.koen.wineretry.Activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -20,6 +21,7 @@ public class ForgotpasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgotpassword);
+        setActionbar();
     }
 
     // When reset button is clicked, an email is sent to the given email adress. A confirmation
@@ -52,5 +54,13 @@ public class ForgotpasswordActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    // Set the support action bar
+    public void setActionbar (){
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            getSupportActionBar().setCustomView(R.layout.actionbar);
+        }
     }
 }

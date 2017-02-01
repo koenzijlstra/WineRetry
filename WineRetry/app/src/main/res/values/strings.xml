@@ -23,6 +23,20 @@
     <string name = "successfully">"Logged in successfully"</string>
     <string name = "youadded">"You added "</string>
     <string name = "successfully2">" successfully"</string>
+    <string name = "pleasetitle">"Please fill in a title"</string>
+    <string name="pleaseregion">"Please fill in a region"</string>
+    <string name= "pleasestory">"Please write a story about this wine"</string>
+    <string name="year">"Year: "</string>
+    <string name="region">"Region: "</string>
+    <string name="suredelete">"Are you sure you want to delete this wine?"</string>
+    <string name= "yes">"Yes"</string>
+    <string name= "no">"No"</string>
+    <string name="youdeleted">"You deleted '"</string>
+    <string name="welcome">"Registered succesfully, welcome to TITEL APP "</string>
+    <string name="yourname">"Enter your name!"</string>
+    <string name="yourmail">"Enter your email address!"</string>
+    <string name="enterpassword">"Enter a password!"</string>
+    <string name="wwtooshort">"Password too short, enter at least 6 characters"</string>
     <string-array name="winetags">
         <item>Red</item>
         <item>White</item>

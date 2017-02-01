@@ -21,36 +21,39 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 
 public class SellfullinfoActivity extends AppCompatActivity {
-    String title;
-    String uid;
-    String bottleid;
-    String year ;
-    String region;
-    String story;
-    TextView titletv ;
-    TextView yeartv ;
-    TextView regiontv;
-    TextView storytv ;
+    private String title;
+    private String uid;
+    private String bottleid;
+    private String year ;
+    private String region;
+    private String story;
+    private TextView titletv ;
+    private TextView yeartv ;
+    private TextView regiontv;
+    private TextView storytv ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sellfullinfo);
 
-        settextviews();
+        setTextviews();
     }
 
-    public void settextviews (){
+    // Find the textviews and get the strings from the hashmap that was given to the intent. Set the
+    // textviews with these strings
+    public void setTextviews (){
 
         getstrings_and_tvs();
         titletv.setText(title);
-        String yearstring = "Year: "+ year;
+        String yearstring = getResources().getString(R.string.year)+ year;
         yeartv.setText(yearstring);
-        String regionstring = "Region: "+ region;
+        String regionstring = getResources().getString(R.string.region)+ region;
         regiontv.setText(regionstring);
         storytv.setText(story);
     }
 
+    // Get the textviews and get the strings from the hashmaps
     public void getstrings_and_tvs (){
 
         titletv = (TextView) findViewById(R.id.selltitletv);
@@ -67,11 +70,15 @@ public class SellfullinfoActivity extends AppCompatActivity {
         story = hash.get("story");
     }
 
+    // This is the skeleton/start of the delete function. When user presses the delete button, show
+    // an alertdialog. If the delete is confirmed, delete the bottle under root/wines and under
+    // root/users/uid/wines. When the bottle is deleted, navigate back to AllsellsActivity
     public void delete (View view){
 
+        // Create and show an alertdialog. When positive button is clicked, start ondeleteconfirmed
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Are you sure you want to delete this wine?");
-                alertDialogBuilder.setPositiveButton("yes",
+        alertDialogBuilder.setMessage(getResources().getString(R.string.suredelete));
+                alertDialogBuilder.setPositiveButton(getResources().getString(R.string.yes),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {
@@ -79,14 +86,14 @@ public class SellfullinfoActivity extends AppCompatActivity {
                             }
                         });
 
-        alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setNegativeButton(getResources().getString(R.string.no),new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
             }
         });
 
         final AlertDialog alertDialog = alertDialogBuilder.create();
+        // Set the colors of both buttons
         alertDialog.setOnShowListener( new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface arg0) {
@@ -94,36 +101,40 @@ public class SellfullinfoActivity extends AppCompatActivity {
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#aa0000"));
             }
         });
+       
         alertDialog.show();
 
     }
 
+    // When the positive button of the alertdialog is clicked, the wine is removed under root/wines
+    // and the function to delete it under the current user is called, as well as the function that
+    // toasts what was deleted and that starts the AllsellsActivity
     public void ondeleteconfirmed (){
         Intent intent = getIntent();
         HashMap<String, String> hash = (HashMap<String,String>)intent
                 .getSerializableExtra("hashmap");
         bottleid = hash.get("bottleid");
         title = hash.get("title");
-        // delete bij wines
+        // Remove under wines
         DatabaseReference todelete = FirebaseDatabase.getInstance().getReference().child("wines")
                 .child(bottleid);
         todelete.removeValue();
-
-        // had ook via sellerid gekund?
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        uid = auth.getCurrentUser().getUid();
 
         deleteunderuser();
         afterdeleting();
     }
 
+    // Remove the bottle id under the current user
     public void deleteunderuser (){
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        uid = auth.getCurrentUser().getUid();
         DatabaseReference userwinesref = FirebaseDatabase.getInstance().getReference()
                 .child("users").child(uid).child("wines");
         userwinesref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
+                // Compare each bottle id of user with the id that needs to be deleted. If id's are
+                // the same, delete that value
                 for (DataSnapshot bottle : dataSnapshot.getChildren()){
                     String checkedbottle = bottle.getValue(String.class);
                     if (checkedbottle.equals(bottleid)) {
@@ -137,12 +148,12 @@ public class SellfullinfoActivity extends AppCompatActivity {
         });
     }
 
+    // Toast what bottle was deleted after deleting the bottle and the bottleid. Then the user is
+    // navigated back to AllsellsActivity
     public void afterdeleting (){
-        // string later naar strings verplaatsen
-        String deletedstring = "You deleted '" + title + "'";
+        String deletedstring = getResources().getString(R.string.youdeleted) + title + "'";
         Toast.makeText(SellfullinfoActivity.this, deletedstring, Toast.LENGTH_LONG).show();
 
-        // intent terug naar allsells
         startActivity(new Intent(SellfullinfoActivity.this, AllsellsActivity.class));
         finish();
     }

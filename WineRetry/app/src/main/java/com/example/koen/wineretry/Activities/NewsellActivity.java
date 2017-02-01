@@ -36,9 +36,9 @@ public class NewsellActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsell);
 
-        setactionbar();
+        setActionbar();
         setspinner();
-        setnumberpicker();
+        setNumberpicker();
     }
 
     // When user clicks the add button, first get all the input. Then create a unique bottle id,
@@ -92,46 +92,52 @@ public class NewsellActivity extends AppCompatActivity {
         Spinner spinnertag =(Spinner) findViewById(R.id.spinner2);
         tag = spinnertag.getSelectedItem().toString();
     }
-    
+
+    // Check if the strings are not empty, if empty set an error on specific edittext
     public void checkInput (){
         if(TextUtils.isEmpty(title)) {
-            ettitle.setError("Please fill in a title");
+            ettitle.setError(getResources().getString(R.string.pleasetitle));
             return;
         }
 
         if (TextUtils.isEmpty(region)){
-            etregion.setError("Please fill in a region");
+            etregion.setError(getResources().getString(R.string.pleaseregion));
             return;
         }
 
         if (TextUtils.isEmpty(story)){
-            etstory.setError("Please write a story about this wine");
+            etstory.setError(getResources().getString(R.string.pleasestory));
             return;
         }
     }
 
-    public void setactionbar (){
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar);
+    // Set the support action bar
+    public void setActionbar (){
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            getSupportActionBar().setCustomView(R.layout.actionbar);
+        }
     }
-    public void setnumberpicker (){
+
+    // Set the numberpicker
+    public void setNumberpicker (){
         NumberPicker nmpicker =  (NumberPicker)findViewById(R.id.numberPicker);
         nmpicker.setMaxValue(2017);
         nmpicker.setMinValue(1900);
     }
 
+    // Set the spinner
     public void setspinner (){
         Spinner spinner = (Spinner) findViewById(R.id.spinner2);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.winetags2, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
+        // Specify the layout to use when the list of choices appears and apply adapter to spinner
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
     }
 
-
+    // Go back to AllsellsActivity, called after creating a new bottle for sale
     public void gotoallsellsn(View view){
         startActivity(new Intent(NewsellActivity.this, AllsellsActivity.class));
         finish();

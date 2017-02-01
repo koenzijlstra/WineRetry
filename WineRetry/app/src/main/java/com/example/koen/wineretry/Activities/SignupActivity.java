@@ -37,33 +37,38 @@ public class SignupActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar);
+
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            getSupportActionBar().setCustomView(R.layout.actionbar);
+        }
     }
 
-    // register user, called when button "register" is clicked
-    public void register(View view){
-        getinput();
+    // When register button is clicked get the input and if input is not empty try function
+    // createUserWithEmailAndPassword If this fails, toast what went wrong (task.getexception).
+    // Otherwise go to signupsucces
+    public void onRegister(View view){
+        getInput();
 
-        if (correctinput()){
-            // get firebase auth instance
+        if (isCorrectinput()){
             FirebaseAuth auth = FirebaseAuth.getInstance();
-            // create user
+            // Create user
             auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            // if sign in fails, display a message to the user why it went wrong
+                            // Display why registering went wrong
                             if (!task.isSuccessful()) {
                                 Toast.makeText(SignupActivity.this, "Registering failed because: " +
                                                 task.getException(),
                                         Toast.LENGTH_SHORT).show();
                             }
 
-                            // if sign in succeeds go to mainactivity
+                            // If sign up succeeds, complete writing to firebase and go to
+                            // BuyActivity
                             else {
-                                signupsuccess();
+                                onSignupsuccess();
                             }
                         }
                     });
@@ -71,60 +76,60 @@ public class SignupActivity extends BaseActivity {
 //
     }
 
-    public void signupsuccess (){
+    // When registering is successful, write userinfo to firebase and navigate to BuyActivity
+    public void onSignupsuccess (){
         DatabaseReference mrootRef = FirebaseDatabase.getInstance()
                 .getReference();
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String uid = auth.getCurrentUser().getUid();
-        // email had ook anders gekund
         String uemail = auth.getCurrentUser().getEmail();
         DatabaseReference allusersref = mrootRef.child("users");
         DatabaseReference userref = allusersref.child(uid);
+        // Write userinfo to firebase
         userref.child("userinfo").child("name").setValue(name);
         userref.child("userinfo").child("email").setValue(uemail);
 
         showProgressDialog();
-        // Toast.makeText(SignupActivity.this, "Registered succesfully, welcome
-        // to TITEL APP " + name + "!", Toast.LENGTH_LONG).show();
+
         startActivity(new Intent(SignupActivity.this, BuyActivity.class));
-        // wanneer toast laten zien, nog even bedenken
-        Toast.makeText(SignupActivity.this, "Registered succesfully, welcome to TITEL APP " + name +
+
+        // Toast a welcome message and finish SignupActivity
+        Toast.makeText(SignupActivity.this, getResources().getString(R.string.welcome) + name +
                 "!", Toast.LENGTH_LONG).show();
         finish();
     }
 
-    public void getinput (){
-        // get edittext fields and strings
+    // Retrieve the input from the edittexts
+    public void getInput (){
         nameinput = (EditText) findViewById(R.id.name);
         emailinput = (EditText) findViewById(R.id.emailsignup) ;
         passwordinput = (EditText) findViewById(R.id.passwordsignup);
         name = nameinput.getText().toString().trim();
         email = emailinput.getText().toString().trim();
         password = passwordinput.getText().toString().trim();
-
     }
 
-    public Boolean correctinput (){
-        // NAME EMPTY -> TOAST
+    // Boolean that is true when the input strings of user are not empty and the password is long
+    // enough. Set error at the specific edittext when edittext is empty
+    public Boolean isCorrectinput (){
+
         if (TextUtils.isEmpty(name)){
-            nameinput.setError("Enter your name!");
+            nameinput.setError(getResources().getString(R.string.yourname));
             return Boolean.FALSE;
         }
 
-        // toast when email or password edittext is empty
         if (TextUtils.isEmpty(email)) {
-            emailinput.setError("Enter your email address!");
+            emailinput.setError(getResources().getString(R.string.yourmail));
             return Boolean.FALSE;
         }
 
         if (TextUtils.isEmpty(password)) {
-            passwordinput.setError("Enter a password!");
+            passwordinput.setError(getResources().getString(R.string.enterpassword));
             return Boolean.FALSE;
         }
 
-        // toast when password is too short
         if (password.length() < 6) {
-            passwordinput.setError("Password too short, enter at least 6 characters");
+            passwordinput.setError(getResources().getString(R.string.wwtooshort));
             return Boolean.FALSE;
         }
         else{
@@ -132,7 +137,7 @@ public class SignupActivity extends BaseActivity {
         }
     }
 
-    // when button "already an account?" is clicked, go to LoginActivity
+    // When button "already an account?" is clicked, go to LoginActivity
     public void gotologin(View view){
         startActivity(new Intent(SignupActivity.this, LoginActivity.class));
         finish();
