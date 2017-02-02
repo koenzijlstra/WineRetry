@@ -1,4 +1,3 @@
-#### Programmeerproject
 # FineWine
 Created by Koen Zijlstra  
 Student nr: 10741615  
