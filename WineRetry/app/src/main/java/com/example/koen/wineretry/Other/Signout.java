@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 * University of Amsterdam
 * Student number: 10741615
 * Coarse: Programmeerproject
+*
 * Class with one method to sign the user out. Uses the activity that called this method and a
 * FirebaseAuth auth. Displays an alertdialog. When the positive button is clicked the user is
 * logged out and because of the authstatelisteners in the activities the user is navigated to login

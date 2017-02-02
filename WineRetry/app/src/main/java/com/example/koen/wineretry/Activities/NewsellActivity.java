@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 *
 * In this Activity the user can add a new bottle of wine to the firebasedatabase. The user input is
 * retrieved and a wineObject is created and added to firebase. Then the user is navigated back to
-* AllsellsActivity.
+* SellActivity.
 */
 public class NewsellActivity extends AppCompatActivity {
 
@@ -81,8 +81,8 @@ public class NewsellActivity extends AppCompatActivity {
         String added = getResources().getString(R.string.youadded) + title + getResources().getString(R.string.successfully2);
         Toast.makeText(getApplicationContext(), added , Toast.LENGTH_LONG).show();
 
-        // Navigate back to the AllsellsActivity
-        startActivity(new Intent(NewsellActivity.this, AllsellsActivity.class));
+        // Navigate back to the SellActivity
+        startActivity(new Intent(NewsellActivity.this, SellActivity.class));
         finish();
     }
 
@@ -146,9 +146,9 @@ public class NewsellActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
     }
 
-    // Go back to AllsellsActivity, called after creating a new bottle for sale
+    // Go back to SellActivity, called after creating a new bottle for sale
     public void gotoallsellsn(View view){
-        startActivity(new Intent(NewsellActivity.this, AllsellsActivity.class));
+        startActivity(new Intent(NewsellActivity.this, SellActivity.class));
         finish();
     }
 }

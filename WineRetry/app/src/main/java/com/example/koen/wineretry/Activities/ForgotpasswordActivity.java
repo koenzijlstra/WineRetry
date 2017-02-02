@@ -21,7 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 * Coarse: Programmeerproject
 *
 * This activity is started from LoginActivity. The user enters his email adress and a mail to reset
-* the password is sent to the email adress. The user is then navigated back to LoginActivity.
+* the password is sent to the email adress. This is done with the use of the sendPasswordResetEmail
+* function, which is provided by Firebase. The user is then navigated back to LoginActivity.
 */
 
 public class ForgotpasswordActivity extends AppCompatActivity {

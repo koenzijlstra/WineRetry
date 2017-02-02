@@ -9,8 +9,8 @@ package com.example.koen.wineretry.Objects;
 * Wine bottle object that consists of a title, the region the wine comes from, the year,
 * additional information about the bottle (story), the id of the user that sells the bottle
 * (sellerid), an unique ID for the bottle and a tag (red/white etc). This object is created at
-* NewSellActivity and used for AllsellsActivity and BuyActivity. Furthermore the info of the
-* objects is given to BuyfullinfoActivity and SellfullinfoActivity
+* NewSellActivity and used for SellActivity and BuyActivity. Furthermore the info of the
+* objects is given to BuyfullinfoActivity and SellfullinfoActivity.
 */
 
 public class WineObject {

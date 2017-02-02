@@ -1,6 +1,7 @@
 package com.example.koen.wineretry.Activities;
 
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -44,6 +45,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null){
             uid = auth.getCurrentUser().getUid();
@@ -57,7 +59,16 @@ public class ChatActivity extends AppCompatActivity {
         chatID_seller = sellerid + uid;
 
         setFab();
+        setActionbar();
         displayChatMessages(chatID_own);
+    }
+
+    // Set the custom supportactionbar
+    public void setActionbar (){
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            getSupportActionBar().setCustomView(R.layout.actionbar);
+        }
     }
 
     // Set an onclicklistener on the floating action button. When the user clicks this send button

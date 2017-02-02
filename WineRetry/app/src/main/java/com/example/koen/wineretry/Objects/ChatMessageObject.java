@@ -9,7 +9,7 @@ import java.util.Date;
 *
 * This is a model for a message. It contains the message itself, the user that sent it and a long
 * of the timestamp. It is created when user presses the send button, and is used for displaying all
-* the messages in a chat
+* the messages in a chat.
 */
 
 public class ChatMessageObject {

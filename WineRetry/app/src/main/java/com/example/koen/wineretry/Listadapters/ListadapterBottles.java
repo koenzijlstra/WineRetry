@@ -20,7 +20,7 @@ import java.util.List;
  *
  * This class extends the arrayadapter. It uses a list of WineObjects as input, and listitem.xml as
  * layout for each item. It fills the needed textviews of each listitem with the title, year and
- * region of the Wine Object.
+ * region of the Wine Object. This adapter is used by BuyActivity as well as SellActivity.
  */
 
 

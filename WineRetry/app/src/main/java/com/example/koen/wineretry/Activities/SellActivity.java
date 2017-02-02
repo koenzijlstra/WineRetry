@@ -1,16 +1,12 @@
 package com.example.koen.wineretry.Activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.koen.wineretry.Other.BaseActivity;
@@ -43,7 +39,7 @@ import java.util.HashMap;
 */
 
 
-public class AllsellsActivity extends BaseActivity implements View.OnClickListener {
+public class SellActivity extends BaseActivity implements View.OnClickListener {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
     private ArrayList<String> user_bottleids = new ArrayList<>();
@@ -136,7 +132,7 @@ public class AllsellsActivity extends BaseActivity implements View.OnClickListen
                 if (user == null) {
                     // user auth state is changed - user is null
                     // launch login activity
-                    startActivity(new Intent(AllsellsActivity.this, LoginActivity.class));
+                    startActivity(new Intent(SellActivity.this, LoginActivity.class));
                     finish();
                 }
             }
@@ -145,7 +141,7 @@ public class AllsellsActivity extends BaseActivity implements View.OnClickListen
 
     // Give an info string to the activity that will display the information about this activity
     public void showInfo (){
-        Intent infoactivity = new Intent(AllsellsActivity.this, InfoActivity.class);
+        Intent infoactivity = new Intent(SellActivity.this, InfoActivity.class);
         infoactivity.putExtra("info", getResources().getString(R.string.infosells));
         startActivity(infoactivity);
     }
@@ -180,7 +176,7 @@ public class AllsellsActivity extends BaseActivity implements View.OnClickListen
                 hash.put("bottleid", clickedbottleid);
 
                 // Navigate to Sellfullinfo with all information about the bottle
-                Intent gotosellfullinfo = new Intent(AllsellsActivity.this, SellfullinfoActivity.class);
+                Intent gotosellfullinfo = new Intent(SellActivity.this, SellfullinfoActivity.class);
                 gotosellfullinfo.putExtra("hashmap", hash);
                 startActivity(gotosellfullinfo);
             }
@@ -212,19 +208,19 @@ public class AllsellsActivity extends BaseActivity implements View.OnClickListen
         Log.wtf("test", Integer.toString(view.getId()));
         switch (view.getId()){
             case R.id.buy:
-                startActivity(new Intent(AllsellsActivity.this, BuyActivity.class));
+                startActivity(new Intent(SellActivity.this, BuyActivity.class));
                 finish();
                 break;
             case R.id.sell:
-                startActivity(new Intent(AllsellsActivity.this, AllsellsActivity.class));
+                startActivity(new Intent(SellActivity.this, SellActivity.class));
                 finish();
                 break;
             case R.id.chats:
-                startActivity(new Intent(AllsellsActivity.this, AllchatsActivity.class));
+                startActivity(new Intent(SellActivity.this, AllchatsActivity.class));
                 finish();
                 break;
             case R.id.newsell:
-                startActivity(new Intent(AllsellsActivity.this, NewsellActivity.class));
+                startActivity(new Intent(SellActivity.this, NewsellActivity.class));
                 break;
             case R.id.signout:
                 Signout signoutclass =new Signout();

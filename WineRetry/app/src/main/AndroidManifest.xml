@@ -22,7 +22,7 @@
         <activity android:name=".Activities.SignupActivity" />
         <activity android:name=".Activities.AllchatsActivity" />
         <activity android:name=".Activities.BuyActivity" />
-        <activity android:name=".Activities.AllsellsActivity" />
+        <activity android:name=".Activities.SellActivity" />
         <activity android:name=".Activities.NewsellActivity" />
         <activity
             android:name=".Activities.BuyfullinfoActivity"

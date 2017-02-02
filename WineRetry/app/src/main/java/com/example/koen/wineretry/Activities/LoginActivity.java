@@ -26,7 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 * signInWithEmailAndPassword is called. When this fails, what went wrong is toasted. Otherwise the
 * user is navigated to BuyActivity.
 *
-* Some functionality was used from
+* Some of the code in this class was written with the use of the following tutorial:
 * http://www.androidhive.info/2016/06/android-getting-started-firebase-simple-login-registration-auth/
 */
 

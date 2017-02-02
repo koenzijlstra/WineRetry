@@ -1,16 +1,10 @@
 package com.example.koen.wineretry.Activities;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -311,7 +305,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener{
                 finish();
                 break;
             case R.id.sell:
-                startActivity(new Intent(BuyActivity.this, AllsellsActivity.class));
+                startActivity(new Intent(BuyActivity.this, SellActivity.class));
                 finish();
                 break;
             case R.id.chats:

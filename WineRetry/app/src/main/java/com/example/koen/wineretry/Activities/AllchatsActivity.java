@@ -1,12 +1,9 @@
 package com.example.koen.wineretry.Activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -179,7 +176,7 @@ public class AllchatsActivity extends BaseActivity implements View.OnClickListen
                 finish();
                 break;
             case R.id.sell:
-                startActivity(new Intent(AllchatsActivity.this, AllsellsActivity.class));
+                startActivity(new Intent(AllchatsActivity.this, SellActivity.class));
                 finish();
                 break;
             case R.id.chats:

@@ -28,7 +28,7 @@ import java.util.HashMap;
 * In this Activity with dialog theme all the info of a bottle that the current user sells is
 * displayed. The bottle can be deleted. When the delete button is clicked an alertdialog is shown.
 * When the deleting is confirmed by the user the bottle is deleted an the user is navigated back to
-* AllsellsActivity.
+* SellActivity.
 */
 
 public class SellfullinfoActivity extends AppCompatActivity {
@@ -83,7 +83,7 @@ public class SellfullinfoActivity extends AppCompatActivity {
 
     // This is the skeleton/start of the delete function. When user presses the delete button, show
     // an alertdialog. If the delete is confirmed, delete the bottle under root/wines and under
-    // root/users/uid/wines. When the bottle is deleted, navigate back to AllsellsActivity
+    // root/users/uid/wines. When the bottle is deleted, navigate back to SellActivity
     public void delete (View view){
 
         // Create and show an alertdialog. When positive button is clicked, start ondeleteconfirmed
@@ -119,7 +119,7 @@ public class SellfullinfoActivity extends AppCompatActivity {
 
     // When the positive button of the alertdialog is clicked, the wine is removed under root/wines
     // and the function to delete it under the current user is called, as well as the function that
-    // toasts what was deleted and that starts the AllsellsActivity
+    // toasts what was deleted and that starts the SellActivity
     public void ondeleteconfirmed (){
         Intent intent = getIntent();
         HashMap<String, String> hash = (HashMap<String,String>)intent
@@ -160,12 +160,12 @@ public class SellfullinfoActivity extends AppCompatActivity {
     }
 
     // Toast what bottle was deleted after deleting the bottle and the bottleid. Then the user is
-    // navigated back to AllsellsActivity
+    // navigated back to SellActivity
     public void afterdeleting (){
         String deletedstring = getResources().getString(R.string.youdeleted) + title + "'";
         Toast.makeText(SellfullinfoActivity.this, deletedstring, Toast.LENGTH_LONG).show();
 
-        startActivity(new Intent(SellfullinfoActivity.this, AllsellsActivity.class));
+        startActivity(new Intent(SellfullinfoActivity.this, SellActivity.class));
         finish();
     }
 }

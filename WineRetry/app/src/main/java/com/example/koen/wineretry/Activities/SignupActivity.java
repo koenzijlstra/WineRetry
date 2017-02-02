@@ -23,11 +23,14 @@ import com.google.firebase.database.FirebaseDatabase;
 * Coarse: Programmeerproject
 *
 * Activity that lets user register. Uses createUserWithEmailAndPassword method given by firebase. When
-* registering is not succesful, toast why it went wrong (with getexeption). When registering is
+* registering is unsuccesful, toast why it went wrong (with getexeption). When registering is
 * successful, the user is navigated to Buy Activity. The user can also click a button to navigate to
- * LoginActivity when already registered.
+* LoginActivity when already registered.
 *
- */
+* Some of the code in this class was written with the use of the following tutorial:
+* http://www.androidhive.info/2016/06/android-getting-started-firebase-simple-login-registration-auth/
+*
+*/
 public class SignupActivity extends BaseActivity {
     EditText nameinput ;
     EditText emailinput;
