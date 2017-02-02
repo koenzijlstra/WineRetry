@@ -54,10 +54,16 @@ navigated to BuyActivity.
 
 **SellActivity** can be accessed via the navigation buttons at the top of the screen. It displays all winebottles that the current user sells. This is done by first retrieving all ID's of bottles that the user sells, and then comparing these ID's with the bottleID's of the bottles under root/wines. This way the complete wineobjects can be retrieved that the user sells. As mentioned earlier ListadapterBottles is used as custom listadapter. When the user clicks an item in the listview, the user is navigated to SellfullInfo.  
 
-**Sellfullinfo**
-**AllchatsActivity**
-**OtheruserObject**
-**ChatActivity**
+**Sellfullinfo** is an activity with a dialog theme and displays most the information of a bottle that the current user sells. The bottle can be deleted from here. When the delete button is clicked an alertdialog is shown. When the deleting is confirmed by the user the bottle is deleted an the user is navigated back to SellActivity. The complete bottle is deleted under root/wines and the bottleID is also deleted under the users wines. This is done both with the use of removeValue, provided by Firebase.
+
+**AllchatsActivity** is also accessible with the navigation buttons atop. It displays all usernames of otherusersobjects that current user has a chat with. This is done with the use of the custom listadapter ListadapterChats. When the user clicks on a name, ChatActivity
+is started and the OtherID of the otheruserobject that was clicked on is given to the intent.
+
+**OtheruserObject** is an object that contains the username and ID of the other user (the user that the current user has a chat with). The name is used for displaying the names of all people that current user has a chat with, and the id is used for opening the
+correct chat in ChatActivity.  
+
+**ChatActivity** displays all the messages (chatmessageobjects) between two users with the use of the Firebaselistadapter. This adapter uses a custom listitem xml file called message. The messages are updated live, it is a realtime chat. The user can write a message, and the newly created chatmessageobject will be written in both duplicate chats. This activity can be accessed from Buyfullinfo or from AllchatsActivity. 
+
 **ListadapterChats**
 **ChatMessageObject**
 **InfoActivity**
