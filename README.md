@@ -6,7 +6,8 @@ University of Amsterdam
 Coarse: Programmeerproject
 
 ## Purpose
-The aim of this application is to provide a product-specific Marktplaats/eBay like app for people looking to buy or sell rare or old bottles of wine. FineWine has a realtime-chat function for the communication between the seller of a wine bottle and a user that is interested in (buying) the bottle. User-authentication and database management is done with the use of Firebase.
+The aim of this application is to provide a product-specific Marktplaats/eBay like app for people looking to buy or sell rare or old bottles of wine. FineWine has a realtime-chat function for the communication between the seller of a wine bottle and a user that is interested in (buying) the bottle. User-authentication and database management is done with the use of Firebase.   
+There are three main/overview activities which mirror the three different parts in functionality: buy, sell and chat. Furthermore there are two authentication activities to register to FineWine and to log in. Additionally there are two activities (with a dialog theme) that display information about a specific bottle (which is shown depends on the previous activity) and an activity with a dialog theme that displays information about the activity the user was previously in. Further documentation on the application can be found on: LINK
 
 ### Copyright and references
 I do not own any of the four PNG files used in this app, and they all have their own respective licenses. Both iconsdb.com and freeiconspng.com specifically state that the icons that were used can be used freely in both personal and commercial projects with no attribution required. They do however mention that an attribution is always appreciated, which is why they are mentioned here.
