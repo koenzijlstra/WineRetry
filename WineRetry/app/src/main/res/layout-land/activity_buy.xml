@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_buy"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.koen.wineretry.Activities.BuyActivity">
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lvbottles"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:paddingBottom="0dp"
+        android:layout_toStartOf="@+id/info"
+        android:layout_alignRight="@+id/textViewend"
+        android:layout_alignEnd="@+id/textViewend"
+        android:layout_marginRight="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_above="@+id/filterbutton"
+        android:layout_alignTop="@+id/info" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_search"
+        android:id="@+id/filterbutton"
+        android:background="@drawable/buttonshape1"
+        android:layout_marginBottom="33dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="17dp"
+        android:layout_marginEnd="17dp" />
+
+    <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+        android:id="@+id/rangeSeekbar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_color="@color/lightgrey"
+        app:bar_highlight_color="@color/colorPrimaryDark"
+        app:left_thumb_color="@color/colorPrimary"
+        app:left_thumb_color_pressed="@color/colorPrimaryDark"
+        app:right_thumb_color="@color/colorPrimary"
+        app:right_thumb_color_pressed="@color/colorPrimaryDark"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginEnd="100dp"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/infoo"
+        android:id="@+id/info"
+        android:background="@color/white"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignRight="@+id/filterbutton"
+        android:layout_alignEnd="@+id/filterbutton"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark"
+        android:id="@+id/linearLayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:text="@string/buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buy"
+            android:layout_weight="1"
+            android:background="@color/inbetween"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <Button
+            android:text="@string/sell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sell"
+            android:layout_weight="1"
+            android:background="@null"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:text="@string/chats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chats"
+            android:layout_weight="1"
+            android:background="@null"
+            android:textColor="@color/white"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/logout24"
+            android:id="@+id/signout"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark" />
+
+    </LinearLayout>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_below="@+id/lvbottles"
+        android:layout_toLeftOf="@+id/textViewend"
+        android:layout_alignLeft="@+id/lvbottles"
+        android:layout_alignStart="@+id/lvbottles" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewstart"
+        android:layout_alignBottom="@+id/filterbutton"
+        android:layout_alignLeft="@+id/spinner"
+        android:layout_alignStart="@+id/spinner" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewend"
+        android:layout_alignBottom="@+id/filterbutton"
+        android:layout_alignRight="@+id/rangeSeekbar1"
+        android:layout_alignEnd="@+id/rangeSeekbar1" />
+
+</RelativeLayout>

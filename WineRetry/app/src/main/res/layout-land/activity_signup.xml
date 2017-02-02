@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_signup"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.koen.wineretry.Activities.SignupActivity"
+    android:background="@color/colorPrimaryDark">
+
+    <Button
+        android:text="@string/already_an_account_log_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:onClick="gotologin"
+        android:background="@null"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="13dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/password"
+        android:ems="10"
+        android:id="@+id/passwordsignup"
+        android:paddingLeft="80dp"
+        android:textColorHint="@color/lightgrey"
+        android:textColor="@color/white"
+        android:layout_above="@+id/button3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/emailsignup"
+        android:hint="@string/email"
+        android:textColorHint="@color/lightgrey"
+        android:textColor="@color/white"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:paddingLeft="80dp"
+        android:layout_above="@+id/passwordsignup"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/bottle"
+        android:id="@+id/imageView"
+        android:layout_above="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:hint="@string/name"
+        android:textColorHint="@color/lightgrey"
+        android:textColor="@color/white"
+        android:inputType="textPersonName"
+        android:maxLines="1"
+        android:paddingLeft="80dp"
+        android:layout_above="@+id/emailsignup"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:maxLength="30"/>
+
+    <TextView
+        android:text="@string/how"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="@string/register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        android:onClick="onRegister"
+        android:background="@color/white"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginBottom="37dp"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>
