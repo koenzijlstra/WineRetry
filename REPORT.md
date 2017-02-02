@@ -104,15 +104,20 @@ A constant theme for not only myself but for lots of students was listviews and 
 In the ChatActivity I would have liked the listview to automatically scroll down when the other user would send a message. Unfortunately I did not implement it in the end, as the function produced some bugs. This might have been just, among other small things, the result of the timing of calling this function. 
 
 **Layout and photographs**  
-Altough not being a challenge, the following thing should still be mentioned here as they were some significant changes.  
+Altough not being a challenge, the following things should still be mentioned here as they are significantly different from the design document.
+
 * Instead of a homescreen from where the user can navigate to the three different parts of the application (buy sell and chat) I implemented navigation buttons at the top of each of those three activities. This felt much more userfriendly and natural and it created a much more 'open' vibe to the application. The user did not need to constantly navigate back to the home screen to get to another part of the application.
 * Functionality that I did not get to implement was letting the user take a picture or upload a picture of his rare bottle, and add it to the WineObject. This picture would be shown in small at Buy-/Sell Activity and would be shown larger at Buy/Sell FullinfoActivity. This was also shown in the design document. 
 * The earlier mentioned changing from a search function to a filter function created an opportunity to experiment with a rangeseekbar.
+* Separating the messages to the right (current user) and the left (other user) in ChatActivity would have been nice. These are small things that could have been implemented in another week.
 
 ## Discussion and conclusion  
+The previously discussed inability to search in Firebase resulted in the need for an alternative (and creative) solution. However, when this application would grow and more bottles of whine would be sold, it would be useful to be able to search for keywords such as Chateau. The implemented filter would still be quite useful to complement this search function. The implementation of an online auction function would have completed the application. There are incredibly successful real life auction companies such as Acker Merrall & Condit. However, there are no online auction application yet for this type of products.     
 
+I am very glad that this time I did not focus on API's and SQLite as I did for the previous application. It resulted in a much larger learning experiences with the challenges FireBase and the realtime chat brougth. 
 
 ## Firebase DataBase datastructure  
+Below the structure of the database of FineWine is shown. The main children under the root are chats, users and wines.  
 
 <img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/DBFINAL.PNG" width="500"> 
 
