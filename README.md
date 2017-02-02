@@ -19,9 +19,9 @@ Below are some pictures to give an idea of how the user interface will look. The
 
 
 
-<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/For%20sale%2C%20dinsdagmiddag%2017.PNG" width="48">
-![alt tag] (https://github.com/koenzijlstra/WineRetry/blob/master/docs/voorbeeldfles.PNG)
-![alt tag](https://github.com/koenzijlstra/WineRetry/blob/master/docs/loginvrijdag.PNG)
+<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final1.PNG" width="200">
+<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final2.PNG" width="200">
+<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final3.PNG" width="200">
 
 
 
