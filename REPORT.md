@@ -108,7 +108,7 @@ In the ChatActivity I would have liked the listview to automatically scroll down
 
 ## Firebase DataBase datastructure  
 
-<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/DBFINAL.PNG" width="500 
+<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/DBFINAL.PNG" width="500"> 
 
 
 
