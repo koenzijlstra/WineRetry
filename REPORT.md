@@ -91,7 +91,7 @@ At first I tried to search for proper tutorials on realtime private chat applica
 
 Each chatroom has a duplicate. When a chat between two users that have never chatted before is created a chatID of currentUID + otherUID is created, and a chatID of otherUID + currentUID is made. This way each user can always start the chat and open a chat, and then always be directed to the correct chat. This is attributable to the fact that Chatactivity uses the ID of the other user, concatenates it with the current user and thus shows the correct private chatroom. 
 
-An extra function was displaying how much messages were unread per chat in AllchatActivity. Because of some bugs in combination with the limited ammount of time I had left I redirected this idea to just showing which chats contained unread messages, which is implemented in the final version of the application.
+An extra function was displaying how much messages were not read by the user yet per chat in AllchatActivity. Because of some bugs in combination with the limited ammount of time I had left I redirected this idea to just showing which chats contained unread messages, which is implemented in the final version of the application.
 
 **Timing of Ondatachange, filling listviews and some more timing stuff**      
 A constant theme for not only myself but for lots of students was listviews and textviews remaining empty the first time. This was the result of the order of among other things creating the empty arraylist and setting the listadapter on the listview with the empty arraylist. Luckily this was fixed after one day as this was a common bug and we as a group helped eachother to fix this problem.
