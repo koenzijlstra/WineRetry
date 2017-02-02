@@ -35,8 +35,35 @@ successful, the user is navigated to BuyActivity. The user can also click a butt
 LoginActivity when already registered.
 
 **LoginActivity** is opened when the application is started. It lets the user log in to FineWine. When the user is already logged in,
-navigate to BuyActivity automatically with an authstatelistener. This listener is used in every activity. When the user is not logged in,
-the user is navigated to the LoginActivity. The class first retrieves the input, checks if it is not empty and then the function
+navigate to BuyActivity automatically with an authstatelistener. This listener is used in every activity. When the user is not logged in, the user is navigated to the LoginActivity. The class first retrieves the input, checks if it is not empty and then the function
 signInWithEmailAndPassword provided by Firebase is called. When this fails the app toasts what went wrong. Otherwise the user is 
-navigated to BuyActivity.
+navigated to BuyActivity.  
+
+**ForgotpasswordActivity** is started from LoginActivity. The user enters his email adress and a mail to reset
+ the password is sent to the email adress. This is done with the use of the sendPasswordResetEmail function, which is
+ provided by Firebase. The user is then navigated back to LoginActivity.   
+ 
+**BuyActivity** is the default activity when the user is logged in for the authstatelistener as previously mentioned. It displays all the bottles that are for sale. Custom listadapter ListadapterBottles is used to fill the listview with some of the info of each WineObject. When a Wineobject/item in the listview is clicked BuyfullinfoActivity is started.  
+
+**WineObject** is an object that contains a title, the region the wine comes from, the year, additional information about the bottle (story), the id of the user that sells the bottle (sellerid), an unique ID for the bottle and a tag (red/white etc). This object is created at NewSellActivity and used for SellActivity and BuyActivity. Furthermore the info of the objects is given to BuyfullinfoActivity and SellfullinfoActivity.  
+
+**ListadapterBottles** extends the arrayadapter. It uses a list of WineObjects as input, and a custom listitem xml file as
+ layout for each item. It fills the needed textviews of each listitem with the title, year and region of the Wine Object. This adapter is used by BuyActivity as well as SellActivity.
+ 
+**BuyfullinfoActivity** displays most of the data of a WineObject. This data is retrieved via the hashmap that was given to the intent (no object was given to the hashmap as a result of some bugs). When the current user is the seller of the bottle the chat button is hidden (so no chat can be created) and the textview that displays the seller has a different message. Otherwise the name of the seller is displayed and the chat button navigates to a chat with the seller of the bottle (ChatActivity).   
+
+**SellActivity** can be accessed via the navigation buttons at the top of the screen. It displays all winebottles that the current user sells. This is done by first retrieving all ID's of bottles that the user sells, and then comparing these ID's with the bottleID's of the bottles under root/wines. This way the complete wineobjects can be retrieved that the user sells. As mentioned earlier ListadapterBottles is used as custom listadapter. When the user clicks an item in the listview, the user is navigated to SellfullInfo.  
+
+**Sellfullinfo**
+**AllchatsActivity**
+**OtheruserObject**
+**ChatActivity**
+**ListadapterChats**
+**ChatMessageObject**
+**InfoActivity**
+**BaseActivity**
+**Signout**
+
+
+
 
