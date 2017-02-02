@@ -6,7 +6,14 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.koen.wineretry.R;
-
+/* Created by Koen Zijlstra
+* University of Amsterdam
+* Student number: 10741615
+* Coarse: Programmeerproject
+*
+* This activity with dialog theme displays specific information about the activity from where
+* Infoactivity was entered.
+*/
 public class InfoActivity extends AppCompatActivity {
 
     @Override

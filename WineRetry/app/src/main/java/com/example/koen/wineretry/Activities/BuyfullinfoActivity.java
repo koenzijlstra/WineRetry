@@ -14,6 +14,18 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
+/* Created by Koen Zijlstra
+* University of Amsterdam
+* Student number: 10741615
+* Coarse: Programmeerproject
+*
+* This Activity displays most of the data of a WineObject. This data is retrieved via the hashmap
+* given to the intent (no object given to hashmap as a result of some bugs). When the current user
+* is the seller of the bottle the chat button is hidden (so no chat can be created). Otherwise the
+* name of the seller is displayed and the chat button navigates to a chat with the seller of the
+* bottle.
+*/
+
 public class BuyfullinfoActivity extends AppCompatActivity {
 
     private String uid;
@@ -55,15 +67,15 @@ public class BuyfullinfoActivity extends AppCompatActivity {
             chatbutton.setVisibility(View.GONE);
         }
         else {
-            String soldby = "Sold by: " + sellername;
+            String soldby = getResources().getString(R.string.soldby) + sellername;
             sellertv.setText(soldby);
             chatbutton.setVisibility(View.VISIBLE);
         }
 
         titletv.setText(title);
-        String yearstring = "Year: " + year;
+        String yearstring = getResources().getString(R.string.year) + year;
         yeartv.setText(yearstring);
-        String regionstring = "Region: "+ region;
+        String regionstring = getResources().getString(R.string.region)+ region;
         regiontv.setText(regionstring);
         storytv.setText(story);
     }
@@ -91,9 +103,6 @@ public class BuyfullinfoActivity extends AppCompatActivity {
     // set the variable read true. This means that the cur user has read the other users message
     // (even though there will be no message from the other user if cur user initiates the chat).
     public void startchat (View view){
-        Intent intent = getIntent();
-//        HashMap<String, String> hash = (HashMap<String,String>)intent
-//                .getSerializableExtra("fullhashmap");
         Intent gotochat = new Intent(BuyfullinfoActivity.this, ChatActivity.class);
         gotochat.putExtra("sellerid", sellerid);
         FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("chats")

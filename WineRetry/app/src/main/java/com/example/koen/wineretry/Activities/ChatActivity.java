@@ -19,10 +19,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/* Created by Koen Zijlstra
+* University of Amsterdam
+* Student number: 10741615
+* Coarse: Programmeerproject
+*
+* This activity displays all the messages (chatmessageobjects) between two users. The messages are
+* updated live. The user can write a message, and the newly created chatmessageobject will be
+* written in both duplicate chats. This activity can be accessed from Buyfullinfo or from
+* AllchatsActivity
+*/
+
 public class ChatActivity extends AppCompatActivity {
     String ownname;
     String otherusername;
-    public FirebaseListAdapter adapter;
     String chatID_own;
     String chatID_seller;
     String sellerid;
@@ -98,17 +108,6 @@ public class ChatActivity extends AppCompatActivity {
                 .setValue(new ChatMessageObject(input, name)
                 );
     }
-
-    //
-//                        // scroll naar beneden
-//                        final ListView listOfMessages = (ListView)findViewById(R.id.chatslv);
-//                        listOfMessages.post(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                // Select the last row so it will scroll into view...
-//                                listOfMessages.setSelection(adapter.getCount() - 1);
-//                            }
-//                        });
 
 
     // Write both users under each others 'chats'

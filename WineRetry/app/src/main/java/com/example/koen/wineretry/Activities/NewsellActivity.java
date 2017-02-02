@@ -18,6 +18,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+/* Created by Koen Zijlstra
+* University of Amsterdam
+* Student number: 10741615
+* Coarse: Programmeerproject
+*
+* In this Activity the user can add a new bottle of wine to the firebasedatabase. The user input is
+* retrieved and a wineObject is created and added to firebase. Then the user is navigated back to
+* AllsellsActivity.
+*/
 public class NewsellActivity extends AppCompatActivity {
 
     private EditText ettitle;

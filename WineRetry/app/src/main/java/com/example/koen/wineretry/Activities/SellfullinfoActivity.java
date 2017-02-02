@@ -20,6 +20,17 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
+/* Created by Koen Zijlstra
+* University of Amsterdam
+* Student number: 10741615
+* Coarse: Programmeerproject
+*
+* In this Activity with dialog theme all the info of a bottle that the current user sells is
+* displayed. The bottle can be deleted. When the delete button is clicked an alertdialog is shown.
+* When the deleting is confirmed by the user the bottle is deleted an the user is navigated back to
+* AllsellsActivity.
+*/
+
 public class SellfullinfoActivity extends AppCompatActivity {
     private String title;
     private String uid;

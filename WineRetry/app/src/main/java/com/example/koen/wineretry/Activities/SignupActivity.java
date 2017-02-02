@@ -17,12 +17,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-/*
-* Koen Zijlstra, 10741615
+/* Created by Koen Zijlstra
+* University of Amsterdam
+* Student number: 10741615
+* Coarse: Programmeerproject
 *
-* Activity that lets user register. Used createUserWithEmailAndPassword method given by firebase. When
-* registering is not succesful, toast why it went wrong (with getexeption). when succesful, go to main
-* activity. User can also click button to navigate to login activity when already registered.
+* Activity that lets user register. Uses createUserWithEmailAndPassword method given by firebase. When
+* registering is not succesful, toast why it went wrong (with getexeption). When registering is
+* successful, the user is navigated to Buy Activity. The user can also click a button to navigate to
+ * LoginActivity when already registered.
 *
  */
 public class SignupActivity extends BaseActivity {

@@ -15,6 +15,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+/* Created by Koen Zijlstra
+* University of Amsterdam
+* Student number: 10741615
+* Coarse: Programmeerproject
+*
+* This activity is started from LoginActivity. The user enters his email adress and a mail to reset
+* the password is sent to the email adress. The user is then navigated back to LoginActivity.
+*/
+
 public class ForgotpasswordActivity extends AppCompatActivity {
 
     @Override

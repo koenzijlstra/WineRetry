@@ -19,14 +19,16 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-/**
- * Created by Koen on 25-1-2017.*
- *
- * This class extends the arrayadapter. Shortening the units of code created a bug, and therefore I
- * restored the old code and deleted the cleaned and shortened code. It uses an arraylist of
- * Otheruserobjects, and gets the name of this obj to display, and uses the id to start the correct
- * chat with the other user.
- */
+/* Created by Koen Zijlstra
+* University of Amsterdam
+* Student number: 10741615
+* Coarse: Programmeerproject
+*
+* This class extends the arrayadapter. Shortening the units of code created a bug, and therefore I
+* restored the old code and deleted the cleaned and shortened code. It uses an arraylist of
+* Otheruserobjects, and gets the name of this obj to display, and uses the id to start the correct
+* chat with the other user.
+*/
 
 
 public class ListadapterChats extends ArrayAdapter {

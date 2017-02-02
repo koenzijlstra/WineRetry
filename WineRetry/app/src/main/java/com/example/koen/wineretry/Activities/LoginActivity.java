@@ -16,13 +16,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-/*
-* Koen Zijlstra, 10741615
+/* Created by Koen Zijlstra
+* University of Amsterdam
+* Student number: 10741615
+* Coarse: Programmeerproject
 *
-* In this activity the user can log in. When user is already logged in, go to main activity.
-* when something goes wrong with logging in, toast to user what went wrong. User can navigate to
-* sign up activity when user is not registered yet.
- */
+* In this activity the user can log in. When the user is already logged in, navigate to BuyActivity.
+* The class first retrieves the input, checks if it is not empty and then the function
+* signInWithEmailAndPassword is called. When this fails, what went wrong is toasted. Otherwise the
+* user is navigated to BuyActivity.
+*
+* Some functionality was used from
+* http://www.androidhive.info/2016/06/android-getting-started-firebase-simple-login-registration-auth/
+*/
 
 public class LoginActivity extends BaseActivity {
 

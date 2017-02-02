@@ -61,6 +61,7 @@
     <string name = "voorbeeldusername">"voorbeeld username"</string>
     <string name = "voorbeeldtijd">"voorbeeld tijd"</string>
     <string name = "voorbeeldmessage"> "message voorbeeld"</string>
+    <string name = "soldby">"Sold by: "</string>
     <string-array name="winetags">
         <item>Red</item>
         <item>White</item>

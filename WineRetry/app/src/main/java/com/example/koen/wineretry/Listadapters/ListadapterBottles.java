@@ -12,8 +12,11 @@ import com.example.koen.wineretry.R;
 
 import java.util.List;
 
-/**
- * Created by Koen on 17-1-2017.
+/* Created by Koen Zijlstra
+* University of Amsterdam
+* Student number: 10741615
+* Coarse: Programmeerproject
+*
  *
  * This class extends the arrayadapter. It uses a list of WineObjects as input, and listitem.xml as
  * layout for each item. It fills the needed textviews of each listitem with the title, year and

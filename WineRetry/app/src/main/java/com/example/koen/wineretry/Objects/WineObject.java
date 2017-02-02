@@ -1,14 +1,17 @@
 package com.example.koen.wineretry.Objects;
 
-/**
- * Created by Koen on 14-1-2017.
- *
- * Wine bottle object that consists of a title, the region the wine comes from, the year,
- * additional information about the bottle (story), the id of the user that sells the bottle
- * (sellerid), an unique ID for the bottle and a tag (red/white etc). This object is created at
- * NewSellActivity and used for AllsellsActivity and BuyActivity. Furthermore the info of the
- * objects is given to BuyfullinfoActivity and SellfullinfoActivity
- */
+/* Created by Koen Zijlstra
+* University of Amsterdam
+* Student number: 10741615
+* Coarse: Programmeerproject
+*
+*
+* Wine bottle object that consists of a title, the region the wine comes from, the year,
+* additional information about the bottle (story), the id of the user that sells the bottle
+* (sellerid), an unique ID for the bottle and a tag (red/white etc). This object is created at
+* NewSellActivity and used for AllsellsActivity and BuyActivity. Furthermore the info of the
+* objects is given to BuyfullinfoActivity and SellfullinfoActivity
+*/
 
 public class WineObject {
 
