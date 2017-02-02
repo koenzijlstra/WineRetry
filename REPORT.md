@@ -8,11 +8,7 @@ Coarse: Programmeerproject
 ## Introduction
 The aim of this application is to provide a product-specific Marktplaats/eBay like app for people looking to buy or sell rare or 
 old bottles of wine. FineWine has a realtime-chat function for the communication between the seller of a wine bottle and a user that
-is interested in (buying) the bottle. User-authentication and database management is done with the use of Firebase. There are 
-three main/overview activities which mirror the three different parts in functionality: buy, sell and chat. Furthermore there
-are two authentication activities to register to FineWine and to log in. Additionally there are two activities (with a dialog theme)
-that display information about a specific bottle (which is shown depends on the previous activity) and an activity with a dialog
-theme that displays information about the activity the user was previously in.    
+is interested in (buying) the bottle. User-authentication and database management is done with the use of Firebase.  
 
 Below is a screenshot of the BuyActivity, where a filter of only red whines from between the year 1960 and 1989 is applied. 
 
