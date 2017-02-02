@@ -103,6 +103,12 @@ A constant theme for not only myself but for lots of students was listviews and 
 **Scrolling to last message**    
 In the ChatActivity I would have liked the listview to automatically scroll down when the other user would send a message. Unfortunately I did not implement it in the end, as the function produced some bugs. This might have been just, among other small things, the result of the timing of calling this function. 
 
+**Layout and photographs**  
+Altough not being a challenge, the following thing should still be mentioned here as they were some significant changes.  
+* Instead of a homescreen from where the user can navigate to the three different parts of the application (buy sell and chat) I implemented navigation buttons at the top of each of those three activities. This felt much more userfriendly and natural and it created a much more 'open' vibe to the application. The user did not need to constantly navigate back to the home screen to get to another part of the application.
+* Functionality that I did not get to implement was letting the user take a picture or upload a picture of his rare bottle, and add it to the WineObject. This picture would be shown in small at Buy-/Sell Activity and would be shown larger at Buy/Sell FullinfoActivity. This was also shown in the design document. 
+* The earlier mentioned changing from a search function to a filter function created an opportunity to experiment with a rangeseekbar.
+
 ## Discussion and conclusion  
 
 
