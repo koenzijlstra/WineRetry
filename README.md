@@ -18,7 +18,9 @@ I do not own any of the four PNG files used in this app, and they all have their
 
 The BaseActivity class that contains the functions to show and hide an alertdialog is created with the use of code from   https://github.com/firebase/quickstart-android  
 Both the LoginActivity and SignupActivity were partly inspired by the following tutorial:    
-http://www.androidhive.info/2016/06/android-getting-started-firebase-simple-login-registration-auth/  
+http://www.androidhive.info/2016/06/android-getting-started-firebase-simple-login-registration-auth/   
+
+The public domain release can be found under WineRetry/LICENSE
 
 ## UI
 Below are some pictures to give an idea of how the user interface will look. The activites Buyfullinfo and Sellfullinfo have a dialog theme.
