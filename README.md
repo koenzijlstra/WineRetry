@@ -17,11 +17,15 @@ Below are some pictures to give an idea of how the user interface will look. The
 ![alt tag](https://github.com/koenzijlstra/WineRetry/blob/master/docs/final8.PNG)
 ![alt tag](https://github.com/koenzijlstra/WineRetry/blob/master/docs/final9.PNG)
 
-
-
-<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final1.PNG" width="300">
-<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final2.PNG" width="300">
-<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final3.PNG" width="300">
+<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final1.PNG" width="250">
+<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final2.PNG" width="250">
+<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final3.PNG" width="250">
+<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final4.PNG" width="250">
+<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/Final5.PNG" width="250">
+<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final6.PNG" width="250">
+<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final7.PNG" width="250">
+<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final8.PNG" width="250">
+<img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final9.PNG" width="500">
 
 
 
