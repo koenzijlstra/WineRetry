@@ -64,11 +64,19 @@ correct chat in ChatActivity.
 
 **ChatActivity** displays all the messages (chatmessageobjects) between two users with the use of the Firebaselistadapter. This adapter uses a custom listitem xml file called message. The messages are updated live, it is a realtime chat. The user can write a message, and the newly created chatmessageobject will be written in both duplicate chats. This activity can be accessed from Buyfullinfo or from AllchatsActivity. 
 
-**ListadapterChats**
-**ChatMessageObject**
-**InfoActivity**
-**BaseActivity**
-**Signout**
+**ListadapterChats** extends the arrayadapter. It uses an arraylist of Otheruserobjects as input. It gets the name of this object and displays it, and the ID is used to start the correct chat with the other user.
+
+**ChatMessageObject** is a model for a message. It contains the message itself, the user that sent it and a long of the timestamp. It is created when the user presses the send button, and is used for displaying all the messages in a chat.
+
+**InfoActivity** is an activity that can be accessed from BuyActivity, SellActivity or AllchatsActivity. It displays specific information about the activity from where Infoactivity was entered. It has a dialog theme.
+
+**BaseActivity** consists of functions to show and hide a progressdialog. The progressdialog is shown when logging in or registering.
+
+**Signout** is a class with one method (also called signout) to sign the user out. Uses the activity that called this method and a FirebaseAuth auth instance. It displays an alertdialog and when the positive button is clicked the user is
+logged out. Because of the authstatelisteners in the activities the user is navigated to login
+Activity. When negative button is clicked, the dialog hides.
+
+
 
 
 
