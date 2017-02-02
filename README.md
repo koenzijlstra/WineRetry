@@ -16,14 +16,14 @@ I do not own any of the four PNG files used in this app, and they all have their
 * Info icon (infoo.PNG) was retrieved from: http://www.freeiconspng.com/free-images/information-icon-6056
 * Back arrow (back4.PNG) was retrieved from: https://www.materialui.co/icon/arrow-back. All rights go out to this owner  
 
-The BaseActivity class that contains the functions to show and hide an alertdialog is created with the use of code from   https://github.com/firebase/quickstart-android  
+The BaseActivity class that contains the functions to show and hide an alertdialog is created with the use of code from:    https://github.com/firebase/quickstart-android  
 Both the LoginActivity and SignupActivity were partly inspired by the following tutorial:    
 http://www.androidhive.info/2016/06/android-getting-started-firebase-simple-login-registration-auth/   
 
-The public domain release can be found under WineRetry/LICENSE
+The public domain release can be found at: https://github.com/koenzijlstra/WineRetry/blob/master/LICENSE
 
 ## User Interface
-uitleg over interfacela ljsdl jdlf lsfj  jlsfj
+uitleg over interfacela ljsdl jdlf lsfj  jlsfj  
 <img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final1.PNG" width="250">
 <img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final2.PNG" width="250">
 <img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/Final5.PNG" width="250">
