@@ -32,7 +32,7 @@
     <string name= "yes">"Yes"</string>
     <string name= "no">"No"</string>
     <string name="youdeleted">"You deleted '"</string>
-    <string name="welcome">"Registered succesfully, welcome to TITEL APP "</string>
+    <string name="welcome">"Registered successfully, welcome to TITEL APP "</string>
     <string name="yourname">"Enter your name!"</string>
     <string name="yourmail">"Enter your email address!"</string>
     <string name="enterpassword">"Enter a password!"</string>
@@ -75,4 +75,3 @@
         <item>Other</item>
     </string-array>
 </resources>
-

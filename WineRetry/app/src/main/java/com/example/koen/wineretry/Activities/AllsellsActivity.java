@@ -29,6 +29,20 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/* Created by Koen Zijlstra
+* University of Amsterdam
+* Student number: 10741615
+* Coarse: Programmeerproject
+*
+* Activity that displays all winebottles that current user sells. This is done by first retrieving
+* all ID's of bottles that user sells, and then comparing these ID's with the bottleID's of the
+* bottles under root/wines. This way the complete wineobjects can be retrieved that the user sells.
+* ListadapterBottles is used as custom listadapter. When the user clicks an item in the listview,
+* the user is navigated to SellfullInfo. Here all info of the bottle is shown, and here the user can
+* delete the bottle.
+*/
+
+
 public class AllsellsActivity extends BaseActivity implements View.OnClickListener {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
@@ -114,7 +128,7 @@ public class AllsellsActivity extends BaseActivity implements View.OnClickListen
 
     public void createAuthstatelistener (){
         auth = FirebaseAuth.getInstance();
-        // authstatelistener that starts login activity when user is not logged in
+        // Authstatelistener that starts login activity when user is not logged in
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {

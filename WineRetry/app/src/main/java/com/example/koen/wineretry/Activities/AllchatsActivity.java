@@ -26,6 +26,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+/* Created by Koen Zijlstra
+* University of Amsterdam
+* Student number: 10741615
+* Coarse: Programmeerproject
+*
+* Activity that displays all usernames of otherusersobjects that current user has a chat with. This
+* is done with the use of the listadapter ListadapterChats. When user clicks on a name, ChatActivity
+* is started with the id of the otheruserobject that was clicked on.
+*/
 
 public class AllchatsActivity extends BaseActivity implements View.OnClickListener{
 

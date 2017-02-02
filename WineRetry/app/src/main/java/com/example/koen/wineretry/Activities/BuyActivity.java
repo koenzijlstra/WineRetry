@@ -37,6 +37,18 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/* Created by Koen Zijlstra
+* University of Amsterdam
+* Student number: 10741615
+* Coarse: Programmeerproject
+*
+* Displays all the bottles that are for sale. Custom listadapter ListadapterBottles is used to fill
+* the listview with some info of each WineObject. When a Wineobject/item in listview is clicked,
+* navigate to BuyfullinfoActivity. Here the current user can chat with the seller of the bottle if
+* the current user is not also the seller. BuyActivity is the first activity where user goes to
+* after logging in.
+*/
+
 public class BuyActivity extends BaseActivity implements View.OnClickListener{
 
     private FirebaseAuth.AuthStateListener authListener;
@@ -75,12 +87,6 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener{
         createOnclicklistener();
         setClicklisteners();
 
-        // hide keyboard -> doet niks?
-//        View view = this.getCurrentFocus();
-//        if (view != null) {
-//            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-//            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-//        }
     }
     // Create an ArrayAdapter using the string array and a default spinner layout, specify the
     // layout to use and apply the adapter to the spinner
@@ -244,12 +250,6 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener{
         gotobuyfullinfo.putExtra("fullhashmap", hash);
         startActivity(gotobuyfullinfo);
     }
-
-    // app crasht als ik keys probeer te hiden?
-//    public void hidekeys(){
-//        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-//    }
 
     // Retreive all bottles from firebase, create wineobject for each bottle, and set the custom
     // listadapter with the arraystring of all wineobjects (called bottles).
