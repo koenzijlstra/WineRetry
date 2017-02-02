@@ -22,10 +22,8 @@ http://www.androidhive.info/2016/06/android-getting-started-firebase-simple-logi
 
 The public domain release can be found under WineRetry/LICENSE
 
-## UI
-Below are some pictures to give an idea of how the user interface will look. The activites Buyfullinfo and Sellfullinfo have a dialog theme.
-
-
+## User Interface
+uitleg over interfacela ljsdl jdlf lsfj  jlsfj
 <img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final1.PNG" width="250">
 <img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final2.PNG" width="250">
 <img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/Final5.PNG" width="250">
