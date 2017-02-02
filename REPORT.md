@@ -97,7 +97,11 @@ Each chatroom has a duplicate. When a chat between two users that have never cha
 
 An extra function was displaying how much messages were unread per chat in AllchatActivity. Because of some bugs in combination with the limited ammount of time I had left I redirected this idea to just showing which chats contained unread messages, which is implemented in the final version of the application.
 
-**Timing of Ondatachange, filling listviews and 
+**Timing of Ondatachange, filling listviews and more freakiy timing stuff**  
+A constant theme for not only myself but for lots of students was listviews and textviews remaining empty the first time. This was the result of the order of among other things creating the empty arraylist and setting the listadapter on the listview with the empty arraylist. Luckily this was fixed after one day as this was a common bug and we as a group helped eachother to fix this problem.
+
+**Scrolling to last message**
+In the ChatActivity I would have liked the listview to automatically scroll down when the other user would send a message. Unfortunately I did not implement it in the end, as the function produced some bugs. This might have been just, among other small things, the result of the timing of calling this function. 
 
 
 
