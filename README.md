@@ -1,8 +1,8 @@
 #### Programmeerproject
 # FineWine
-Created by Koen Zijlstra
-Student nr: 10741615
-University of Amsterdam
+Created by Koen Zijlstra  
+Student nr: 10741615  
+University of Amsterdam  
 Coarse: Programmeerproject
 
 ## Purpose
