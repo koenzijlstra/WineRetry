@@ -43,17 +43,16 @@ public class AllchatsActivity extends BaseActivity implements View.OnClickListen
 
         lvchats = (ListView) findViewById(R.id.lvchats);
 
+        // New arraylist for the Otheruserobjects and new listadapter
+        chatters = new ArrayList<>();
+        listadapterChats =  new ListadapterChats(getApplicationContext() , chatters);
+        listadapterChats.notifyDataSetChanged();
+
         setActionbar();
         setAuthstatelistener();
         setLv();
         createOnitemclicklistener ();
         setclicklisteners();
-
-        // Create the custom listadapter for the listview that displays all names of chats. Adapter
-        // is created with an empty arraylist chatters
-        chatters = new ArrayList<>();
-        listadapterChats =  new ListadapterChats(getApplicationContext()
-                , chatters);
     }
 
     // Set the custom supportactionbar
@@ -97,7 +96,9 @@ public class AllchatsActivity extends BaseActivity implements View.OnClickListen
                     OtheruserObject otheruserObject = otheruser.child("other").
                             getValue(OtheruserObject.class);
                     chatters.add(otheruserObject);
+                    // listadapterChats.notifyDataSetChanged();
                     lvchats.setAdapter(listadapterChats);
+                    // listadapterChats.notifyDataSetChanged();
                 }
             }
             @Override
@@ -119,7 +120,7 @@ public class AllchatsActivity extends BaseActivity implements View.OnClickListen
                 FirebaseDatabase.getInstance().getReference().child("users").child(uid)
                         .child("chats").child(sellerid).child("read").setValue(true);
                 // Clear the list, otherwise adapter would add users a second time
-                chatters.clear();
+                // chatters.clear();
 
                 // Navigate to chat
                 Intent gotochat = new Intent(AllchatsActivity.this, ChatActivity.class);

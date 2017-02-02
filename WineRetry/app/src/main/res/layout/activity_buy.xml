@@ -57,7 +57,6 @@
         android:layout_marginEnd="100dp"/>
 
     <TextView
-        android:text="2017"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textViewend"
@@ -66,7 +65,6 @@
         android:layout_alignEnd="@+id/rangeSeekbar1" />
 
     <TextView
-        android:text="tvend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textViewstart"
@@ -107,7 +105,7 @@
         android:layout_alignParentStart="true">
 
         <Button
-            android:text="Buy"
+            android:text="@string/buy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buy"
@@ -117,7 +115,7 @@
             android:textStyle="bold"/>
 
         <Button
-            android:text="Sell"
+            android:text="@string/sell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/sell"
@@ -126,7 +124,7 @@
             android:textColor="@color/white"/>
 
         <Button
-            android:text="Chats"
+            android:text="@string/chats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/chats"

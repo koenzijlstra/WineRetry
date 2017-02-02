@@ -14,7 +14,12 @@ import java.util.List;
 
 /**
  * Created by Koen on 17-1-2017.
+ *
+ * This class extends the arrayadapter. It uses a list of WineObjects as input, and listitem.xml as
+ * layout for each item. It fills the needed textviews of each listitem with the title, year and
+ * region of the Wine Object.
  */
+
 
 public class ListadapterBottles extends ArrayAdapter {
 
@@ -25,15 +30,15 @@ public class ListadapterBottles extends ArrayAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
 
-        // get wine object at postiion
         final WineObject wineObject = (WineObject) getItem(position);
 
-        // use listitem.xml as layout for each item
+        // Use listitem.xml as layout for the items in the lsit
         if (convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.listitem, parent,
                     false);
         }
 
+        // Fill the textviews in listitem.xml
         TextView tvtitle = (TextView) convertView.findViewById(R.id.titleitem);
         if (wineObject != null){
             tvtitle.setText(wineObject.getTitle());

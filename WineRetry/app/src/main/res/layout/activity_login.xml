@@ -41,14 +41,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="Log in with your email and password"
+        android:text="@string/loginwith"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView4"
@@ -81,7 +81,7 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="Forgot password?"
+        android:text="@string/forgot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/forgot"
@@ -94,7 +94,7 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="No FineWine account? Register!"
+        android:text="@string/noaccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button5"

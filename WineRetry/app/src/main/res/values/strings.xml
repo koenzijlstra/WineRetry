@@ -5,7 +5,7 @@
     <string name="password">Password</string>
     <string name="already_an_account_log_in">Already an account? Log in!</string>
     <string name="auth_failed">Wrong email or password. Try again or register</string>
-    <string name="how">Fill in your name, email and a password to register to TITEL APP</string>
+    <string name="how">Fill in your name, email and a password to register to FineWine</string>
     <string name="log_in">Log In</string>
     <string name="name">Name</string>
     <string name = "your_bottle">This is one of your bottles. You can delete it from \'sell\'.</string>
@@ -37,6 +37,30 @@
     <string name="yourmail">"Enter your email address!"</string>
     <string name="enterpassword">"Enter a password!"</string>
     <string name="wwtooshort">"Password too short, enter at least 6 characters"</string>
+    <string name="loading">"Loading..."</string>
+    <string name = "buy">Buy</string>
+    <string name = "sell">Sell</string>
+    <string name = "chats">chats</string>
+    <string name = "newss">new</string>
+    <string name = "chat">Chat</string>
+    <string name = "message">Message</string>
+    <string name = "forgot">"Forgot password?"</string>
+    <string name = "wejustneed">"We just need your registered Email to sent your password reset instructions."</string>
+    <string name = "resetpassword">"Reset Password"</string>
+    <string name = "loginwith">"Log in with your email and password"</string>
+    <string name = "noaccount">"No FineWine account? Register!"</string>
+    <string name = "addnew">"Add a new bottle you want to sell by filling in this info"</string>
+    <string name = "newbottle">"New bottle"</string>
+    <string name = "add">Add</string>
+    <string name = "title">Title</string>
+    <string name = "yearr">Year</string>
+    <string name = "bordeaux">"e.g. Bordeaux"</string>
+    <string name = "story">Story</string>
+    <string name = "infoabout">"Info about your bottle(s)"</string>
+    <string name = "region2">Region</string>
+    <string name = "voorbeeldusername">"voorbeeld username"</string>
+    <string name = "voorbeeldtijd">"voorbeeld tijd"</string>
+    <string name = "voorbeeldmessage"> "message voorbeeld"</string>
     <string-array name="winetags">
         <item>Red</item>
         <item>White</item>

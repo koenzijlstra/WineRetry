@@ -11,12 +11,11 @@
     tools:context="com.example.koen.wineretry.Activities.InfoActivity">
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/infotv"
-        android:textSize="18dp"/>
+        android:textSize="18sp"/>
 </RelativeLayout>

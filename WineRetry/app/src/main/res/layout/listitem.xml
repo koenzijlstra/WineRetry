@@ -7,7 +7,7 @@ android:descendantFocusability="blocksDescendants"
     android:paddingRight="40dp">
 
     <TextView
-        android:text="1996"
+        android:text="@string/yearr"
         android:gravity="center_vertical|left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,8 +23,8 @@ android:descendantFocusability="blocksDescendants"
         android:layout_marginEnd="22dp" />
 
     <TextView
-        android:text="Title"
-        android:gravity="center_vertical|left"
+        android:text="@string/title"
+        android:gravity="center_vertical|start"
         android:textAlignment="gravity"
         android:textSize="16sp"
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@ android:descendantFocusability="blocksDescendants"
         />
 
     <TextView
-        android:text="Region"
+        android:text="@string/region"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvregion"

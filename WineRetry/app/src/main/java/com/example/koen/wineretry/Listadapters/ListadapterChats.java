@@ -20,16 +20,18 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.List;
 
 /**
- * Created by Koen on 25-1-2017.
+ * Created by Koen on 25-1-2017.*
+ *
+ * This class extends the arrayadapter. Shortening the units of code created a bug, and therefore I
+ * restored the old code and deleted the cleaned and shortened code. It uses an arraylist of
+ * Otheruserobjects, and gets the name of this obj to display, and uses the id to start the correct
+ * chat with the other user.
  */
 
-public class ListadapterChats extends ArrayAdapter {
-//    String uid;
-//    String idother;
-//    TextView tvname;
-//    String read;
-//    DatabaseReference readref;
 
+public class ListadapterChats extends ArrayAdapter {
+    OtheruserObject otheruserObject;
+    String uid;
 
     public ListadapterChats(Context context, List allchats ) {
         super(context, 0, allchats);
@@ -39,10 +41,14 @@ public class ListadapterChats extends ArrayAdapter {
     public View getView(int position, View convertView, ViewGroup parent){
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        String uid = auth.getCurrentUser().getUid();
+        if (auth.getCurrentUser() != null){
+            uid = auth.getCurrentUser().getUid();
+        }
 
-        final OtheruserObject otheruserObject = (OtheruserObject) getItem(position);
+        // Get the object at position
+        otheruserObject = (OtheruserObject) getItem(position);
 
+        // Set listitemchat.xml as layout for the listview items
         if (convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.listitemchat, parent,
                     false);
@@ -50,102 +56,37 @@ public class ListadapterChats extends ArrayAdapter {
 
         final TextView tvname = (TextView) convertView.findViewById(R.id.name);
 
+        // If object is not null, get if the messages of that chat are read and set the colors
+        // accordingly. Then set the textview with the name of the other user and return convertview
         if (otheruserObject != null){
-
             String idother = otheruserObject.getUserIDother();
             final DatabaseReference readref = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("chats").child(idother).child("read");
 
-                    readref.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            String read = dataSnapshot.getValue().toString();
-                                    // hier convertview/listitems resetten ofzo?
+            readref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String read = dataSnapshot.getValue().toString();
+                    if (read.equals("true")){
+                        tvname.setTextColor(Color.parseColor("#acacac"));
+                    }else{
+                        tvname.setTextColor(Color.parseColor("#000000"));
+                        tvname.setAllCaps(true);
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });
 
-                                    if (read.equals("true")){
-                                        tvname.setTextColor(Color.parseColor("#acacac"));
-                                }
-                             else{
-                                tvname.setTextColor(Color.parseColor("#000000"));
-                                tvname.setAllCaps(true);
-                                }
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            }
-                        });
             tvname.setText(otheruserObject.getUsernameother());
         }
 
         return convertView;
 
-        }
     }
 
-//        // get wine object at postiion
-//        OtheruserObject otheruserObject = (OtheruserObject) getItem(position);
-//
-//        // use listitem.xml as layout for each item
-//        if (convertView == null){
-//            convertView = LayoutInflater.from(getContext()).inflate(R.layout.listitemchat, parent,
-//                    false);
-//        }
-//
-//        tvname = (TextView) convertView.findViewById(R.id.name);
-//
-//        if (otheruserObject != null){
-//            idother = otheruserObject.getUserIDother();
-//            isread();
-//            tvname.setText(otheruserObject.getUsernameother()); // hier gaat het nog goed
-//
-//        }
-//
-//        return convertView;
-//    }
-//
-//    public void isread (){
-//        getuid();
-//        readref = FirebaseDatabase.getInstance().getReference()
-//                .child("users").child(uid).child("chats").child(idother).child("read");
-//
-//        readref.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//
-//                read = dataSnapshot.getValue().toString();
-//                // setcolors();
-//                if (read.equals("true")){
-//                    tvname.setTextColor(Color.parseColor("#acacac"));
-//                    tvname.setAllCaps(false);
-//                }
-//                else{
-//                    tvname.setTextColor(Color.parseColor("#000000"));
-//                    tvname.setAllCaps(true);
-//                    // tvname.setBackgroundColor(getContext(), R.color"eeffff"));
-//                }
-//
-//            }
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//            }
-//        });
-//    }
-//
-//    public void setcolors (){
-//        if (read.equals("true")){
-//            tvname.setTextColor(Color.parseColor("#acacac"));
-//            tvname.setAllCaps(false);
-//        }
-//        else{
-//            tvname.setTextColor(Color.parseColor("#000000"));
-//            tvname.setAllCaps(true);
-//            // tvname.setBackgroundColor(getContext(), R.color"eeffff"));
-//        }
-//    }
-//
-//    public void getuid (){
-//        FirebaseAuth auth = FirebaseAuth.getInstance();
-//        uid = auth.getCurrentUser().getUid();
-//    }
 
+
+}
 
 

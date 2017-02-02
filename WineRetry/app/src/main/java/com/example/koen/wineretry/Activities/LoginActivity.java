@@ -144,6 +144,5 @@ public class LoginActivity extends BaseActivity {
     // When button "forgot your password?" is clicked, navigate to forgotpasswordactivity
     public void gotoforgotpassword(View view){
         startActivity(new Intent(LoginActivity.this, ForgotpasswordActivity.class));
-        finish();
     }
 }
