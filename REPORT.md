@@ -82,25 +82,25 @@ Challenges that were met during the four week course will be discussed below. So
 **Bottle ID**   
 On the first days of the second week I struggled with retrieving bottles that the user sells from the database after pushing them. As a result of writing the bottle on two different locations the bottles were pushed under two different push keys. Therefore with the help of the TA I created a unique Bottle ID that was created by concatenating the user ID and the timestamp. This would always be unique. To keep track of which wines the user sells I saved the Bottle ID under the users wines, and the complete WineObject under root/wines. This way i could compare the BottleIDs of the user with all the BottleIDs and so retrieve the complete WineObjects that the current user sells.
 
-**The growth of the WineObject**  
+**The growth of the WineObject**    
 Initially the WineObject only contained the information about the bottle itself (year, region etc). During the second and third week additional variables were added such as a sellerid (needed to start the correct chat, discussed later) and a tag. This tag will be discussed below.
 
-**Searching in the Firebase DataBase**  
+**Searching in the Firebase DataBase**    
 As a result of a lack of reading about searching in Firebase on forehand in week one I had the idea that i would (easily) be able to search in firebase. I was under impression i was going to write simple "like" queries, as i was used in SQLite. However, the only query
 Firebase provides is exact, which is incredibly undesirable for wines called Chateau Moutin Rothschild for example. The only (complicated) other option was using a program such as ElasticSearch, which would mirror the whole database. Therefore I changed the idea of letting the user search for keys to letting the user filter the wines. I added a tag to the Wineobject that could be either red, white, sparkling or other.       
 Now i could let the user apply a filter. With the use of a rangeseekbar where the user could chose a range of years BuyActivity first retrieves all the bottles that were in the range of years the user selected from Firebase by applying the orderbychild function on the year of the object and defining a start and end (the range of years) to the childs. Then I would only display those bottles that also had the correct tag. The user can also select "all" as a tag, which results in all the wines from a certain range of years being displayed.
 
-**The Chat**
-At first i tried to search for proper tutorials on realtime private chat applications, but the only good ones (at least on youtube) all used other programmes than Firebase, such as Parse. Firebase itselfs provides a tutorial, but this was incredibly complex, in the way that it used lots of additional (unnecesary) functions.  Therefore i just used a simple open single chatroom application tutorial as inspiration for sending the first messages. From there I just kept trying different approaches in the Firebase Database until i had the desired outcome:  
+**The Chat**  
+At first I tried to search for proper tutorials on realtime private chat applications, but the only good ones (at least on youtube) all used other programmes than Firebase, such as Parse. Firebase itselfs provides a tutorial, but this was incredibly complex, in the way that it used lots of additional (unnecesary) functions.  Therefore i just used a simple open single chatroom application tutorial as inspiration for sending the first messages. From there I just kept trying different approaches in the Firebase Database until i had the desired outcome:  
 
 Each chatroom has a duplicate. When a chat between two users that have never chatted before is created a chatID of currentUID + otherUID is created, and a chatID of otherUID + currentUID is made. This way each user can always start the chat and open a chat, and then always be directed to the correct chat. This is attributable to the fact that Chatactivity uses the ID of the other user, concatenates it with the current user and thus shows the correct private chatroom. 
 
 An extra function was displaying how much messages were unread per chat in AllchatActivity. Because of some bugs in combination with the limited ammount of time I had left I redirected this idea to just showing which chats contained unread messages, which is implemented in the final version of the application.
 
-**Timing of Ondatachange, filling listviews and more freakiy timing stuff**  
+**Timing of Ondatachange, filling listviews and more freakiy timing stuff**    
 A constant theme for not only myself but for lots of students was listviews and textviews remaining empty the first time. This was the result of the order of among other things creating the empty arraylist and setting the listadapter on the listview with the empty arraylist. Luckily this was fixed after one day as this was a common bug and we as a group helped eachother to fix this problem.
 
-**Scrolling to last message**
+**Scrolling to last message**  
 In the ChatActivity I would have liked the listview to automatically scroll down when the other user would send a message. Unfortunately I did not implement it in the end, as the function produced some bugs. This might have been just, among other small things, the result of the timing of calling this function. 
 
 
