@@ -5,7 +5,7 @@ Student nr: 10741615
 University of Amsterdam  
 Coarse: Programmeerproject  
 
-### Introduction
+## Introduction
 The aim of this application is to provide a product-specific Marktplaats/eBay like app for people looking to buy or sell rare or 
 old bottles of wine. FineWine has a realtime-chat function for the communication between the seller of a wine bottle and a user that
 is interested in (buying) the bottle. User-authentication and database management is done with the use of Firebase. There are 
@@ -19,13 +19,13 @@ Below is a screenshot of the BuyActivity, where a filter of only red whines from
 <img src="https://github.com/koenzijlstra/WineRetry/blob/master/docs/final2.PNG" width="250">  
 
 ## Technical design
-#### Overview
+### Overview
 There are three main/overview activities which mirror the three different parts in functionality: buy, sell and chat. Furthermore there
 are two authentication activities to register to FineWine and to log in. Additionally there are two activities (with a dialog theme)
 that display information about a specific bottle (which is shown depends on the previous activity) and an activity with a dialog
 theme that displays information about the activity the user was previously in.    
 
-#### Classes
+### Classes
 When the app is opened for the first time after installing, LoginActivity will be opened. There is a button to navigate to SignupActivity, 
 which is necessary if the user does not have an account yet. 
 
@@ -75,6 +75,24 @@ correct chat in ChatActivity.
 **Signout** is a class with one method (also called signout) to sign the user out. Uses the activity that called this method and a FirebaseAuth auth instance. It displays an alertdialog and when the positive button is clicked the user is
 logged out. Because of the authstatelisteners in the activities the user is navigated to login
 Activity. When negative button is clicked, the dialog hides.
+
+## (Technical) challenges
+Challenges that were met during the four week course will be discussed below. I will sometimes refer to the the datastructure of the Firebase database. An overview of this structure can be found at the end of this report. 
+
+**Bottle ID** 
+On the first days of the second week I struggled with retrieving bottles that the user sells from the database after pushing them. As a result of writing the bottle on two different locations the bottles were pushed under two different push keys. Therefore with the help of the TA I created a unique Bottle ID that was created by concatenating the user ID and the timestamp. This would always be unique. To keep track of which wines the user sells I saved the Bottle ID under the users wines, and the complete WineObject under root/wines. This way i could compare the BottleIDs of the user with all the BottleIDs and so retrieve the complete WineObjects that the current user sells.
+
+**The growth of the WineObject**
+Initially the WineObject only contained the information about the bottle itself (year, region etc). During the second and third week additional variables were added such as a sellerid (needed to start the correct chat, discussed later) and a tag. This tag will be discussed below.
+
+**Searching in the Firebase DataBase**
+As a result of a lack of reading about searching in Firebase on forehand in week one I had the idea that i would (easily) be able to search in firebase. I was under impression i was going to write simple "like" queries, as i was used in SQLite. However, the only query
+Firebase provides is exact, which is incredibly undesirable for wines called Chateau Moutin Rothschild for example. Therefore I changed the idea of letting the user search for keys to letting the user filter the wines. I added a tag to the Wineobject that could be either red, white, sparkling or other.   
+Now i could let the user apply a filter. With the use of a rangeseekbar where the user could chose a range of years BuyActivity first retrieves all the bottles that were in the range of years the user selected from Firebase by applying the orderbychild function on the year of the object and defining a start and end (the range of years) to the childs. Then I would only display those bottles that also had the correct tag. The user can also select "all" as a tag, which results in all the wines from a certain range of years being displayed.
+
+**The Chat**
+
+
 
 
 
